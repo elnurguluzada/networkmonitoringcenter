@@ -1,0 +1,44 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 19 Jul 2019 15:43:55 at http://www.urbanui.com/calmui/template/demo/vertical-default-light/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://www.urbanui.com/calmui/template/demo/vertical-default-light/ -O1 "C:\Users\Asem Hajiyev\Desktop\nmoc\nmoc" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+15:44:45	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/faces/face6.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/)
+15:49:31	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/faces/face6.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/)
+15:49:31	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/300x300/5.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/tabs.html)
+15:49:34	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/300X300/10.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/tabs.html)
+15:49:34	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/300x300/14.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/tabs.html)
+15:49:35	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/jquery-contextmenu/jquery.contextMenu.min.css (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/context-menu.html)
+15:49:36	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/carousel/banner_1.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/carousel.html)
+15:49:36	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/carousel/banner_7.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/carousel.html)
+15:49:36	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/carousel/banner_9.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/carousel.html)
+15:49:37	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/js/typeahead.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/basic_elements.html)
+15:49:50	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/simplemde/simplemde.min.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/text_editor.html)
+15:49:53	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/ace-builds/src-min/mode-javascript.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/code_editor.html)
+15:49:55	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/codemirror/shell.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/code_editor.html)
+15:49:56	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/flot/jquery.flot.resize.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/charts/flot-chart.html)
+15:49:57	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/flot/jquery.flot.categories.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/charts/flot-chart.html)
+15:49:59	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/justgage/justgage.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/charts/justGage.html)
+15:50:00	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html)
+15:50:01	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html)
+15:50:02	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/sweetalert/sweetalert.min.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/ui-features/popups.html)
+15:50:03	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/jquery-mapael/world_countries.min.js (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/maps/mapeal.html)
+15:50:04	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/300x300/7.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/samples/portfolio.html)
+15:50:06	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/1280x768/3.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/apps/gallery.html)
+15:50:07	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/lightbox/thumb-v-v-1.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/apps/gallery.html)
+15:50:13	Warning: 	Moved Permanently for www.urbanui.com/calmui/template/images/samples/300X300/10.jpg
+15:50:13	Warning: 	File has moved from www.urbanui.com/calmui/template/images/samples/300X300/10.jpg to http://www.urbanui.com
+15:50:17	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/owl-carousel-2/owl.video.play.png (from www.urbanui.com/calmui/template/vendors/owl-carousel-2/owl.carousel.min.css)
+15:50:19	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/summernote/dist/font/summernote.woff?1d9aeaaff0a8939558a45be6cd52cd4c (from www.urbanui.com/calmui/template/vendors/summernote/dist/summernote-bs4.css)
+15:50:19	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/images/samples/300x300/7.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/samples/portfolio.html)
+15:50:19	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/jquery-contextmenu/font/context-menu-icons.eot?2lkho (from www.urbanui.com/calmui/template/vendors/jquery-contextmenu/jquery.contextMenu.min.css)
+15:50:19	Warning: 	Retry after error -4 (No data (connection closed)) at link www.urbanui.com/calmui/template/vendors/summernote/dist/font/summernote.woff?1d9aeaaff0a8939558a45be6cd52cd4c (from www.urbanui.com/calmui/template/vendors/summernote/dist/summernote-bs4.css)
+15:50:20	Error: 	"No data (connection closed)" (-4) after 2 retries at link www.urbanui.com/calmui/template/images/samples/300x300/7.jpg (from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/samples/portfolio.html)
+15:50:20	Warning: 	Moved Permanently for www.urbanui.com/calmui/template/vendors/jquery-contextmenu/font/context-menu-icons.eot?2lkho
+15:50:20	Warning: 	File has moved from www.urbanui.com/calmui/template/vendors/jquery-contextmenu/font/context-menu-icons.eot?2lkho to http://www.urbanui.com
+
+HTTrack Website Copier/3.49-2 mirror complete in 6 minutes 25 seconds : 360 links scanned, 328 files written (16764092 bytes overall) [8358921 bytes received at 21711 bytes/sec], 10810117 bytes transferred using HTTP compression in 249 files, ratio 21%, 6.5 requests per connection
+(1 errors, 32 warnings, 0 messages)
