@@ -614,7 +614,6 @@
                                         <tr>
                                             <th>Node</th>
                                             <th>Site</th>
-                                            <th>Location</th>
                                         </tr>
                                         </thead>
                                     </table>

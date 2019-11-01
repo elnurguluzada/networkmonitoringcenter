@@ -1,6 +1,7 @@
 package com.azercell.NetworkMonitoringCenter.service.implementation;
 
 import com.azercell.NetworkMonitoringCenter.domain.DroppedHaltedSite;
+import com.azercell.NetworkMonitoringCenter.domain.Site;
 import com.azercell.NetworkMonitoringCenter.repository.SiteRepository;
 import com.azercell.NetworkMonitoringCenter.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,29 @@ public class SiteServiceImpl implements SiteService {
     public SiteServiceImpl(SiteRepository siteRepository) {
         this.siteRepository = siteRepository;
     }
+
+
+
+ //-------------------------------------------------All Sites----------------------------------------------------------------------------------
+
+    @Override
+    public int getNumberOfAllSites() {
+        return  siteRepository.getNumberOfAllSites();
+    }
+
+    @Override
+    public int getNumberOfFilteredSites(int indexOfColumn, String orderType, String searchParam) {
+        return siteRepository.getNumberOfFilteredAllSites(indexOfColumn,orderType , searchParam);
+    }
+
+    @Override
+    public List<Site> getAllSites(int indexOfColumn, String orderType, String searchParam, int begin, int end) {
+        return siteRepository.getAllSites(indexOfColumn, orderType, searchParam , begin , end);
+    }
+
+
+//-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
+
 
 
     @Override

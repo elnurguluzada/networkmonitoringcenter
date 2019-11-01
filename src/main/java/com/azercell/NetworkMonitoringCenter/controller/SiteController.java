@@ -46,6 +46,11 @@ public class SiteController {
     }
 
 
+
+
+
+//------------------------------------- Dropped Sites ----------------------------------------------------
+
     @GetMapping("/allSites")
     public String getAllSites(){
         return "/site/all_sites";
@@ -59,11 +64,22 @@ public class SiteController {
             @RequestParam(name = "draw") int draw,
             @RequestParam(name = "start") int start ,
             @RequestParam(name = "length") int length,
-            @RequestParam(name = "search[value]") String searchValue
+            @RequestParam(name = "order[0][column]") int indexOfColumn,
+            @RequestParam(name = "order[0][dir]") String orderType,
+            @RequestParam(name = "search[value]") String searchParam
+
 
     ){
+
+        System.out.println("draw = " + draw);
+        System.out.println("start = " + start);
+        System.out.println("length = " + length);
+
         DataTable dataTable = new DataTable();
 
+
+
+        //TODO implement datatable
 
 
 

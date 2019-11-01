@@ -20,49 +20,49 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //@Order(2)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter   {
 
-
-    @Value("${ldap.urls}")
-    private String ldapUrls;
-
-    @Value("${ldap.base.dn}")
-    private String ldapBaseDn;
-
-    @Value("${ldap.username}")
-    private String ldapSecurityPrincipal;
-
-    @Value("${ldap.password}")
-    private String ldapPrincipalPassword;
-
-    @Value("${ldap.user.dn.pattern}")
-    private String ldapUserDnPattern;
-
-    @Value("${ldap.enabled}")
-    private String ldapEnabled;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
+//
+//    @Value("${ldap.urls}")
+//    private String ldapUrls;
+//
+//    @Value("${ldap.base.dn}")
+//    private String ldapBaseDn;
+//
+//    @Value("${ldap.username}")
+//    private String ldapSecurityPrincipal;
+//
+//    @Value("${ldap.password}")
+//    private String ldapPrincipalPassword;
+//
+//    @Value("${ldap.user.dn.pattern}")
+//    private String ldapUserDnPattern;
+//
+//    @Value("${ldap.enabled}")
+//    private String ldapEnabled;
+//
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login")
-                .permitAll()
-                .antMatchers("/**")
-                .hasAnyRole( "USER")
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/loginerror")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout=true")
-                .invalidateHttpSession(true)
-                .permitAll()
-                .and()
-                .csrf()
-                .disable();
+//        http.authorizeRequests()
+//                .antMatchers("/login")
+//                .permitAll()
+//                .antMatchers("/**")
+//                .hasAnyRole( "USER")
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/")
+//                .failureUrl("/loginerror")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/login?logout=true")
+//                .invalidateHttpSession(true)
+//                .permitAll()
+//                .and()
+//                .csrf()
+//                .disable();
     }
 
     @Bean
@@ -74,11 +74,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter   {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.ldapAuthentication()
-                .userDnPatterns("uid={0},ou=people")
-                .groupSearchBase("ou=groups")
-                .contextSource()
-                .url("ldap://DC01.azercell.com:389/DC=azercell,DC=COM");
+//        auth.ldapAuthentication()
+//                .userDnPatterns("uid={0},ou=people")
+//                .groupSearchBase("ou=groups")
+//                .contextSource()
+//                .url("ldap://DC01.azercell.com:389/DC=azercell,DC=COM");
 
         /*auth
                 .inMemoryAuthentication()
