@@ -361,24 +361,55 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getNumberOfAllSites() {
 
-        String sql = "select count(c.site) from santral.cells c ";
+        String sql = "select count( distinct c.site) from santral.cells c ";
 
         return jdbcTemplate.query(sql , (resultSet, i) -> (resultSet.getInt(1))).get(0);
     }
 
-    @Override
-    public int getNumberOfFilteredAllSites(String searchValue) {
 
-        String sql = "select count(c.site) from santral.cells c " +
-                "where c.site like ? ";
+
+    @Override
+    public int getNumberOfFilteredAllSites(int indexOfColumn, String orderType, String searchParam) {
+
+
+        //TODO add order by
+
+        String columnName = "cd.id";
+
+        if(indexOfColumn == 0) {
+            columnName = "cd.id";
+        } else  if(indexOfColumn == 1) {
+            columnName = "cd.node";
+        } else  if(indexOfColumn == 2) {
+            columnName = "cd.cell";
+        } else  if(indexOfColumn == 3) {
+            columnName = "cd.location";
+        } else  if(indexOfColumn == 4) {
+            columnName = "cd.reason";
+        } else  if(indexOfColumn == 5) {
+            columnName = "cd.occur_date_time";
+        } else  if(indexOfColumn == 6) {
+            columnName = "cd.ceasing_date_time";
+        }else  if(indexOfColumn == 6) {
+            columnName = "cd.note";
+        }
+
+
+        String sql = "select count( distinct c.site) from santral.cells c " +
+                "where c.site like ?" +
+                "order by  ";
 
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
-                "%"+searchValue+"%").get(0);
+                "%"+searchParam+"%").get(0);
     }
 
+
+
     @Override
-    public List<Site> getAllSites(String searchValue, int begin, int end) {
+    public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue, int begin, int end) {
+
+        //TODO add order by
 
         String sql = "select c.node , c.site  from santral.cells c " +
                 "where c.site like ? " +

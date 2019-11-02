@@ -8,6 +8,9 @@ import java.util.List;
 public interface SiteRepository {
 
 
+
+
+
     public int getNumberOfAllDroppedSites();
     public int getNumberOfFilteredDroppedSites(String searchParam);
     public List<DroppedHaltedSite> getFilteredDroppedHaltedSites(int indexOfColumn, String orderType ,String searchParam, int begin, int end);
@@ -27,8 +30,8 @@ public interface SiteRepository {
 
 
     public int getNumberOfAllSites();
-    public int getNumberOfFilteredAllSites(String searchValue);
-    public List<Site> getAllSites(String searchValue , int begin , int end);
+    public int getNumberOfFilteredAllSites(int indexOfColumn, String orderType , String searchValue);
+    public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue , int begin , int end);
 
 
 }
