@@ -24,13 +24,11 @@ public class DroppedHaltedSite extends Site implements Serializable {
     }
 
 
-    public DroppedHaltedSite(long id, String node, String site_name, String cell, String cell_type, String cgi, String location, String latitude, String longitude, int status, int vip, String insDate) {
-        super(id, node, site_name, cell, cell_type, cgi, location, latitude, longitude, status, vip, insDate);
+    public DroppedHaltedSite(long id, String node, String site_name, String cell, String cell_type, String cgi, String rblt, String tru, String tg, String rbs, String ip, String direction, String note, String location, String latitude, String longitude, int status, int vip, String insDate) {
+        super(id, node, site_name, cell, cell_type, cgi, rblt, tru, tg, rbs, ip, direction, note, location, latitude, longitude, status, vip, insDate);
     }
 
-
-    public DroppedHaltedSite(long id, String node, String site_name, String cell, String cell_type, String cgi, String location, String latitude, String longitude, int status, int vip, String insDate, String occur_date_time, String ceasing_date_time, long duration, String note, String reason) {
-        super(id, node, site_name, cell, cell_type, cgi, location, latitude, longitude, status, vip, insDate);
+    public DroppedHaltedSite(String occur_date_time, String ceasing_date_time, long duration, String note, String reason) {
         this.occur_date_time = occur_date_time;
         this.ceasing_date_time = ceasing_date_time;
         this.duration = duration;
@@ -38,11 +36,7 @@ public class DroppedHaltedSite extends Site implements Serializable {
         this.reason = reason;
     }
 
-
-
-
-
-    public DroppedHaltedSite(long id , String cellType ,String node, String cell , String occur_date_time, String ceasing_date_time, int status ){
+    public DroppedHaltedSite(long id , String cellType , String node, String cell , String occur_date_time, String ceasing_date_time, int status ){
         super(id , node, cellType , cell , status);
         this.occur_date_time = occur_date_time;
         this.ceasing_date_time = ceasing_date_time;

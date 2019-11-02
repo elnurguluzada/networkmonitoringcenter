@@ -26,6 +26,36 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
+    private RowMapper<Site> siteRowMapper = (resultSet, i) -> {
+
+        String node = resultSet.getString("node");
+        String site = resultSet.getString("site");
+
+
+        return new Site(  0,node ,site , null , null ,null , null, null , null ,null , null ,null , null, null , null, null , 0 , 0, null  );
+    };
+
+
+
+
+    private RowMapper<Site> all2GCellsOfIdenticalSiteRowMapper = (resultSet, i) -> {
+
+        String node = resultSet.getString("node");
+        String site = resultSet.getString("cell");
+        String tg = resultSet.getString("tg");
+        String rblt = resultSet.getString("rblt");
+        String cgi = resultSet.getString("cgi");
+        String tru = resultSet.getString("tru");
+        String rbs = resultSet.getString("rbs");
+        String direction = resultSet.getString("direction");
+        String insDate = resultSet.getString("ins_date");
+
+
+        return new Site(  0,node ,site , null , null ,cgi , rblt, tru , tg ,rbs , null ,direction , null, null , null, null , 0 , 0, insDate  );
+    };
+
+
+
 
     private RowMapper<DroppedHaltedSite> droppedSiteRowMapper = (resultSet, i) -> {
         long id = resultSet.getLong("id");
@@ -78,11 +108,9 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         String node = resultSet.getString("node");
         String site = resultSet.getString("site");
-        String location = resultSet.getString("location");
-        String latitude = resultSet.getString("latitude");
-        String longitude = resultSet.getString("longitude");
 
-        return  new Site(node , site , location , latitude , longitude);
+
+        return  new Site(node , site);
     };
 
 
@@ -361,7 +389,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getNumberOfAllSites() {
 
-        String sql = "select count( distinct c.site) from santral.cells c ";
+        String sql = "select count(c.site) from santral.cells c ";
 
         return jdbcTemplate.query(sql , (resultSet, i) -> (resultSet.getInt(1))).get(0);
     }
@@ -395,9 +423,8 @@ public class SiteRepositoryImpl implements SiteRepository {
         }
 
 
-        String sql = "select count( distinct c.site) from santral.cells c " +
-                "where c.site like ?" +
-                "order by  ";
+        String sql = "select count(distinct c.site) from santral.cells c " +
+                "where c.site like ?";
 
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
@@ -420,6 +447,66 @@ public class SiteRepositoryImpl implements SiteRepository {
                 "%"+searchValue+"%",
                 begin ,
                  end);
+    }
+
+
+
+
+    @Override
+    public int getNumberOfAll2GCellsOfIdenticalSite(String siteName) {
+
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = '2G' ";
+
+        return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
+                "%"+siteName+"%").get(0);
+    }
+
+
+
+    @Override
+    public List<Site> getAll2GCellsOfIdenticalSite(String siteName, int begin, int end) {
+
+        String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
+                "from santral.cells c " +
+                "where site like ?  and  c.cell_type = '2G'" +
+                "limit ? , ? ";
+
+        return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
+                "%"+siteName+"%",
+                begin ,
+                end);
+    }
+
+
+
+    @Override
+    public int getNumberOfAll3GCellsOfIdenticalSite(String siteName) {
+        return 0;
+    }
+
+    @Override
+    public int getNumberOfFiltered3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
+        return 0;
+    }
+
+    @Override
+    public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
+        return null;
+    }
+
+    @Override
+    public int getNumberOfAll4GCellsOfIdenticalSite(String siteName) {
+        return 0;
+    }
+
+    @Override
+    public int getNumberOfFiltered4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
+        return 0;
+    }
+
+    @Override
+    public List<Site> getAll4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
+        return null;
     }
 
 

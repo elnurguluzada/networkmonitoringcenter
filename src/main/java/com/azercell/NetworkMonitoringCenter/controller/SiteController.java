@@ -4,6 +4,7 @@ package com.azercell.NetworkMonitoringCenter.controller;
 import com.azercell.NetworkMonitoringCenter.domain.DataTable;
 import com.azercell.NetworkMonitoringCenter.domain.DroppedHaltedSite;
 //import com.azercell.NetworkMonitoringCenter.listener.JobListener;
+import com.azercell.NetworkMonitoringCenter.domain.Site;
 import com.azercell.NetworkMonitoringCenter.service.SiteService;
 //import org.springframework.batch.core.*;
 //import org.springframework.batch.core.launch.JobLauncher;
@@ -49,7 +50,7 @@ public class SiteController {
 
 
 
-//------------------------------------- Dropped Sites ----------------------------------------------------
+//------------------------------------- All Sites ----------------------------------------------------
 
     @GetMapping("/allSites")
     public String getAllSites(){
@@ -78,13 +79,88 @@ public class SiteController {
         DataTable dataTable = new DataTable();
 
 
+        dataTable.setDraw(draw);
 
-        //TODO implement datatable
+        int numberOfAllSites = siteService.getNumberOfAllSites();
+        dataTable.setRecordsTotal(numberOfAllSites);
 
 
+        int numberOfFilteredAllSite = siteService.getNumberOfFilteredSites(indexOfColumn, orderType ,searchParam);
+        dataTable.setRecordsFiltered(numberOfFilteredAllSite);
 
+        List<Site> filteredAllSites = siteService.getAllSites(indexOfColumn, orderType ,searchParam , start,start+length);
+
+
+        if(start+length > numberOfFilteredAllSite){
+            System.out.println("inside if candition  ");
+            length =  numberOfFilteredAllSite - start;
+        }
+
+        String[][] data = new String[length][3];
+
+        for(int i =0; i < length; i++){
+            System.out.println("inside for loop ");
+            Site site = filteredAllSites.get(i);
+            data[i][0] = site.getNode();
+            data[i][1] =site.getSite_name();
+        }
+
+        dataTable.setData(data);
         return  dataTable;
     }
+
+
+    @ResponseBody
+    @GetMapping("/get2GCells")
+    public DataTable show2GCells(@RequestParam(name = "draw") int draw,
+                                 @RequestParam(name = "start") int start ,
+                                 @RequestParam(name = "length") int length,
+                                 @RequestParam(name = "order[0][column]") int indexOfColumn,
+                                 @RequestParam(name = "order[0][dir]") String orderType,
+                                 @RequestParam(name = "search[value]") String searchParam,
+                                 @RequestParam(name = "siteName") String siteNAme){
+
+        DataTable dataTable = new DataTable();
+
+        dataTable.setDraw(draw);
+
+        int numberofAll2GCellsOfIdenticalSite = siteService.getNumberOfAll2GCellsOfIdenticalSite(siteNAme);
+        dataTable.setRecordsTotal(numberofAll2GCellsOfIdenticalSite);
+        dataTable.setRecordsFiltered(numberofAll2GCellsOfIdenticalSite);
+
+        List<Site> twoGCellsList = siteService.getAll2GCellsOfIdenticalSite(siteNAme , start , start+length);
+
+
+        if(start+length > numberofAll2GCellsOfIdenticalSite){
+            length = numberofAll2GCellsOfIdenticalSite - start;
+        }
+
+        String[][] data = new String[length][9];
+
+        for(int i =0; i < length; i++) {
+
+            Site  twoGCells = twoGCellsList.get(i);
+            data[i][0] = twoGCells.getNode();
+            data[i][1] = twoGCells.getCell();
+            data[i][2] = twoGCells.getTg();
+            data[i][3] = twoGCells.getRblt();
+            data[i][4] = twoGCells.getCgi();
+            data[i][5] = twoGCells.getTru();
+            data[i][6] = twoGCells.getRbs();
+            data[i][7] = twoGCells.getDirection();
+            data[i][8] = twoGCells.getInsDate();
+
+        }
+
+
+        dataTable.setData(data);
+
+        return dataTable;
+    }
+
+
+
+
 
 //------------------------------------- Dropped Sites ----------------------------------------------------
 

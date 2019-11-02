@@ -606,7 +606,7 @@
                         <div class="row">
 
 
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="table-responsive">
                                     <table id="all-sites-table" class="table">
 
@@ -614,6 +614,7 @@
                                         <tr>
                                             <th>Node</th>
                                             <th>Site</th>
+                                            <th>Detailed</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -818,7 +819,7 @@
                 url: "../load/get2GCells",
                 type: 'get',
                 data: function ( d ) {
-                    d.site = selectedSiteName;
+                    d.siteName = selectedSiteName;
                 }
             } ,
             "dom": 'lBfrtip'
