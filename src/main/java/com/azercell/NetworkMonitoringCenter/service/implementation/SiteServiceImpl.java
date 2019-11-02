@@ -40,10 +40,12 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.getAllSites(indexOfColumn, orderType, searchParam , begin , end);
     }
 
+    //2G Cells
     @Override
     public int getNumberOfAll2GCellsOfIdenticalSite(String siteName) {
         return siteRepository.getNumberOfAll2GCellsOfIdenticalSite(siteName);
     }
+
 
 
     @Override
@@ -51,34 +53,29 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.getAll2GCellsOfIdenticalSite( siteName,  begin,  end);
     }
 
+    //3G Cell
     @Override
     public int getNumberOfAll3GCellsOfIdenticalSite(String siteName) {
         return siteRepository.getNumberOfAll3GCellsOfIdenticalSite( siteName);
     }
 
-    @Override
-    public int getNumberOfFiltered3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
-        return  siteRepository.getNumberOfFiltered3GCellsOfIdenticalSite( siteName,  indexOfColumn,  orderType,  searchValue);
-    }
 
     @Override
-    public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
-        return siteRepository.getAll3GCellsOfIdenticalSite( siteName,  indexOfColumn,  orderType,  searchValue,  begin,  end);
+    public List<Site> getAll3GCellsOfIdenticalSite(String siteName,  int begin, int end) {
+        return siteRepository.getAll3GCellsOfIdenticalSite( siteName,    begin,  end);
     }
 
+    //4G Cells
     @Override
     public int getNumberOfAll4GCellsOfIdenticalSite(String siteName) {
         return siteRepository.getNumberOfAll4GCellsOfIdenticalSite(siteName);
     }
 
-    @Override
-    public int getNumberOfFiltered4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
-        return siteRepository.getNumberOfFiltered4GCellsOfIdenticalSite( siteName,  indexOfColumn,  orderType,  searchValue);
-    }
+
 
     @Override
-    public List<Site> getAll4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
-        return siteRepository.getAll4GCellsOfIdenticalSite( siteName,  indexOfColumn,  orderType,  searchValue,  begin,  end);
+    public List<Site> getAll4GCellsOfIdenticalSite(String siteName, int begin, int end) {
+        return siteRepository.getAll4GCellsOfIdenticalSite( siteName,   begin,  end);
     }
 
 
