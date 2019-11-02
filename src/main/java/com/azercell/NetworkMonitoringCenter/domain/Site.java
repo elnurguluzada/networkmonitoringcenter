@@ -16,6 +16,13 @@ public class Site implements Serializable {
     private String cell;
     private String cell_type;
     private String cgi;
+    private String rblt;
+    private String tru;
+    private String tg;
+    private String rbs;
+    private String ip;
+    private String direction;
+    private String note;
     private String location;
     private String latitude;
     private String longitude;
@@ -30,13 +37,76 @@ public class Site implements Serializable {
     }
 
 
-    public Site(long id, String node, String site_name, String cell, String cell_type, String cgi, String location, String latitude, String longitude, int status, int vip, String insDate) {
+    public String getRblt() {
+        return rblt;
+    }
+
+    public void setRblt(String rblt) {
+        this.rblt = rblt;
+    }
+
+    public String getTru() {
+        return tru;
+    }
+
+    public void setTru(String tru) {
+        this.tru = tru;
+    }
+
+    public String getTg() {
+        return tg;
+    }
+
+    public void setTg(String tg) {
+        this.tg = tg;
+    }
+
+    public String getRbs() {
+        return rbs;
+    }
+
+    public void setRbs(String rbs) {
+        this.rbs = rbs;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Site(long id, String node, String site_name, String cell, String cell_type, String cgi, String rblt, String tru, String tg, String rbs, String ip, String direction, String note, String location, String latitude, String longitude, int status, int vip, String insDate) {
         this.id = id;
         this.node = node;
         this.site_name = site_name;
         this.cell = cell;
         this.cell_type = cell_type;
         this.cgi = cgi;
+        this.rblt = rblt;
+        this.tru = tru;
+        this.tg = tg;
+        this.rbs = rbs;
+        this.ip = ip;
+        this.direction = direction;
+        this.note = note;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -67,12 +137,9 @@ public class Site implements Serializable {
         this.location = location;
     }
 
-    public Site(String node, String site, String location, String latitude, String longitude) {
-        this.node = site;
+    public Site(String node, String site) {
+        this.node = node;
         this.site_name = site;
-        this.location = location;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
 
@@ -182,13 +249,19 @@ public class Site implements Serializable {
                 ", cell='" + cell + '\'' +
                 ", cell_type='" + cell_type + '\'' +
                 ", cgi='" + cgi + '\'' +
+                ", rblt='" + rblt + '\'' +
+                ", tru='" + tru + '\'' +
+                ", tg='" + tg + '\'' +
+                ", rbs='" + rbs + '\'' +
+                ", ip='" + ip + '\'' +
+                ", direction='" + direction + '\'' +
+                ", note='" + note + '\'' +
                 ", location='" + location + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 ", status=" + status +
                 ", vip=" + vip +
-                ", insDate=" + insDate +
+                ", insDate='" + insDate + '\'' +
                 '}';
     }
-
 }

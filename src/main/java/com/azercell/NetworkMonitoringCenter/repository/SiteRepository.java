@@ -16,6 +16,7 @@ public interface SiteRepository {
     public List<DroppedHaltedSite> getFilteredDroppedHaltedSites(int indexOfColumn, String orderType ,String searchParam, int begin, int end);
 
 
+
     public int getNumberOfHaltedSites();
     public int getNumberOfFilteredHaltedSites(String searchParam);
     public List<DroppedHaltedSite> getFilteredHaltedSites(int indexOfColumn, String orderType ,String searchParam, int begin, int end);
@@ -32,6 +33,20 @@ public interface SiteRepository {
     public int getNumberOfAllSites();
     public int getNumberOfFilteredAllSites(int indexOfColumn, String orderType , String searchValue);
     public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue , int begin , int end);
+
+    public int getNumberOfAll2GCellsOfIdenticalSite(String siteName);
+    public List<Site> getAll2GCellsOfIdenticalSite(String siteName , int begin , int end);
+
+    public int getNumberOfAll3GCellsOfIdenticalSite(String siteName);
+    public int getNumberOfFiltered3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType , String searchValue);
+    public List<Site> getAll3GCellsOfIdenticalSite(String siteName , int indexOfColumn, String orderType, String searchValue , int begin , int end);
+
+
+    public int getNumberOfAll4GCellsOfIdenticalSite(String siteName);
+    public int getNumberOfFiltered4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType , String searchValue);
+    public List<Site> getAll4GCellsOfIdenticalSite(String siteName , int indexOfColumn, String orderType, String searchValue , int begin , int end);
+
+
 
 
 }
