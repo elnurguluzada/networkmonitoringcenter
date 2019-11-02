@@ -56,6 +56,9 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
+    //TODO write rowmapper for 3G and LTE
+
+
 
     private RowMapper<DroppedHaltedSite> droppedSiteRowMapper = (resultSet, i) -> {
         long id = resultSet.getLong("id");
@@ -451,7 +454,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-
+    //2G cells
     @Override
     public int getNumberOfAll2GCellsOfIdenticalSite(String siteName) {
 
@@ -479,34 +482,57 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
+    //3G cells
     @Override
     public int getNumberOfAll3GCellsOfIdenticalSite(String siteName) {
-        return 0;
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = '3G' ";
+
+        return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
+                "%"+siteName+"%").get(0);
     }
+
 
     @Override
-    public int getNumberOfFiltered3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
-        return 0;
+    public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int begin, int end) {
+
+        //TODO  rewrite sql query for 3G
+        String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
+                "from santral.cells c " +
+                "where site like ?  and  c.cell_type = '2G'" +
+                "limit ? , ? ";
+
+        return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
+                "%"+siteName+"%",
+                begin ,
+                end);
     }
 
-    @Override
-    public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
-        return null;
-    }
 
+    //4G cells
     @Override
     public int getNumberOfAll4GCellsOfIdenticalSite(String siteName) {
-        return 0;
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = 'LTE' ";
+
+        return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
+                "%"+siteName+"%").get(0);
     }
 
-    @Override
-    public int getNumberOfFiltered4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue) {
-        return 0;
-    }
+
 
     @Override
-    public List<Site> getAll4GCellsOfIdenticalSite(String siteName, int indexOfColumn, String orderType, String searchValue, int begin, int end) {
-        return null;
+    public List<Site> getAll4GCellsOfIdenticalSite(String siteName,  int begin, int end) {
+
+
+        //TODO  rewrite sql query for LTE
+        String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
+                "from santral.cells c " +
+                "where site like ?  and  c.cell_type = '2G'" +
+                "limit ? , ? ";
+
+        return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
+                "%"+siteName+"%",
+                begin ,
+                end);
     }
 
 

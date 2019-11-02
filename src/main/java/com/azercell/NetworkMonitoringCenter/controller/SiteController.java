@@ -153,12 +153,114 @@ public class SiteController {
         }
 
 
+
         dataTable.setData(data);
 
         return dataTable;
     }
 
 
+
+
+
+    @ResponseBody
+    @GetMapping("/get3GCells")
+    public DataTable show3GCells(@RequestParam(name = "draw") int draw,
+                                 @RequestParam(name = "start") int start ,
+                                 @RequestParam(name = "length") int length,
+                                 @RequestParam(name = "order[0][column]") int indexOfColumn,
+                                 @RequestParam(name = "order[0][dir]") String orderType,
+                                 @RequestParam(name = "search[value]") String searchParam,
+                                 @RequestParam(name = "siteName") String siteNAme){
+
+        DataTable dataTable = new DataTable();
+
+        dataTable.setDraw(draw);
+
+        int numberofAll3GCellsOfIdenticalSite = siteService.getNumberOfAll3GCellsOfIdenticalSite(siteNAme);
+        dataTable.setRecordsTotal(numberofAll3GCellsOfIdenticalSite);
+        dataTable.setRecordsFiltered(numberofAll3GCellsOfIdenticalSite);
+
+        List<Site> twoGCellsList = siteService.getAll3GCellsOfIdenticalSite(siteNAme , start , start+length);
+
+
+        if(start+length > numberofAll3GCellsOfIdenticalSite){
+            length = numberofAll3GCellsOfIdenticalSite - start;
+        }
+
+        String[][] data = new String[length][9];
+
+        for(int i =0; i < length; i++) {
+
+            Site  twoGCells = twoGCellsList.get(i);
+            data[i][0] = twoGCells.getNode();
+            data[i][1] = twoGCells.getCell();
+            data[i][2] = twoGCells.getTg();
+            data[i][3] = twoGCells.getRblt();
+            data[i][4] = twoGCells.getCgi();
+            data[i][5] = twoGCells.getTru();
+            data[i][6] = twoGCells.getRbs();
+            data[i][7] = twoGCells.getDirection();
+            data[i][8] = twoGCells.getInsDate();
+
+        }
+
+
+
+        dataTable.setData(data);
+
+        return dataTable;
+    }
+
+
+    @ResponseBody
+    @GetMapping("/get4GCells")
+    public DataTable show4GCells(@RequestParam(name = "draw") int draw,
+                                 @RequestParam(name = "start") int start ,
+                                 @RequestParam(name = "length") int length,
+                                 @RequestParam(name = "order[0][column]") int indexOfColumn,
+                                 @RequestParam(name = "order[0][dir]") String orderType,
+                                 @RequestParam(name = "search[value]") String searchParam,
+                                 @RequestParam(name = "siteName") String siteNAme){
+
+        DataTable dataTable = new DataTable();
+
+        dataTable.setDraw(draw);
+
+        int numberofAll4GCellsOfIdenticalSite = siteService.getNumberOfAll4GCellsOfIdenticalSite(siteNAme);
+        dataTable.setRecordsTotal(numberofAll4GCellsOfIdenticalSite);
+        dataTable.setRecordsFiltered(numberofAll4GCellsOfIdenticalSite);
+
+        List<Site> twoGCellsList = siteService.getAll4GCellsOfIdenticalSite(siteNAme , start , start+length);
+
+
+        if(start+length > numberofAll4GCellsOfIdenticalSite){
+            length = numberofAll4GCellsOfIdenticalSite - start;
+        }
+
+        String[][] data = new String[length][9];
+
+        for(int i =0; i < length; i++) {
+
+            Site  twoGCells = twoGCellsList.get(i);
+            data[i][0] = twoGCells.getNode();
+            data[i][1] = twoGCells.getCell();
+            data[i][2] = twoGCells.getTg();
+            data[i][3] = twoGCells.getRblt();
+            data[i][4] = twoGCells.getCgi();
+            data[i][5] = twoGCells.getTru();
+            data[i][6] = twoGCells.getRbs();
+            data[i][7] = twoGCells.getDirection();
+            data[i][8] = twoGCells.getInsDate();
+
+        }
+
+
+
+        dataTable.setData(data);
+
+        return dataTable;
+    }
 
 
 
