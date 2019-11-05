@@ -602,7 +602,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <h4 class="card-title">All Sites</h4>
+                        <h4 class="card-title">  </h4>
                         <div class="row">
 
 
@@ -630,7 +630,12 @@
 
                                 <div class="table-responsive">
 
-                                    <h4 class="card-title">2G Cells</h4>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <h4 class="card-title">  </h4>
+                                    <h4 class="card-title">   </h4>
                                     <table id="2G-cell-table" class="table">
 
                                         <thead>
@@ -653,7 +658,10 @@
 
                                 <div class="table-responsive">
 
-                                    <h4 class="card-title">3G Cells</h4>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
                                     <table id="3G-cell-table" class="table">
 
                                         <thead>
@@ -674,7 +682,10 @@
 
                                 <div class="table-responsive">
 
-                                    <h4 class="card-title">4G Cells</h4>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
                                     <table id="4G-cell-table" class="table">
                                         <thead>
                                         <tr>
@@ -688,6 +699,9 @@
                                         </tr>
                                         </thead>
                                     </table>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -760,17 +774,27 @@
 
 
 
-    $(document).ready(
+    $(document).ready(function(){
+        drawAllSitesTable();
+        draw2GCellTable();
+        draw3GCellTable();
+        draw4GCellTable();
+     });
 
-        drawAllSitesTable(),
+    $(document).ready(function(){
 
-       draw2GCellTable(),
-       draw3GCellTable(),
-       draw4GCellTable()
+        draw3GCellTable();
 
 
+    });
 
-    );
+    $(document).ready(function(){
+
+        draw4GCellTable();
+
+
+    });
+
     function drawAllSitesTable() {
 
           allSitesTable = $("#all-sites-table").DataTable({
@@ -781,30 +805,51 @@
             },
             "serverSide": true,
             "aLengthMenu": [[50, 100, 250 , 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 25,
+            "iDisplayLength": 20,
             "ajax": "../load/getAllSites",
             "dom": 'lfrtip',
             "columnDefs": [
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='detailed-button'>Detailed</button>"
-                }
+                    "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
+                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
+                        "<a><button class='detailed-4Gbutton'>4G</button></a> &nbsp "
+                },
+
             ]
         });
         allSitesTable.on('draw', function () {
-            $(".detailed-button").click(function () {
+            $(".detailed-2Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#2G-cell-table").DataTable().ajax.reload();
-                $("#3G-cell-table").DataTable().ajax.reload(null , false);
-                $("#4G-cell-table").DataTable().ajax.reload( null , false);
-
-
+               // $("#3G-cell-table").DataTable().ajax.reload();
+               // $("#4G-cell-table").DataTable().ajax.reload();
             });
+
+
         });
 
 
+        allSitesTable.on('draw', function () {
+        $(".detailed-3Gbutton").click(function () {
+            selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+            $("#3G-cell-table").DataTable().ajax.reload();
+            // $("#3G-cell-table").DataTable().ajax.reload();
+            // $("#4G-cell-table").DataTable().ajax.reload();
+             });
 
+        });
+            allSitesTable.on('draw', function () {
+                $(".detailed-4Gbutton").click(function () {
+                    selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+                    $("#4G-cell-table").DataTable().ajax.reload();
+                 //   $("#4G-cell-table").DataTable().destroy();
+                    // $("#3G-cell-table").DataTable().ajax.reload();
+                    // $("#4G-cell-table").DataTable().ajax.reload();
+                });
+
+            });
 
         $("#searchID").unbind().keyup(function(e) {
             var value = $(this).val();
@@ -826,6 +871,8 @@
         twoGTable = $("#2G-cell-table").DataTable({
 
             "serverSide": true,
+            "searching": false,
+          //  "paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
@@ -838,17 +885,18 @@
 
         });
 
-        twoGTable.ajax().reload();
+
     }
 
 
 
     function draw3GCellTable() {
 
-
         threeGTable = $("#3G-cell-table").DataTable({
 
             "serverSide": true,
+            "searching": false,
+            //"paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
@@ -885,6 +933,8 @@
 
         fourGTable = $("#4G-cell-table").DataTable({
             "serverSide": true,
+            "searching": false,
+            //"paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
