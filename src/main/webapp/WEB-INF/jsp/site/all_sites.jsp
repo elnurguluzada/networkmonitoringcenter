@@ -8,6 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Azercell</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<%--    <link rel="stylesheet" href="https://cs.csub.edu/~pflores/bs/bootstrap/css/bootstrap.min.css">--%>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -30,6 +34,7 @@
         }
 
     </style>
+
 </head>
 
 <body>
@@ -600,7 +605,7 @@
             <div class="content-wrapper">
 
                 <div class="card">
-
+                    <div id="dialog" style="display:none;">Hello, I am a dialog</div>
                     <div class="card-body">
                         <h4 class="card-title">  </h4>
                         <div class="row">
@@ -628,14 +633,13 @@
 
 
 
+                                <%--2G Cells table --%>
                                 <div class="table-responsive">
 
                                     <div class="progress progress-md">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <h4 class="card-title">  </h4>
-                                    <h4 class="card-title">   </h4>
                                     <table id="2G-cell-table" class="table">
 
                                         <thead>
@@ -649,13 +653,158 @@
                                             <th>RBS</th>
                                             <th>Direction</th>
                                             <th>Onair Date</th>
+                                            <th>Update</th>
                                         </tr>
                                         </thead>
+                                        <tbody>
+
+                                        </tbody>
 
                                     </table>
 
+
                                   </div>
 
+
+
+<%--                                    <div class="modal fade" id="DescModal" role="dialog">--%>
+<%--                                        <div class="modal-dialog">--%>
+<%--                                            <div class="modal-content">--%>
+<%--                                                <div class="modal-header">--%>
+<%--                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>--%>
+<%--                                                    <h3 class="modal-title">2G Cell Update </h3>--%>
+<%--                                                </div>--%>
+
+
+<%--                                                <div class="modal-body">--%>
+
+<%--                                                    &lt;%&ndash;Node&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">Node</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-node" name="cellNode">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;Cell&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">Cell</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-name" name="cellName">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+<%--                                                    <br>--%>
+
+
+<%--                                                    &lt;%&ndash;TG&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">TG</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-tg" name="cellTg">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;E1&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">E1</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-e1" name="cellE1">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;CGI&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">CGI</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-cgi" name="cellCGI">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;TRU&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">TRU</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-tru" name="cellTRU">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;RBS&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">RBS</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-rbs" name="cellRBS">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+
+<%--                                                    <br>--%>
+<%--                                                    &lt;%&ndash;Direction&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">Direction</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="50" id="cell-direction" name="cellDirection">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+<%--                                                    <br>--%>
+
+<%--                                                    &lt;%&ndash;Onair Date&ndash;%&gt;--%>
+<%--                                                    <div class="row dataTable">--%>
+<%--                                                        <div class="col-md-4">--%>
+<%--                                                            <label class="control-label">Onair Date</label>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-md-8">--%>
+<%--                                                            <input type="text" class="form-control" maxlength="30" id="cell-onair-date" name="cellOnairDate">--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+
+<%--                                                    <br>--%>
+<%--                                                </div>--%>
+
+
+<%--                                                <div class="modal-footer">--%>
+<%--                                                    <button type="button" class="btn btn-default " data-dismiss="modal">Apply!</button>--%>
+<%--                                                    <button type="button" class="btn btn-primary">Close</button>--%>
+<%--                                                </div>--%>
+
+
+<%--                                            </div>--%>
+<%--                                            <!-- /.modal-content -->--%>
+<%--                                        </div>--%>
+<%--                                        <!-- /.modal-dialog -->--%>
+<%--                                    </div>--%>
+                                <%--3G Cells--%>
                                 <div class="table-responsive">
 
                                     <div class="progress progress-md">
@@ -674,12 +823,14 @@
                                             <th>IP</th>
                                             <th>Direction</th>
                                             <th>Onair Date</th>
+                                            <th>Update</th>
                                         </tr>
                                         </thead>
                                     </table>
                                 </div>
 
 
+                                <%--4G Cells--%>
                                 <div class="table-responsive">
 
                                     <div class="progress progress-md">
@@ -696,6 +847,7 @@
                                         <th>IP</th>
                                         <th>Direction</th>
                                         <th>Onair Date</th>
+                                        <th>Update</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -729,8 +881,10 @@
 <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="/assets/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<%--<script src="/assets/vendors/datatables.net/jquery.dataTables.js"></script>--%>
+<%--<script src="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>--%>
+<%--<script  src="/assets/vendors/sweetalert/sweetalert.min.js"></script>--%>
+<%--<script src="/assets/vendors/jquery.avgrund/jquery.avgrund.min.js"></script>--%>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="/assets/js/off-canvas.js"></script>
@@ -738,15 +892,24 @@
 <script src="/assets/js/template.js"></script>
 <script src="/assets/js/settings.js"></script>
 <script src="/assets/js/todolist.js"></script>
+<script src="/assets/js/alerts.js"></script>
+<script src="/assets/js/avgrund.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="/assets/js/data-table.js"></script>
 <!-- End custom js for this page-->
 
 
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script><%--buttons for dataTables--%>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><%--popup--%>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script><%--popup--%>
+<%--<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>&lt;%&ndash;buttons for dataTables&ndash;%&gt;--%>
+<%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script><%--popup--%>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script><%--popup--%>
+
+<%--<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+<%--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+<%--<script src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+<%--<script src="https://cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
 
 
 
@@ -771,29 +934,32 @@
     var threeGTable;
     var fourGTable;
     var selectedSite='';
+    var node;
 
 
 
     $(document).ready(function(){
         drawAllSitesTable();
         draw2GCellTable();
-        draw3GCellTable();
-        draw4GCellTable();
+
      });
+    //
+    // $(document).ready(function(){
+    //
+    //     draw3GCellTable();
+    //
+    //
+    // });
+    //
+    // $(document).ready(function(){
+    //
+    //     draw4GCellTable();
+    //
+    //
+    // });
 
-    $(document).ready(function(){
-
-        draw3GCellTable();
 
 
-    });
-
-    $(document).ready(function(){
-
-        draw4GCellTable();
-
-
-    });
 
     function drawAllSitesTable() {
 
@@ -818,20 +984,19 @@
                 },
 
             ]
-        });
+            });
+
+
         allSitesTable.on('draw', function () {
             $(".detailed-2Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+                alert(selectedSiteName);
                 $("#2G-cell-table").DataTable().ajax.reload();
-               // $("#3G-cell-table").DataTable().ajax.reload();
-               // $("#4G-cell-table").DataTable().ajax.reload();
             });
 
 
         });
-
-
-        allSitesTable.on('draw', function () {
+            allSitesTable.on('draw', function () {
         $(".detailed-3Gbutton").click(function () {
             selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
             $("#3G-cell-table").DataTable().ajax.reload();
@@ -881,10 +1046,46 @@
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'frtip'
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button class='update-2Gbutton' >Update</button>"
+
+                }
+
+            ]
 
         });
 
+
+        $('#2G-cell-table').on('click', 'tr', function () {
+            var data = table.row($(this).parents('tr')).data()[1];
+            alert( 'You clicked on '+data+'\'s row' );
+        } );
+
+
+
+
+     //   $(".update-2Gbutton").on('click', 'tr', function () {
+
+
+       //     alert();
+                // $('#dialog').dialog();
+                //  node = twoGTable.row($(this).parents('tr')).data()[1];
+                // alert(node);
+                // $("#cell-node").val(twoGTable.row($(this).parents('tr')).data()[1]);
+                // $("#cell-name").val(twoGTable.row(this).data()[2]);
+                // $("#cell-tg").val(twoGTable.row(this).data()[3]);
+                // $("#cell-e1").val(twoGTable.row(this).data()[4]);
+                // $("#cell-cgi").val(twoGTable.row(this).data()[5]);
+                // $("#cell-tru").val(twoGTable.row(this).data()[6]);
+                // $("#cell-rbs").val(twoGTable.row(this).data()[7]);
+                // $("#cell-direction").val(twoGTable.row(this).data()[8]);
+                // $("#cell-onair-date").val(twoGTable.row(this).data()[9]);
+                // $('#DescModal').modal("show");
+           // });
 
     }
 
@@ -905,7 +1106,16 @@
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'frtip'
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button id='update-3Gbutton' class=\"btn btn-outline-success\" onclick=\"showSwal('basic')\">Update</button>"
+
+                }
+
+            ]
 
         });
 
@@ -944,7 +1154,16 @@
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'frtip'
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button id='update-4Gbutton' class=\"btn btn-outline-success\" onclick=\"showSwal('basic')\" >Update</button>"
+
+                }
+
+            ]
 
         });
 
