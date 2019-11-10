@@ -602,7 +602,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <h4 class="card-title">All Sites</h4>
+                        <h4 class="card-title">  </h4>
                         <div class="row">
 
 
@@ -623,10 +623,19 @@
 
 
 
-                            <div class="col-7">
+
+                            <div class="col-8">
+
+
 
                                 <div class="table-responsive">
 
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <h4 class="card-title">  </h4>
+                                    <h4 class="card-title">   </h4>
                                     <table id="2G-cell-table" class="table">
 
                                         <thead>
@@ -642,11 +651,16 @@
                                             <th>Onair Date</th>
                                         </tr>
                                         </thead>
+
                                     </table>
 
-                                  </div>
+                                </div>
 
                                 <div class="table-responsive">
+
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
 
                                     <table id="3G-cell-table" class="table">
 
@@ -663,24 +677,31 @@
                                         </tr>
                                         </thead>
                                     </table>
-
                                 </div>
 
 
                                 <div class="table-responsive">
 
-                                    <table id="4G-cell-table" class="table">
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
 
+                                    <table id="4G-cell-table" class="table">
                                         <thead>
-                                        <th>Node</th>
-                                        <th>Cell</th>
-                                        <th>ECGI</th>
-                                        <th>RBS</th>
-                                        <th>IP</th>
-                                        <th>Direction</th>
-                                        <th>Onair Date</th>
+                                        <tr>
+                                            <th>Node</th>
+                                            <th>Cell</th>
+                                            <th>ECGI</th>
+                                            <th>RBS</th>
+                                            <th>IP</th>
+                                            <th>Direction</th>
+                                            <th>Onair Date</th>
+                                        </tr>
                                         </thead>
                                     </table>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -749,22 +770,34 @@
     var twoGTable;
     var threeGTable;
     var fourGTable;
-    var selectedSite;
+    var selectedSite='';
 
 
 
-    $(document).ready(
-        drawAllSitesTable(),
-        draw2GCellTable(),
-        draw3GCellTable(),
-        draw4GCellTable()
+    $(document).ready(function(){
+        drawAllSitesTable();
+        draw2GCellTable();
+        draw3GCellTable();
+        draw4GCellTable();
+    });
 
-    );
+    $(document).ready(function(){
+
+        draw3GCellTable();
+
+
+    });
+
+    $(document).ready(function(){
+
+        draw4GCellTable();
+
+
+    });
+
     function drawAllSitesTable() {
 
-
-
-          allSitesTable = $("#all-sites-table").DataTable({
+        allSitesTable = $("#all-sites-table").DataTable({
             "processing": true,
             'language': {
                 'loadingRecords': '&nbsp;',
@@ -772,23 +805,50 @@
             },
             "serverSide": true,
             "aLengthMenu": [[50, 100, 250 , 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 25,
+            "iDisplayLength": 20,
             "ajax": "../load/getAllSites",
-            "dom": 'lBfrtip',
+            "dom": 'lfrtip',
             "columnDefs": [
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='detailed-button'>Detailed</button>"
-                }
+                    "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
+                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
+                        "<a><button class='detailed-4Gbutton'>4G</button></a> &nbsp "
+                },
+
             ]
         });
-
-        allSitesTable.on('draw', function () { //The draw event is fired whenever the table is redrawn on the page, at the same point as drawCallback.
-            $(".detailed-button").click(function () {
+        allSitesTable.on('draw', function () {
+            $(".detailed-2Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                drow2GCellTable.ajax.reload();
+                $("#2G-cell-table").DataTable().ajax.reload();
+                // $("#3G-cell-table").DataTable().ajax.reload();
+                // $("#4G-cell-table").DataTable().ajax.reload();
             });
+
+
+        });
+
+
+        allSitesTable.on('draw', function () {
+            $(".detailed-3Gbutton").click(function () {
+                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+                $("#3G-cell-table").DataTable().ajax.reload();
+                // $("#3G-cell-table").DataTable().ajax.reload();
+                // $("#4G-cell-table").DataTable().ajax.reload();
+            });
+
+        });
+        allSitesTable.on('draw', function () {
+            $(".detailed-4Gbutton").click(function () {
+                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+                $("#4G-cell-table").DataTable().ajax.reload();
+                //   $("#4G-cell-table").DataTable().destroy();
+                // $("#3G-cell-table").DataTable().ajax.reload();
+                // $("#4G-cell-table").DataTable().ajax.reload();
+            });
+
         });
 
         $("#searchID").unbind().keyup(function(e) {
@@ -804,27 +864,27 @@
     }
 
 
+
+
     function draw2GCellTable() {
 
         twoGTable = $("#2G-cell-table").DataTable({
-            "processing": true,
-            'language': {
-                'loadingRecords': '&nbsp;',
-                'processing': 'Data loading...'
-            },
+
             "serverSide": true,
+            "searching": false,
+            //  "paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
                 url: "../load/get2GCells",
-                type: 'get',
                 data: function ( d ) {
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'lBfrtip'
+            "dom": 'frtip'
 
         });
+
 
     }
 
@@ -833,25 +893,38 @@
     function draw3GCellTable() {
 
         threeGTable = $("#3G-cell-table").DataTable({
-            "processing": true,
-            'language': {
-                'loadingRecords': '&nbsp;',
-                'processing': 'Data loading...'
-            },
+
             "serverSide": true,
+            "searching": false,
+            //"paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
                 url: "../load/get3GCells",
-                type: 'get',
                 data: function ( d ) {
-                    d.site = selectedSiteName;
+                    d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'lBfrtip'
+            "dom": 'frtip'
 
         });
 
+
+        // threeGTable = $("#3G-cell-table").DataTable({
+        //     "processing": false,
+        //
+        //     "serverSide": true,
+        //     "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
+        //     "iDisplayLength": 25,
+        //     "ajax": {
+        //         url: "../load/get3GCells",
+        //         type: 'get',
+        //         data: function ( d ) {
+        //             d.siteName = selectedSiteName;
+        //         }
+        //     } ,
+        //     "dom": 'lBfrtip'
+        // });
     }
 
 
@@ -859,22 +932,19 @@
     function draw4GCellTable() {
 
         fourGTable = $("#4G-cell-table").DataTable({
-            "processing": true,
-            'language': {
-                'loadingRecords': '&nbsp;',
-                'processing': 'Data loading...'
-            },
             "serverSide": true,
+            "searching": false,
+            //"paging": false,
             "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 25,
             "ajax": {
                 url: "../load/get4GCells",
                 type: 'get',
                 data: function ( d ) {
-                    d.site = selectedSiteName;
+                    d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'lBfrtip'
+            "dom": 'frtip'
 
         });
 
@@ -887,10 +957,3 @@
 </body>
 <!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:47:22 GMT -->
 </html>
-
-
-
-
-
-
-
