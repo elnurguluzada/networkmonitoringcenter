@@ -41,7 +41,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     private RowMapper<Site> all2GCellsOfIdenticalSiteRowMapper = (resultSet, i) -> {
 
         String node = resultSet.getString("node");
-        String cell = resultSet.getString("cell");
+        String site = resultSet.getString("cell");
         String tg = resultSet.getString("tg");
         String rblt = resultSet.getString("rblt");
         String cgi = resultSet.getString("cgi");
@@ -51,45 +51,12 @@ public class SiteRepositoryImpl implements SiteRepository {
         String insDate = resultSet.getString("ins_date");
 
 
-        return new Site(  0,node ,null , cell , null ,cgi , rblt, tru , tg ,rbs , null ,direction , null, null , null, null , 0 , 0, insDate  );
+        return new Site(  0,node ,site , null , null ,cgi , rblt, tru , tg ,rbs , null ,direction , null, null , null, null , 0 , 0, insDate  );
     };
 
 
 
-    private RowMapper<Site> all3GCellsOfIdenticalSiteRowMapper = (resultSet, i) -> {
-
-
-
-        String node = resultSet.getString("node");
-        String cell = resultSet.getString("cell");
-        String cgi = resultSet.getString("cgi");
-        String rbs = resultSet.getString("rbs");
-        String note = resultSet.getString("note");
-        String ip = resultSet.getString("ip");
-        String direction = resultSet.getString("direction");
-        String insDate = resultSet.getString("ins_date");
-
-
-        return new Site(  0,node ,null , cell , null ,cgi , null, null , null ,rbs , ip ,direction , note, null , null, null , 0 , 0, insDate  );
-    };
-
-
-    private RowMapper<Site> all4GCellsOfIdenticalSiteRowMapper = (resultSet, i) -> {
-
-
-        String node = resultSet.getString("node");
-        String cell = resultSet.getString("cell");
-        String cgi = resultSet.getString("cgi");
-        String rbs = resultSet.getString("rbs");
-        String ip = resultSet.getString("ip");
-        String direction = resultSet.getString("direction");
-        String insDate = resultSet.getString("ins_date");
-
-
-        return new Site(  0,node ,null , cell , null ,cgi , null, null , null ,rbs , ip ,direction , null, null , null, null , 0 , 0, insDate  );
-    };
-
-
+    //TODO write rowmapper for 3G and LTE
 
 
 
@@ -474,7 +441,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         //TODO add order by
 
-        String sql = "select distinct c.node , c.site  from santral.cells c " +
+        String sql = "select c.node , c.site  from santral.cells c " +
                 "where c.site like ? " +
                 "limit ? , ? ";
 
@@ -491,7 +458,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getNumberOfAll2GCellsOfIdenticalSite(String siteName) {
 
-        String sql = "select count(distinct c.cell) from santral.cells c where c.site like ? and c.cell_type = '2G' ";
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = '2G' ";
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
                 "%"+siteName+"%").get(0);
@@ -518,7 +485,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     //3G cells
     @Override
     public int getNumberOfAll3GCellsOfIdenticalSite(String siteName) {
-        String sql = "select count(distinct c.cell) from santral.cells c where c.site like ? and c.cell_type = '3G' ";
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = '3G' ";
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
                 "%"+siteName+"%").get(0);
@@ -528,13 +495,13 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int begin, int end) {
 
-
-        String sql = "select c.node , c.cell , c.cgi , c.rbs , c.note,  ip , c.direction , c.ins_date " +
+        //TODO  rewrite sql query for 3G
+        String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
                 "from santral.cells c " +
-                "where site like ?  and  c.cell_type = '3G' " +
+                "where site like ?  and  c.cell_type = '2G'" +
                 "limit ? , ? ";
 
-        return jdbcTemplate.query(sql , all3GCellsOfIdenticalSiteRowMapper ,
+        return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
                 "%"+siteName+"%",
                 begin ,
                 end);
@@ -544,7 +511,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     //4G cells
     @Override
     public int getNumberOfAll4GCellsOfIdenticalSite(String siteName) {
-        String sql = "select count(distinct c.cell) from santral.cells c where c.site like ? and c.cell_type = 'LTE' ";
+        String sql = "select count(distinct c.cell) from santral.cells where c.site like ? and c.cell_type = 'LTE' ";
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
                 "%"+siteName+"%").get(0);
@@ -556,12 +523,13 @@ public class SiteRepositoryImpl implements SiteRepository {
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName,  int begin, int end) {
 
 
-
-        String sql = "select c.node , c.cell , c.cgi , c.rbs ,  ip , c.direction , c.ins_date from santral.cells c " +
-                "where site like ?  and  c.cell_type = 'LTE' " +
+        //TODO  rewrite sql query for LTE
+        String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
+                "from santral.cells c " +
+                "where site like ?  and  c.cell_type = '2G'" +
                 "limit ? , ? ";
 
-        return jdbcTemplate.query(sql , all4GCellsOfIdenticalSiteRowMapper ,
+        return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
                 "%"+siteName+"%",
                 begin ,
                 end);

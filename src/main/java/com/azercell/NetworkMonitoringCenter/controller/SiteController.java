@@ -181,27 +181,27 @@ public class SiteController {
         dataTable.setRecordsTotal(numberofAll3GCellsOfIdenticalSite);
         dataTable.setRecordsFiltered(numberofAll3GCellsOfIdenticalSite);
 
-        List<Site> threeGCellsList = siteService.getAll3GCellsOfIdenticalSite(siteNAme , start , start+length);
+        List<Site> twoGCellsList = siteService.getAll3GCellsOfIdenticalSite(siteNAme , start , start+length);
 
 
         if(start+length > numberofAll3GCellsOfIdenticalSite){
             length = numberofAll3GCellsOfIdenticalSite - start;
         }
 
-        String[][] data = new String[length][8];
-
+        String[][] data = new String[length][9];
 
         for(int i =0; i < length; i++) {
 
-            Site  threeGCells = threeGCellsList.get(i);
-            data[i][0] = threeGCells.getNode();
-            data[i][1] = threeGCells.getCell();
-            data[i][2] = threeGCells.getCgi();
-            data[i][3] = threeGCells.getRbs();
-            data[i][4] = threeGCells.getNote();
-            data[i][5] = threeGCells.getIp();
-            data[i][6] = threeGCells.getDirection();
-            data[i][7] = threeGCells.getInsDate();
+            Site  twoGCells = twoGCellsList.get(i);
+            data[i][0] = twoGCells.getNode();
+            data[i][1] = twoGCells.getCell();
+            data[i][2] = twoGCells.getTg();
+            data[i][3] = twoGCells.getRblt();
+            data[i][4] = twoGCells.getCgi();
+            data[i][5] = twoGCells.getTru();
+            data[i][6] = twoGCells.getRbs();
+            data[i][7] = twoGCells.getDirection();
+            data[i][8] = twoGCells.getInsDate();
 
         }
 
@@ -238,19 +238,20 @@ public class SiteController {
             length = numberofAll4GCellsOfIdenticalSite - start;
         }
 
-        String[][] data = new String[length][7];
-
+        String[][] data = new String[length][9];
 
         for(int i =0; i < length; i++) {
 
-            Site  fourGCells = twoGCellsList.get(i);
-            data[i][0] = fourGCells.getNode();
-            data[i][1] = fourGCells.getCell();
-            data[i][2] = fourGCells.getCgi();
-            data[i][3] = fourGCells.getRbs();
-            data[i][4] = fourGCells.getIp();
-            data[i][5] = fourGCells.getDirection();
-            data[i][6] = fourGCells.getInsDate();
+            Site  twoGCells = twoGCellsList.get(i);
+            data[i][0] = twoGCells.getNode();
+            data[i][1] = twoGCells.getCell();
+            data[i][2] = twoGCells.getTg();
+            data[i][3] = twoGCells.getRblt();
+            data[i][4] = twoGCells.getCgi();
+            data[i][5] = twoGCells.getTru();
+            data[i][6] = twoGCells.getRbs();
+            data[i][7] = twoGCells.getDirection();
+            data[i][8] = twoGCells.getInsDate();
 
         }
 
