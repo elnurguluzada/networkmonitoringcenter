@@ -587,4 +587,14 @@ public class SiteController {
 //        return "/common/file_upload";
 //    }
 
+    //---------------------------------- Update Site Infromations -------------------------------------------------------
+
+
+    @GetMapping("/updateSiteInfo")
+    public String updateInformation(){
+        System.out.println("controller : /dropHistory");
+        return "/site/update_sote_info_2";
+    }
+
+
 }
