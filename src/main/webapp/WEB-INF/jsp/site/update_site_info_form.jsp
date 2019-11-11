@@ -575,231 +575,234 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">jquery-steps wizard</h4>
-                                <form:form  id="example-form" action="#">
+                                <form:form  id="example-form" action = "/load/updateSiteInfo" method="post" modelAttribute="site">
                                     <div>
 
-                                        <%--Update General Information--%>
+                                            <%--Update General Information--%>
                                         <h3>General Informations</h3>
                                         <section>
                                             <div class="form-group">
-                                                <form:label path="siteName">Site</form:label>
-                                                <form:input path="siteName" class="form-control" /> <br/>
-                                                <%--<label>Site</label>--%>
-                                                <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">--%>
+                                                <form:label  path="site_name">Site</form:label>
+                                                <form:input  path="site_name" cssClass="form-control"/> <br/>
+                                                    <%--<label>Site</label>--%>
+                                                    <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">--%>
                                             </div>
                                             <div class="form-group">
+
                                                 <form:label path="location">Location</form:label>
-                                                <form:input path="location" class="form-control" /> <br/>
-                                                <%--<label>Location</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
+                                                <form:input path="location" cssClass="form-control"/> <br/>
+                                                    <%--<label>Location</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
                                             </div>
                                             <div class="form-group">
                                                 <form:label path="latitude">Latitude</form:label>
-                                                <form:input path="latitude" class="form-control" /> <br/>
-                                                <%--<label>Latitude</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
+                                                <form:input path="latitude" cssClass="form-control"/> <br/>
+                                                    <%--<label>Latitude</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
                                             </div>
                                             <div class="form-group">
                                                 <form:label path="longitude">Longitude</form:label>
-                                                <form:input path="longitude" class="form-control" /> <br/>
-                                                <%--<longitude>Longitude</longitude>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
+                                                <form:input path="longitude" cssClass="form-control"/> <br/>
+
+                                            <%--<longitude>Longitude</longitude>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
                                             </div>
                                         </section>
 
 
 
-                                        <%--Update 2G cell--%>
-                                        <h3>2G Informations</h3>
-                                        <section>
-                                            <div class="form-group">
-                                                <form:label path="id">ID</form:label>
-                                                <form:input path="id" class="form-control" /> <br/>
-                                                <%--<label>ID</label>--%>
-                                                <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="node">Node</form:label>
-                                                <form:input path="node" class="form-control" /> <br/>
-                                                <%--<label>Node</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cell">Cell</form:label>
-                                                <form:input path="cell" class="form-control" /> <br/>
-                                                <%--<label>Cell</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="tg">TG</form:label>
-                                                <form:input path="tg" class="form-control" /> <br/>
-                                                <%--<label>TG</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="e1">E1</form:label>
-                                                <form:input path="e1" class="form-control" /> <br/>
-                                                <%--<label>E1</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cgi">CGI</form:label>
-                                                <form:input path="cgi" class="form-control" /> <br/>
-                                                <%--<label>CGI</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="tru">TRU</form:label>
-                                                <form:input path="tru" class="form-control" /> <br/>
-                                                <%--<label>TRU</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="rbs">RBS</form:label>
-                                                <form:input path="rbs" class="form-control" /> <br/>
-                                                <%--<label>RBS</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="direction">Direction</form:label>
-                                                <form:input path="direction" class="form-control" /> <br/>
-                                                <label>Direction</label>
-                                                <input type="password" class="form-control" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="onairDate">Onair Date</form:label>
-                                                <form:input path="onairDate" class="form-control" /> <br/>
-                                                <%--<label>Onair Date</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                        </section>
+<%--                                            &lt;%&ndash;Update 2G cell&ndash;%&gt;--%>
+<%--                                        <h3>2G Informations</h3>--%>
+<%--                                        <section>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="id">ID</form:label>--%>
+<%--                                                <form:input path="id" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>ID</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="node">Node</form:label>--%>
+<%--                                                <form:input path="node" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Node</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cell">Cell</form:label>--%>
+<%--                                                <form:input path="cell" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Cell</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="tg">TG</form:label>--%>
+<%--                                                <form:input path="tg" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>TG</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="e1">E1</form:label>--%>
+<%--                                                <form:input path="e1" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>E1</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cgi">CGI</form:label>--%>
+<%--                                                <form:input path="cgi" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>CGI</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="tru">TRU</form:label>--%>
+<%--                                                <form:input path="tru" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>TRU</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="rbs">RBS</form:label>--%>
+<%--                                                <form:input path="rbs" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>RBS</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="direction">Direction</form:label>--%>
+<%--                                                <form:input path="direction" class="form-control" /> <br/>--%>
+<%--                                                <label>Direction</label>--%>
+<%--                                                <input type="password" class="form-control" placeholder="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="onairDate">Onair Date</form:label>--%>
+<%--                                                <form:input path="onairDate" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Onair Date</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                        </section>--%>
 
 
-                                        <%--Update 3G cell--%>
-                                        <h3>3G Informations</h3>
-                                        <section>
-                                            <div class="form-group">
-                                                <form:label path="id">ID</form:label>
-                                                <form:input path="id" class="form-control" /> <br/>
-                                                    <%--<label>ID</label>--%>
-                                                    <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="node">Node</form:label>
-                                                <form:input path="node" class="form-control" /> <br/>
-                                                    <%--<label>Node</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cell">Cell</form:label>
-                                                <form:input path="cell" class="form-control" /> <br/>
-                                                    <%--<label>Cell</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="tg">TG</form:label>
-                                                <form:input path="tg" class="form-control" /> <br/>
-                                                    <%--<label>TG</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cgi">CGI</form:label>
-                                                <form:input path="cgi" class="form-control" /> <br/>
-                                                    <%--<label>CGI</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="rbs">RBS</form:label>
-                                                <form:input path="rbs" class="form-control" /> <br/>
-                                                    <%--<label>RBS</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="duw">DUW</form:label>
-                                                <form:input path="duw" class="form-control" /> <br/>
-                                                <%--<label>DUW</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="ip">IP</form:label>
-                                                <form:input path="ip" class="form-control" /> <br/>
-                                                <%--<label>IP</label>--%>
-                                                <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="direction">Direction</form:label>
-                                                <form:input path="direction" class="form-control" /> <br/>
-                                                <label>Direction</label>
-                                                <input type="password" class="form-control" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="onairDate">Onair Date</form:label>
-                                                <form:input path="onairDate" class="form-control" /> <br/>
-                                                    <%--<label>Onair Date</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                        </section>
+<%--                                            &lt;%&ndash;Update 3G cell&ndash;%&gt;--%>
+<%--                                        <h3>3G Informations</h3>--%>
+<%--                                        <section>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="id">ID</form:label>--%>
+<%--                                                <form:input path="id" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>ID</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="node">Node</form:label>--%>
+<%--                                                <form:input path="node" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Node</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cell">Cell</form:label>--%>
+<%--                                                <form:input path="cell" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Cell</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="tg">TG</form:label>--%>
+<%--                                                <form:input path="tg" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>TG</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cgi">CGI</form:label>--%>
+<%--                                                <form:input path="cgi" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>CGI</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="rbs">RBS</form:label>--%>
+<%--                                                <form:input path="rbs" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>RBS</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="duw">DUW</form:label>--%>
+<%--                                                <form:input path="duw" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>DUW</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="ip">IP</form:label>--%>
+<%--                                                <form:input path="ip" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>IP</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="direction">Direction</form:label>--%>
+<%--                                                <form:input path="direction" class="form-control" /> <br/>--%>
+<%--                                                <label>Direction</label>--%>
+<%--                                                <input type="password" class="form-control" placeholder="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="onairDate">Onair Date</form:label>--%>
+<%--                                                <form:input path="onairDate" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Onair Date</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                        </section>--%>
 
 
-                                         <%--Update 4G cell--%>
-                                        <h3>4G Informations</h3>
-                                        <section>
-                                            <div class="form-group">
-                                                <form:label path="id">ID</form:label>
-                                                <form:input path="id" class="form-control" /> <br/>
-                                                    <%--<label>ID</label>--%>
-                                                    <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="node">Node</form:label>
-                                                <form:input path="node" class="form-control" /> <br/>
-                                                    <%--<label>Node</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cell">Cell</form:label>
-                                                <form:input path="cell" class="form-control" /> <br/>
-                                                    <%--<label>Cell</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="tg">TG</form:label>
-                                                <form:input path="tg" class="form-control" /> <br/>
-                                                    <%--<label>TG</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cgi">CGI</form:label>
-                                                <form:input path="cgi" class="form-control" /> <br/>
-                                                    <%--<label>CGI</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="rbs">RBS</form:label>
-                                                <form:input path="rbs" class="form-control" /> <br/>
-                                                    <%--<label>RBS</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="ip">IP</form:label>
-                                                <form:input path="ip" class="form-control" /> <br/>
-                                                    <%--<label>IP</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="direction">Direction</form:label>
-                                                <form:input path="direction" class="form-control" /> <br/>
-                                                <label>Direction</label>
-                                                <input type="password" class="form-control" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="onairDate">Onair Date</form:label>
-                                                <form:input path="onairDate" class="form-control" /> <br/>
-                                                    <%--<label>Onair Date</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                        </section>
-                                    </div>
+<%--                                            &lt;%&ndash;Update 4G cell&ndash;%&gt;--%>
+<%--                                        <h3>4G Informations</h3>--%>
+<%--                                        <section>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="id">ID</form:label>--%>
+<%--                                                <form:input path="id" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>ID</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="node">Node</form:label>--%>
+<%--                                                <form:input path="node" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Node</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cell">Cell</form:label>--%>
+<%--                                                <form:input path="cell" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Cell</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="tg">TG</form:label>--%>
+<%--                                                <form:input path="tg" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>TG</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="cgi">CGI</form:label>--%>
+<%--                                                <form:input path="cgi" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>CGI</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="rbs">RBS</form:label>--%>
+<%--                                                <form:input path="rbs" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>RBS</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="ip">IP</form:label>--%>
+<%--                                                <form:input path="ip" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>IP</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="direction">Direction</form:label>--%>
+<%--                                                <form:input path="direction" class="form-control" /> <br/>--%>
+<%--                                                <label>Direction</label>--%>
+<%--                                                <input type="password" class="form-control" placeholder="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="form-group">--%>
+<%--                                                <form:label path="onairDate">Onair Date</form:label>--%>
+<%--                                                <form:input path="onairDate" class="form-control" /> <br/>--%>
+<%--                                                    &lt;%&ndash;<label>Onair Date</label>&ndash;%&gt;--%>
+<%--                                                    &lt;%&ndash;<input type="password" class="form-control" placeholder="">&ndash;%&gt;--%>
+<%--                                            </div>--%>
+<%--                                        </section>--%>
+                                </div>
+                                    <form:button>Update</form:button>
                                 </form:form>
                             </div>
                         </div>
@@ -807,79 +810,79 @@
                 </div>
                 <!--vertical wizard-->
 
-<%--                <div class="row">--%>
-<%--                    <div class="col-12 grid-margin">--%>
-<%--                        <div class="card">--%>
-<%--                            <div class="card-body">--%>
-<%--                                <h4 class="card-title">jquery-steps vertical wizard</h4>--%>
-<%--                                <form id="example-vertical-wizard" action="#">--%>
-<%--                                    <div>--%>
-<%--                                        <h3>Account</h3>--%>
-<%--                                        <section>--%>
-<%--                                            <h3>Account</h3>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="userName">User name *</label>--%>
-<%--                                                <input id="userName" name="userName" type="text" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="password">Password *</label>--%>
-<%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="password">Password *</label>--%>
-<%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="password">Password *</label>--%>
-<%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="password">Password *</label>--%>
-<%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="confirm">Confirm Password *</label>--%>
-<%--                                                <input id="confirm" name="confirm" type="password" class="required form-control">--%>
-<%--                                                <small>(*) Mandatory</small>--%>
-<%--                                            </div>--%>
-<%--                                        </section>--%>
-<%--                                        <h3>Profile</h3>--%>
-<%--                                        <section>--%>
-<%--                                            <h3>Profile</h3>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="name">First name *</label>--%>
-<%--                                                <input id="name" name="name" type="text" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="surname">Last name *</label>--%>
-<%--                                                <input id="surname" name="surname" type="text" class="required form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="email">Email *</label>--%>
-<%--                                                <input id="email" name="email" type="text" class="required email form-control">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="address">Address</label>--%>
-<%--                                                <input id="address" name="address" type="text" class="form-control">--%>
-<%--                                                <small>(*) Mandatory</small>--%>
-<%--                                            </div>--%>
-<%--                                        </section>--%>
-<%--                                        <h3>Finish</h3>--%>
-<%--                                        <section>--%>
-<%--                                            <h3>Finish</h3>--%>
-<%--                                            <div class="form-check">--%>
-<%--                                                <label class="form-check-label">--%>
-<%--                                                    <input class="checkbox" type="checkbox">--%>
-<%--                                                    I agree with the Terms and Conditions.--%>
-<%--                                                </label>--%>
-<%--                                            </div>--%>
-<%--                                        </section>--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="row">--%>
+                <%--                    <div class="col-12 grid-margin">--%>
+                <%--                        <div class="card">--%>
+                <%--                            <div class="card-body">--%>
+                <%--                                <h4 class="card-title">jquery-steps vertical wizard</h4>--%>
+                <%--                                <form id="example-vertical-wizard" action="#">--%>
+                <%--                                    <div>--%>
+                <%--                                        <h3>Account</h3>--%>
+                <%--                                        <section>--%>
+                <%--                                            <h3>Account</h3>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="userName">User name *</label>--%>
+                <%--                                                <input id="userName" name="userName" type="text" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="password">Password *</label>--%>
+                <%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="password">Password *</label>--%>
+                <%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="password">Password *</label>--%>
+                <%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="password">Password *</label>--%>
+                <%--                                                <input id="password" name="password" type="password" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="confirm">Confirm Password *</label>--%>
+                <%--                                                <input id="confirm" name="confirm" type="password" class="required form-control">--%>
+                <%--                                                <small>(*) Mandatory</small>--%>
+                <%--                                            </div>--%>
+                <%--                                        </section>--%>
+                <%--                                        <h3>Profile</h3>--%>
+                <%--                                        <section>--%>
+                <%--                                            <h3>Profile</h3>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="name">First name *</label>--%>
+                <%--                                                <input id="name" name="name" type="text" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="surname">Last name *</label>--%>
+                <%--                                                <input id="surname" name="surname" type="text" class="required form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="email">Email *</label>--%>
+                <%--                                                <input id="email" name="email" type="text" class="required email form-control">--%>
+                <%--                                            </div>--%>
+                <%--                                            <div class="form-group">--%>
+                <%--                                                <label for="address">Address</label>--%>
+                <%--                                                <input id="address" name="address" type="text" class="form-control">--%>
+                <%--                                                <small>(*) Mandatory</small>--%>
+                <%--                                            </div>--%>
+                <%--                                        </section>--%>
+                <%--                                        <h3>Finish</h3>--%>
+                <%--                                        <section>--%>
+                <%--                                            <h3>Finish</h3>--%>
+                <%--                                            <div class="form-check">--%>
+                <%--                                                <label class="form-check-label">--%>
+                <%--                                                    <input class="checkbox" type="checkbox">--%>
+                <%--                                                    I agree with the Terms and Conditions.--%>
+                <%--                                                </label>--%>
+                <%--                                            </div>--%>
+                <%--                                        </section>--%>
+                <%--                                    </div>--%>
+                <%--                                </form>--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->

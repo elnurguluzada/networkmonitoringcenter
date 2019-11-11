@@ -4,6 +4,7 @@ import com.azercell.NetworkMonitoringCenter.domain.DroppedHaltedSite;
 import com.azercell.NetworkMonitoringCenter.domain.Site;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SiteRepository {
 
@@ -45,6 +46,8 @@ public interface SiteRepository {
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName  , int begin , int end);
 
 
+    public Site getSiteByName(String siteName);
+    public Optional<Site> updateSiteInfo(Site site);
 
 
 }

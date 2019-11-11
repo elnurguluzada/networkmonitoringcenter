@@ -4,6 +4,7 @@ import com.azercell.NetworkMonitoringCenter.domain.DroppedHaltedSite;
 import com.azercell.NetworkMonitoringCenter.domain.Site;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SiteService {
 
@@ -42,6 +43,8 @@ public interface SiteService {
     public List<DroppedHaltedSite> getFiltederDropHistory(int indexOfColumn, String orderType ,String searchParam , int begin, int end);
 
 
+    public Site getSiteByName(String siteName);
+    public Optional<Site> updateSiteInfo(Site site);
 
 
 
