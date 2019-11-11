@@ -814,7 +814,8 @@
                     "visible": true,
                     "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
                         "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
-                        "<a><button class='detailed-4Gbutton'>4G</button></a> &nbsp "
+                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
+                        "<a><button class='updateButton'>Update</button></a> &nbsp "
                 },
 
             ]
@@ -827,6 +828,13 @@
                 // $("#4G-cell-table").DataTable().ajax.reload();
             });
 
+
+            $(".updateButton").click(function () {
+                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+              window.location.href = "/load/updateSiteInfo/" + selectedSiteName;
+                // $("#3G-cell-table").DataTable().ajax.reload();
+                // $("#4G-cell-table").DataTable().ajax.reload();
+            });
 
         });
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -146,6 +147,18 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.getFiltederDropHistory(indexOfColumn, orderType , searchParam , begin , end);
     }
 
+
+
+
+    @Override
+    public Site getSiteByName(String siteName) {
+        return siteRepository.getSiteByName(siteName);
+    }
+
+    @Override
+    public Optional<Site> updateSiteInfo(Site site) {
+        return siteRepository.updateSiteInfo(site);
+    }
 
 
 }

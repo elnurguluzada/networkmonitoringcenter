@@ -6,9 +6,15 @@ import com.azercell.NetworkMonitoringCenter.repository.SiteRepository;
 import com.azercell.NetworkMonitoringCenter.repository.SQLqueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringTokenizer;
 
 
@@ -567,6 +573,53 @@ public class SiteRepositoryImpl implements SiteRepository {
                 end);
     }
 
+    @Override
+    public Site getSiteByName(String siteName) {
+        String sql = "select site , location ,latitude , longitude from santral.cells2 where site like ?  ";
 
 
+        Site site = jdbcTemplate.query(sql , new SiteMapper(), new Object[]{siteName}).get(0);
+
+        return site;
+    }
+
+    @Override
+    public Optional<Site> updateSiteInfo(Site site) {
+
+
+        System.out.println(site);
+
+        if(updateSiteInCells2(site) == 1) {
+            return Optional.of(getSiteByName(site.getSite_name()));
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
+    private int updateSiteInCells2(Site site){
+
+        String sql = "update santral.cells2 " +
+                "set  location = ? , latitude = ? , longitude = ? where site = ?";
+
+
+        return jdbcTemplate.update(sql , site.getLocation() , site.getLatitude(), site.getLongitude() , site.getSite_name());
+
+    }
+
+
+    private class SiteMapper implements RowMapper<Site>{
+
+        @Override
+        public Site mapRow(ResultSet resultSet, int i) throws SQLException {
+
+            Site site = new Site();
+            site.setSite_name(resultSet.getString("site"));
+            site.setLocation(resultSet.getString("location"));
+            site.setLatitude(resultSet.getString("latitude"));
+            site.setLongitude(resultSet.getString("longitude"));
+
+            return site;
+        }
+    }
 }

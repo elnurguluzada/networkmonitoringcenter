@@ -11,12 +11,15 @@ import com.azercell.NetworkMonitoringCenter.service.SiteService;
 //import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 //import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 //import org.springframework.batch.core.repository.JobRestartException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -592,16 +595,38 @@ public class SiteController {
 
 
 
-    @GetMapping("/updateSiteInfo")
-    public String showUpdateInformation(){
+    @GetMapping("/updateSiteInfo/{siteName}")
+    public String showUpdateInformation(@PathVariable("siteName") String siteName, Model model){
 
-       // model.addAttribute("site" , siteService.getSiteByName(siteNAme));
+
+        model.addAttribute("site" , siteService.getSiteByName(siteName));
 
 
         return "/site/update_site_info_form";
     }
 
 
+
+    @PostMapping("/updateSiteInfo")
+    public ModelAndView updateSiteInfo(
+            @Valid @ModelAttribute(name = "site") Site site,
+            BindingResult bindingResult
+    ){
+
+        System.out.println(site);
+
+        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+
+
+        if(!bindingResult.hasErrors()){
+            boolean success = siteService.updateSiteInfo(site).isPresent();
+            modelAndView.addObject("success" , success);
+        }
+
+
+
+        return modelAndView;
+    }
 
 
 
