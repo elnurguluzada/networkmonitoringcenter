@@ -13,6 +13,7 @@ import com.azercell.NetworkMonitoringCenter.service.SiteService;
 //import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -590,11 +591,19 @@ public class SiteController {
     //---------------------------------- Update Site Infromations -------------------------------------------------------
 
 
+
     @GetMapping("/updateSiteInfo")
-    public String updateInformation(){
-        System.out.println("controller : /dropHistory");
-        return "/site/update_sote_info_2";
+    public String showUpdateInformation(){
+
+       // model.addAttribute("site" , siteService.getSiteByName(siteNAme));
+
+
+        return "/site/update_site_info_form";
     }
+
+
+
+
 
 
 }
