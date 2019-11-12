@@ -583,6 +583,9 @@ public class SiteRepositoryImpl implements SiteRepository {
         return site;
     }
 
+
+
+
     @Override
     public Optional<Site> updateSiteInfo(Site site) {
 
@@ -596,6 +599,23 @@ public class SiteRepositoryImpl implements SiteRepository {
         }
 
     }
+
+
+
+    @Override
+    public Site get2GCellBySiteName(String siteName) {
+
+        String sql = "select  node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where site like ? and cell_type ='2G' ";
+
+        Site site = jdbcTemplate.query(sql , new TwoGCellMapper(), new Object[]{siteName}).get(0);
+
+
+        return null;
+    }
+
+
+    //TODO implement  Optional<Site> update2GInfo(Site site) method
+
 
     private int updateSiteInCells2(Site site){
 
@@ -622,4 +642,27 @@ public class SiteRepositoryImpl implements SiteRepository {
             return site;
         }
     }
+
+    private class TwoGCellMapper implements RowMapper<Site>{
+
+        @Override
+        public Site mapRow(ResultSet resultSet, int i) throws SQLException {
+
+
+            Site site = new Site();
+            site.setNode(resultSet.getString("node"));
+            site.setCell(resultSet.getString("cell"));
+            site.setTg(resultSet.getString("tg"));
+            site.setRblt(resultSet.getString("rblt"));
+            site.setCgi(resultSet.getString("cgi"));
+            site.setTru(resultSet.getString("tru"));
+            site.setDirection(resultSet.getString("direction"));
+            site.setInsDate(resultSet.getString("ins_date"));
+
+
+            return site;
+        }
+    }
+
+
 }

@@ -47,6 +47,8 @@ public interface SiteService {
     public Optional<Site> updateSiteInfo(Site site);
 
 
+    public Site get2GCellBySiteName(String siteName);
+
 
 
 }

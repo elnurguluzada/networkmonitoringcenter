@@ -160,5 +160,10 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.updateSiteInfo(site);
     }
 
+    @Override
+    public Site get2GCellBySiteName(String siteName) {
+        return siteRepository.get2GCellBySiteName(siteName);
+    }
+
 
 }
