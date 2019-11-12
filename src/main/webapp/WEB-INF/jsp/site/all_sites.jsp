@@ -649,6 +649,7 @@
                                             <th>RBS</th>
                                             <th>Direction</th>
                                             <th>Onair Date</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
 
@@ -674,6 +675,7 @@
                                             <th>IP</th>
                                             <th>Direction</th>
                                             <th>Onair Date</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -696,6 +698,7 @@
                                             <th>IP</th>
                                             <th>Direction</th>
                                             <th>Onair Date</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -771,6 +774,7 @@
     var threeGTable;
     var fourGTable;
     var selectedSite='';
+    var selectedCell='';
 
 
 
@@ -814,29 +818,32 @@
                     "visible": true,
                     "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
                         "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
-                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
+                        "<a><button class='detailed-4Gbutton'>4G</button></a> &nbsp " +
                         "<a><button class='updateButton'>Update</button></a> &nbsp "
-                },
+                }
 
             ]
         });
+
+
+
+
+
         allSitesTable.on('draw', function () {
             $(".detailed-2Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#2G-cell-table").DataTable().ajax.reload();
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
+
             });
-
-
             $(".updateButton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-              window.location.href = "/load/updateSiteInfo/" + selectedSiteName;
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
+                window.location.href = "/load/updateGeneralSiteInfo/" + selectedSiteName;
+
             });
 
+
         });
+
 
 
         allSitesTable.on('draw', function () {
@@ -848,6 +855,7 @@
             });
 
         });
+
         allSitesTable.on('draw', function () {
             $(".detailed-4Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
@@ -889,9 +897,27 @@
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'frtip'
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button class='updateButton'>Update</button> "
+                }
+
+            ]
 
         });
+
+        twoGTable.on('draw', function () {
+
+            $(".updateButton").click(function () {
+                selectedCell = twoGTable.row($(this).parents('tr')).data()[1];
+                window.location.href = "/load/updateSiteInfo/" + selectedCell;
+
+            });
+        });
+
 
 
     }
@@ -909,30 +935,33 @@
             "iDisplayLength": 25,
             "ajax": {
                 url: "../load/get3GCells",
-                data: function ( d ) {
+                data: function (d) {
                     d.siteName = selectedSiteName;
                 }
-            } ,
-            "dom": 'frtip'
+            },
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button class='updateButton'>Update</button> "
+                }
+
+            ]
+
 
         });
 
 
-        // threeGTable = $("#3G-cell-table").DataTable({
-        //     "processing": false,
-        //
-        //     "serverSide": true,
-        //     "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
-        //     "iDisplayLength": 25,
-        //     "ajax": {
-        //         url: "../load/get3GCells",
-        //         type: 'get',
-        //         data: function ( d ) {
-        //             d.siteName = selectedSiteName;
-        //         }
-        //     } ,
-        //     "dom": 'lBfrtip'
-        // });
+        threeGTable.on('draw', function () {
+
+            $(".updateButton").click(function () {
+                selectedCell = threeGTable.row($(this).parents('tr')).data()[1];
+                window.location.href = "/load/updateSiteInfo/" + selectedCell;
+
+            });
+        });
+
     }
 
 
@@ -952,8 +981,24 @@
                     d.siteName = selectedSiteName;
                 }
             } ,
-            "dom": 'frtip'
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button class='updateButton'>Update</button> "
+                }
 
+            ]
+        });
+
+        fourGTable.on('draw', function () {
+
+            $(".updateButton").click(function () {
+                selectedCell = fourGTable.row($(this).parents('tr')).data()[1];
+                window.location.href = "/load/updateSiteInfo/" + selectedCell;
+
+            });
         });
 
     }

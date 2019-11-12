@@ -591,11 +591,11 @@ public class SiteController {
 //        return "/common/file_upload";
 //    }
 
-    //---------------------------------- Update Site Infromations -------------------------------------------------------
+    //---------------------------------- Update General Site Infromations -------------------------------------------------------
 
 
 
-    @GetMapping("/updateSiteInfo/{siteName}")
+    @GetMapping("/updateGeneralSiteInfo/{siteName}")
     public String showUpdateInformation(@PathVariable("siteName") String siteName, Model model){
 
 
@@ -607,7 +607,7 @@ public class SiteController {
 
 
 
-    @PostMapping("/updateSiteInfo")
+    @PostMapping("/updateGeneralSiteInfo")
     public ModelAndView updateSiteInfo(
             @Valid @ModelAttribute(name = "site") Site site,
             BindingResult bindingResult
@@ -629,6 +629,41 @@ public class SiteController {
     }
 
 
+    //---------------------------------- Update 2G Cell Infromations -------------------------------------------------------
 
+
+
+    @GetMapping("/update2GCellInfo/{siteName}")
+    public String showUpdate2GCellInformation(@PathVariable("siteName") String siteName, Model model){
+
+
+        model.addAttribute("site" , siteService.get2GCellBySiteName(siteName));
+
+
+        return "/site/update_site_info_form";
+    }
+
+
+
+    @PostMapping("/update2GCellInfo")
+    public ModelAndView update2GCellInfo(
+            @Valid @ModelAttribute(name = "site") Site site,
+            BindingResult bindingResult
+    ){
+
+        System.out.println(site);
+
+        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+
+
+        if(!bindingResult.hasErrors()){
+            boolean success = siteService.update2GCellInfo(site).isPresent();
+            modelAndView.addObject("success" , success);
+        }
+
+
+
+        return modelAndView;
+    }
 
 }

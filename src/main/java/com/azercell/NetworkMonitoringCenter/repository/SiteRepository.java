@@ -49,5 +49,7 @@ public interface SiteRepository {
     public Site getSiteByName(String siteName);
     public Optional<Site> updateSiteInfo(Site site);
 
+    public Site get2GCellBySiteName(String siteName);
+
 
 }
