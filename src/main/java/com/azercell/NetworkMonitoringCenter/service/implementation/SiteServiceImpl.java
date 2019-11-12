@@ -161,9 +161,43 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    public Site get2GCellBySiteName(String siteName) {
-        return siteRepository.get2GCellBySiteName(siteName);
+    public Site get2GCellBySiteName(String cell) {
+        return siteRepository.get2GCellBySiteName(cell);
     }
 
+
+
+    @Override
+    public Optional<Site> update2GCellInfo(Site site) {
+        return siteRepository.update2GCellInfo(site);
+    }
+
+
+    @Override
+    public Site get3GCellBySiteName(String cell) {
+        return siteRepository.get3GCellBySiteName(cell);
+    }
+
+
+
+    @Override
+    public Optional<Site> update3GCellInfo(Site site) {
+        return siteRepository.update3GCellInfo(site);
+    }
+
+
+
+
+    @Override
+    public Site get4GCellBySiteName(String cell) {
+        return siteRepository.get4GCellBySiteName(cell);
+    }
+
+
+
+    @Override
+    public Optional<Site> update4GCellInfo(Site site) {
+        return siteRepository.update4GCellInfo(site);
+    }
 
 }

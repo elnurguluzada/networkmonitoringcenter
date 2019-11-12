@@ -584,8 +584,6 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
-
-
     @Override
     public Optional<Site> updateSiteInfo(Site site) {
 
@@ -601,22 +599,6 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
-
-    @Override
-    public Site get2GCellBySiteName(String siteName) {
-
-        String sql = "select  node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where site like ? and cell_type ='2G' ";
-
-        Site site = jdbcTemplate.query(sql , new TwoGCellMapper(), new Object[]{siteName}).get(0);
-
-
-        return null;
-    }
-
-
-    //TODO implement  Optional<Site> update2GInfo(Site site) method
-
-
     private int updateSiteInCells2(Site site){
 
         String sql = "update santral.cells2 " +
@@ -626,6 +608,144 @@ public class SiteRepositoryImpl implements SiteRepository {
         return jdbcTemplate.update(sql , site.getLocation() , site.getLatitude(), site.getLongitude() , site.getSite_name());
 
     }
+
+
+
+    @Override
+    public Site get2GCellBySiteName(String cell) {
+
+        String sql = "select  node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where cell like ?  ";
+
+        Site site = jdbcTemplate.query(sql , new TwoGCellMapper(), new Object[]{cell}).get(0);
+
+
+        return site;
+    }
+
+
+    @Override
+    public Optional<Site> update2GCellInfo(Site site) {
+
+
+        System.out.println(site);
+
+        if(update2GCellİnfoInCells2(site) == 1) {
+            return Optional.of(get2GCellBySiteName(site.getSite_name()));
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
+
+    private int update2GCellİnfoInCells2(Site site){
+
+
+
+        String sql = "update santral.cells2 " +
+                "set  node = ? , cell = ? , tg = ? , rblt = ? , cgi = ? , tru = ? , rbs = ? , direction = ? , ins_date = ? where cell = ?";
+
+
+        return jdbcTemplate.update(sql , site.getNode() ,
+                                         site.getCell(),
+                site.getTg() , site.getRblt() ,
+                site.getCgi() , site.getTru(),
+                site.getRbs(), site.getDirection(),
+                site.getInsDate(), site.getCell());
+
+    }
+
+
+
+
+    @Override
+    public Site get3GCellBySiteName(String cell) {
+
+        String sql = "select  node  ,cell ,  cgi ,  rbs , note , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+
+        Site site = jdbcTemplate.query(sql , new ThreeGCellMapper(), new Object[]{cell}).get(0);
+
+
+        return site;
+    }
+
+
+    @Override
+    public Optional<Site> update3GCellInfo(Site site) {
+
+
+        System.out.println(site);
+
+        if(update3GCellİnfoInCells2(site) == 1) {
+            return Optional.of(get3GCellBySiteName(site.getSite_name()));
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
+
+    private int update3GCellİnfoInCells2(Site site){
+
+
+
+        String sql = "update santral.cells2 " +
+                "set  node = ? , cell = ? , cgi = ? , rbs = ? , note = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
+
+
+        return jdbcTemplate.update(sql , site.getNode() , site.getCell(), site.getCgi() ,  site.getRbs(), site.getNote() ,site.getIp() ,site.getDirection(), site.getInsDate(), site.getCell());
+
+    }
+
+
+
+
+
+
+
+    @Override
+    public Site get4GCellBySiteName(String cell) {
+
+        String sql = "select  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+
+        Site site = jdbcTemplate.query(sql , new FourGCellMapper(), new Object[]{cell}).get(0);
+
+
+        return site;
+    }
+
+
+    @Override
+    public Optional<Site> update4GCellInfo(Site site) {
+
+
+        System.out.println(site);
+
+        if(update4GCellİnfoInCells2(site) == 1) {
+            return Optional.of(get4GCellBySiteName(site.getCell()));
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
+
+    private int update4GCellİnfoInCells2(Site site){
+
+
+
+        String sql = "update santral.cells2 " +
+                "set  node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
+
+
+        return jdbcTemplate.update(sql , site.getNode() , site.getCell(), site.getCgi() ,  site.getRbs(), site.getIp() ,site.getDirection(), site.getInsDate(), site.getCell());
+
+    }
+
+
+
+
+
 
 
     private class SiteMapper implements RowMapper<Site>{
@@ -656,6 +776,47 @@ public class SiteRepositoryImpl implements SiteRepository {
             site.setRblt(resultSet.getString("rblt"));
             site.setCgi(resultSet.getString("cgi"));
             site.setTru(resultSet.getString("tru"));
+            site.setDirection(resultSet.getString("direction"));
+            site.setInsDate(resultSet.getString("ins_date"));
+
+
+            return site;
+        }
+    }
+
+    private class ThreeGCellMapper implements RowMapper<Site>{
+
+        @Override
+        public Site mapRow(ResultSet resultSet, int i) throws SQLException {
+
+
+            Site site = new Site();
+            site.setNode(resultSet.getString("node"));
+            site.setCell(resultSet.getString("cell"));
+            site.setCgi(resultSet.getString("cgi"));
+            site.setRbs(resultSet.getString("rbs"));
+            site.setNote(resultSet.getString("note"));
+            site.setIp(resultSet.getString("ip"));
+            site.setDirection(resultSet.getString("direction"));
+            site.setInsDate(resultSet.getString("ins_date"));
+
+
+            return site;
+        }
+    }
+
+    private class FourGCellMapper implements RowMapper<Site>{
+
+        @Override
+        public Site mapRow(ResultSet resultSet, int i) throws SQLException {
+
+
+            Site site = new Site();
+            site.setNode(resultSet.getString("node"));
+            site.setCell(resultSet.getString("cell"));
+            site.setCgi(resultSet.getString("cgi"));
+            site.setRbs(resultSet.getString("rbs"));
+            site.setIp(resultSet.getString("ip"));
             site.setDirection(resultSet.getString("direction"));
             site.setInsDate(resultSet.getString("ins_date"));
 

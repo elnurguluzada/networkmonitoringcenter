@@ -666,4 +666,80 @@ public class SiteController {
         return modelAndView;
     }
 
+
+    //---------------------------------- Update 3G Cell Infromations -------------------------------------------------------
+
+
+
+    @GetMapping("/update3GCellInfo/{siteName}")
+    public String showUpdate3GCellInformation(@PathVariable("siteName") String siteName, Model model){
+
+
+        model.addAttribute("site" , siteService.get3GCellBySiteName(siteName));
+
+
+        return "/site/update_site_info_form";
+    }
+
+
+
+    @PostMapping("/update3GCellInfo")
+    public ModelAndView update3GCellInfo(
+            @Valid @ModelAttribute(name = "site") Site site,
+            BindingResult bindingResult
+    ){
+
+        System.out.println(site);
+
+        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+
+
+        if(!bindingResult.hasErrors()){
+            boolean success = siteService.update3GCellInfo(site).isPresent();
+            modelAndView.addObject("success" , success);
+        }
+
+
+
+        return modelAndView;
+    }
+
+
+    //---------------------------------- Update 4G Cell Infromations -------------------------------------------------------
+
+
+
+    @GetMapping("/update4GCellInfo/{siteName}")
+    public String showUpdate4GCellInformation(@PathVariable("siteName") String siteName, Model model){
+
+
+        model.addAttribute("site" , siteService.get4GCellBySiteName(siteName));
+
+
+        return "/site/update_site_info_form";
+    }
+
+
+
+    @PostMapping("/update4GCellInfo")
+    public ModelAndView update4GCellInfo(
+            @Valid @ModelAttribute(name = "site") Site site,
+            BindingResult bindingResult
+    ){
+
+        System.out.println(site);
+
+        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+
+
+        if(!bindingResult.hasErrors()){
+            boolean success = siteService.update4GCellInfo(site).isPresent();
+            modelAndView.addObject("success" , success);
+        }
+
+
+
+        return modelAndView;
+    }
+
 }
