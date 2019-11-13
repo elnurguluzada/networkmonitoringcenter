@@ -192,20 +192,19 @@ public class SiteController {
             length = numberofAll3GCellsOfIdenticalSite - start;
         }
 
-        String[][] data = new String[length][9];
+        String[][] data = new String[length][8];
 
         for(int i =0; i < length; i++) {
 
             Site  twoGCells = twoGCellsList.get(i);
             data[i][0] = twoGCells.getNode();
             data[i][1] = twoGCells.getCell();
-            data[i][2] = twoGCells.getTg();
-            data[i][3] = twoGCells.getRblt();
-            data[i][4] = twoGCells.getCgi();
-            data[i][5] = twoGCells.getTru();
-            data[i][6] = twoGCells.getRbs();
-            data[i][7] = twoGCells.getDirection();
-            data[i][8] = twoGCells.getInsDate();
+            data[i][2] = twoGCells.getCgi();
+            data[i][3] = twoGCells.getRbs();
+            data[i][4] = twoGCells.getNote();
+            data[i][5] = twoGCells.getIp();
+            data[i][6] = twoGCells.getDirection();
+            data[i][7] = twoGCells.getInsDate();
 
         }
 
@@ -242,21 +241,18 @@ public class SiteController {
             length = numberofAll4GCellsOfIdenticalSite - start;
         }
 
-        String[][] data = new String[length][9];
+        String[][] data = new String[length][7];
 
         for(int i =0; i < length; i++) {
 
             Site  twoGCells = twoGCellsList.get(i);
             data[i][0] = twoGCells.getNode();
             data[i][1] = twoGCells.getCell();
-            data[i][2] = twoGCells.getTg();
-            data[i][3] = twoGCells.getRblt();
-            data[i][4] = twoGCells.getCgi();
-            data[i][5] = twoGCells.getTru();
-            data[i][6] = twoGCells.getRbs();
-            data[i][7] = twoGCells.getDirection();
-            data[i][8] = twoGCells.getInsDate();
-
+            data[i][2] = twoGCells.getCgi();
+            data[i][3] = twoGCells.getRbs();
+            data[i][4] = twoGCells.getIp();
+            data[i][5] = twoGCells.getDirection();
+            data[i][6] = twoGCells.getInsDate();
         }
 
 
@@ -602,7 +598,7 @@ public class SiteController {
         model.addAttribute("site" , siteService.getSiteByName(siteName));
 
 
-        return "/site/update_site_info_form";
+        return "/site/update_2g_cell_info_form";
     }
 
 
@@ -615,7 +611,7 @@ public class SiteController {
 
         System.out.println(site);
 
-        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+        ModelAndView modelAndView = new ModelAndView("/site/update_2g_cell_info_form");
 
 
         if(!bindingResult.hasErrors()){
@@ -640,7 +636,7 @@ public class SiteController {
         model.addAttribute("site" , siteService.get2GCellBySiteName(siteName));
 
 
-        return "/site/update_site_info_form";
+        return "/site/update_2g_cell_info_form";
     }
 
 
@@ -653,7 +649,7 @@ public class SiteController {
 
         System.out.println(site);
 
-        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+        ModelAndView modelAndView = new ModelAndView("/site/update_2g_cell_info_form");
 
 
         if(!bindingResult.hasErrors()){
@@ -678,7 +674,7 @@ public class SiteController {
         model.addAttribute("site" , siteService.get3GCellBySiteName(siteName));
 
 
-        return "/site/update_site_info_form";
+        return "/site/update_3g_cell_info_form";
     }
 
 
@@ -691,7 +687,7 @@ public class SiteController {
 
         System.out.println(site);
 
-        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+        ModelAndView modelAndView = new ModelAndView("/site/update_3g_cell_info_form");
 
 
         if(!bindingResult.hasErrors()){
@@ -716,7 +712,7 @@ public class SiteController {
         model.addAttribute("site" , siteService.get4GCellBySiteName(siteName));
 
 
-        return "/site/update_site_info_form";
+        return "/site/update_4g_cell_info_form";
     }
 
 
@@ -729,7 +725,7 @@ public class SiteController {
 
         System.out.println(site);
 
-        ModelAndView modelAndView = new ModelAndView("/site/update_site_info_form");
+        ModelAndView modelAndView = new ModelAndView("/site/update_4g_cell_info_form");
 
 
         if(!bindingResult.hasErrors()){

@@ -162,7 +162,7 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public Site get2GCellBySiteName(String cell) {
-        return siteRepository.get2GCellBySiteName(cell);
+        return siteRepository.get2GCellByCellName(cell);
     }
 
 
