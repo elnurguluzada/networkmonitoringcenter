@@ -6,8 +6,6 @@ import com.azercell.NetworkMonitoringCenter.repository.SiteRepository;
 import com.azercell.NetworkMonitoringCenter.repository.SQLqueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -583,7 +581,6 @@ public class SiteRepositoryImpl implements SiteRepository {
         return site;
     }
 
-
     @Override
     public Optional<Site> updateSiteInfo(Site site) {
 
@@ -598,7 +595,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
     }
 
-
     private int updateSiteInCells2(Site site){
 
         String sql = "update santral.cells2 " +
@@ -612,16 +608,14 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
     @Override
-    public Site get2GCellBySiteName(String cell) {
+    public Site get2GCellByCellName(String cell) {
 
-        String sql = "select  node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where cell like ?  ";
+        String sql = "select site , location ,latitude , longitude , node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new TwoGCellMapper(), new Object[]{cell}).get(0);
 
-
         return site;
     }
-
 
     @Override
     public Optional<Site> update2GCellInfo(Site site) {
@@ -630,24 +624,27 @@ public class SiteRepositoryImpl implements SiteRepository {
         System.out.println(site);
 
         if(update2GCellİnfoInCells2(site) == 1) {
-            return Optional.of(get2GCellBySiteName(site.getSite_name()));
+            return Optional.of(get2GCellByCellName(site.getCell()));
         } else {
             return Optional.empty();
         }
 
     }
 
-
     private int update2GCellİnfoInCells2(Site site){
 
 
-
         String sql = "update santral.cells2 " +
-                "set  node = ? , cell = ? , tg = ? , rblt = ? , cgi = ? , tru = ? , rbs = ? , direction = ? , ins_date = ? where cell = ?";
+                "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , tg = ? , rblt = ? , cgi = ? , tru = ? , rbs = ? , direction = ? , ins_date = ? where cell = ?";
 
 
-        return jdbcTemplate.update(sql , site.getNode() ,
-                                         site.getCell(),
+        return jdbcTemplate.update(sql ,
+                site.getSite_name(),
+                site.getLocation() ,
+                site.getLatitude(),
+                site.getLongitude() ,
+                site.getNode() ,
+                site.getCell(),
                 site.getTg() , site.getRblt() ,
                 site.getCgi() , site.getTru(),
                 site.getRbs(), site.getDirection(),
@@ -658,17 +655,21 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
+
+
+
+
+
     @Override
     public Site get3GCellBySiteName(String cell) {
 
-        String sql = "select  node  ,cell ,  cgi ,  rbs , note , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs , note , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new ThreeGCellMapper(), new Object[]{cell}).get(0);
 
 
         return site;
     }
-
 
     @Override
     public Optional<Site> update3GCellInfo(Site site) {
@@ -677,23 +678,34 @@ public class SiteRepositoryImpl implements SiteRepository {
         System.out.println(site);
 
         if(update3GCellİnfoInCells2(site) == 1) {
-            return Optional.of(get3GCellBySiteName(site.getSite_name()));
+            return Optional.of(get3GCellBySiteName(site.getCell()));
         } else {
             return Optional.empty();
         }
 
     }
 
-
     private int update3GCellİnfoInCells2(Site site){
 
 
 
         String sql = "update santral.cells2 " +
-                "set  node = ? , cell = ? , cgi = ? , rbs = ? , note = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
+                "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , note = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
 
 
-        return jdbcTemplate.update(sql , site.getNode() , site.getCell(), site.getCgi() ,  site.getRbs(), site.getNote() ,site.getIp() ,site.getDirection(), site.getInsDate(), site.getCell());
+        return jdbcTemplate.update(sql ,  site.getSite_name(),
+                site.getLocation() ,
+                site.getLatitude(),
+                site.getLongitude() ,
+                site.getNode() ,
+                site.getCell(),
+                site.getCgi() ,
+                site.getRbs(),
+                site.getNote() ,
+                site.getIp() ,
+                site.getDirection(),
+                site.getInsDate(),
+                site.getCell());
 
     }
 
@@ -706,14 +718,13 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public Site get4GCellBySiteName(String cell) {
 
-        String sql = "select  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new FourGCellMapper(), new Object[]{cell}).get(0);
 
 
         return site;
     }
-
 
     @Override
     public Optional<Site> update4GCellInfo(Site site) {
@@ -729,17 +740,26 @@ public class SiteRepositoryImpl implements SiteRepository {
 
     }
 
-
     private int update4GCellİnfoInCells2(Site site){
 
 
 
         String sql = "update santral.cells2 " +
-                "set  node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
+                "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
 
 
-        return jdbcTemplate.update(sql , site.getNode() , site.getCell(), site.getCgi() ,  site.getRbs(), site.getIp() ,site.getDirection(), site.getInsDate(), site.getCell());
-
+        return jdbcTemplate.update(sql , site.getSite_name(),
+                site.getLocation() ,
+                site.getLatitude(),
+                site.getLongitude() ,
+                site.getNode() ,
+                site.getCell(),
+                site.getCgi() ,
+                site.getRbs(),
+                site.getIp() ,
+                site.getDirection(),
+                site.getInsDate(),
+                site.getCell());
     }
 
 
@@ -770,12 +790,17 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             Site site = new Site();
+            site.setSite_name(resultSet.getString("site"));
+            site.setLocation(resultSet.getString("location"));
+            site.setLatitude(resultSet.getString("latitude"));
+            site.setLongitude(resultSet.getString("longitude"));
             site.setNode(resultSet.getString("node"));
             site.setCell(resultSet.getString("cell"));
             site.setTg(resultSet.getString("tg"));
             site.setRblt(resultSet.getString("rblt"));
             site.setCgi(resultSet.getString("cgi"));
             site.setTru(resultSet.getString("tru"));
+            site.setRbs(resultSet.getString("rbs"));
             site.setDirection(resultSet.getString("direction"));
             site.setInsDate(resultSet.getString("ins_date"));
 
@@ -791,6 +816,10 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             Site site = new Site();
+            site.setSite_name(resultSet.getString("site"));
+            site.setLocation(resultSet.getString("location"));
+            site.setLatitude(resultSet.getString("latitude"));
+            site.setLongitude(resultSet.getString("longitude"));
             site.setNode(resultSet.getString("node"));
             site.setCell(resultSet.getString("cell"));
             site.setCgi(resultSet.getString("cgi"));
@@ -812,6 +841,10 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             Site site = new Site();
+            site.setSite_name(resultSet.getString("site"));
+            site.setLocation(resultSet.getString("location"));
+            site.setLatitude(resultSet.getString("latitude"));
+            site.setLongitude(resultSet.getString("longitude"));
             site.setNode(resultSet.getString("node"));
             site.setCell(resultSet.getString("cell"));
             site.setCgi(resultSet.getString("cgi"));

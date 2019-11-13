@@ -1,8 +1,9 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
 
-<!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:47:19 GMT -->
+<!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:46:38 GMT -->
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -10,30 +11,20 @@
     <title>Azercell</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="https://azeuronews.com/wp-content/uploads/2019/06/azercell.jpg" />
-
-
-    <style>
-        div.dataTables_wrapper div.dataTables_processing {
-            top: 1%;
-            background: rebeccapurple !important;
-            color: white !important;
-            font-size: xx-large !important;
-        }
-
-    </style>
 </head>
 
 <body>
 <div class="container-scroller">
+
+
     <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
@@ -46,11 +37,12 @@
                 <li class="nav-item nav-search d-none d-lg-flex">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
+                        <span class="input-group-text" id="search">
+                        <i class="mdi mdi-magnify"></i>
+                        </span>
                         </div>
-                        <input id="searchID" type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search" action="/get">
+                        <input type="text" class="form-control" placeholder="search" aria-label="search"
+                               aria-describedby="search">
                     </div>
                 </li>
             </ul>
@@ -60,11 +52,13 @@
             </div>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                       data-toggle="dropdown">
                         <i class="mdi mdi-bell-outline mx-0"></i>
                         <span class="count"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                         aria-labelledby="notificationDropdown">
                         <a class="dropdown-item">
                             <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
                             </p>
@@ -145,6 +139,8 @@
         </div>
     </nav>
     <!-- partial -->
+
+
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
@@ -152,8 +148,14 @@
             <div id="theme-settings" class="settings-panel">
                 <i class="settings-close mdi mdi-close"></i>
                 <p class="settings-heading">SIDEBAR SKINS</p>
-                <div class="sidebar-bg-options" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-                <div class="sidebar-bg-options selected" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-primary border mr-3"></div>Dark</div>
+                <div class="sidebar-bg-options" id="sidebar-light-theme">
+                    <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                    Light
+                </div>
+                <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+                    <div class="img-ss rounded-circle bg-primary border mr-3"></div>
+                    Dark
+                </div>
                 <p class="settings-heading mt-2">HEADER SKINS</p>
                 <div class="color-tiles mx-0 px-4">
                     <div class="tiles success"></div>
@@ -168,19 +170,23 @@
             <i class="settings-close mdi mdi-close"></i>
             <ul class="nav nav-tabs" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
             <div class="tab-content" id="setting-content">
-                <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+                <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+                     aria-labelledby="todo-section">
                     <div class="add-items d-flex px-3 mb-0">
                         <form class="form w-100">
                             <div class="form-group d-flex">
                                 <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -254,11 +260,13 @@
                 <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                        <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+                        <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                            All</small>
                     </div>
                     <ul class="chat-list">
                         <li class="list active">
-                            <div class="profile"><img src="/assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face1.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Thomas Douglas</p>
                                 <p>Available</p>
@@ -266,7 +274,8 @@
                             <small class="text-muted my-auto">19 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face2.jpg" alt="image"><span
+                                    class="offline"></span></div>
                             <div class="info">
                                 <div class="wrapper d-flex">
                                     <p>Catherine</p>
@@ -277,7 +286,8 @@
                             <small class="text-muted my-auto">23 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face3.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Daniel Russell</p>
                                 <p>Available</p>
@@ -285,7 +295,8 @@
                             <small class="text-muted my-auto">14 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face4.jpg" alt="image"><span
+                                    class="offline"></span></div>
                             <div class="info">
                                 <p>James Richardson</p>
                                 <p>Away</p>
@@ -293,7 +304,8 @@
                             <small class="text-muted my-auto">2 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face5.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Madeline Kennedy</p>
                                 <p>Available</p>
@@ -301,7 +313,8 @@
                             <small class="text-muted my-auto">5 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="../../../../images/faces/face6.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Sarah Graves</p>
                                 <p>Available</p>
@@ -595,431 +608,140 @@
 
 
         <div class="main-panel">
-
             <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <form:form id="example-vertical-wizard" action="/load/update3GCellInfo"
+                                               method="post" modelAttribute="site">
+                                    <div>
+                                            <%--Update General Information--%>
+                                        <h3>General Informations</h3>
+                                        <section>
+                                            <div class="form-group">
+                                                <form:label path="site_name">Site</form:label>
+                                                <form:input path="site_name" cssClass="form-control"/> <br/>
+                                            </div>
+                                            <div class="form-group">
 
-                <div class="card">
+                                                <form:label path="location">Location</form:label>
+                                                <form:input path="location" cssClass="form-control"/> <br/>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="latitude">Latitude</form:label>
+                                                <form:input path="latitude" cssClass="form-control"/> <br/>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="longitude">Longitude</form:label>
+                                                <form:input path="longitude" cssClass="form-control"/> <br/>
+                                            </div>
+                                        </section>
 
-                    <div class="card-body">
-                        <h4 class="card-title">  </h4>
-                        <div class="row">
+                                        <h3>3G Data</h3>
+                                        <section>
+                                            <div class="form-group">
+                                                <form:label path="node">Node</form:label>
+                                                <form:input path="node"  cssClass="form-control"/> <br/>
+                                                    <%--<label>Node</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="cell">Cell</form:label>
+                                                <form:input path="cell"  cssClass="form-control"/> <br/>
+                                                    <%--<label>Cell</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="tg">TG</form:label>
+                                                <form:input path="tg"  cssClass="form-control"/> <br/>
+                                                    <%--<label>TG</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="cgi">CGI</form:label>
+                                                <form:input path="cgi"  cssClass="form-control"/> <br/>
+                                                    <%--<label>CGI</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="rbs">RBS</form:label>
+                                                <form:input path="rbs"  cssClass="form-control"/> <br/>
+                                                    <%--<label>RBS</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="note">DUW</form:label>
+                                                <form:input path="note"  cssClass="form-control"/> <br/>
+                                                    <%--<label>DUW</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="ip">IP</form:label>
+                                                <form:input path="ip"  cssClass="form-control"/> <br/>
+                                                    <%--<label>IP</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="direction">Direction</form:label>
+                                                <form:input path="direction"  cssClass="form-control"/> <br/>
+<%--                                                <label>Direction</label>--%>
+<%--                                                <input type="password" class="form-control" placeholder="">--%>
+                                            </div>
+                                            <div class="form-group">
+                                                <form:label path="insDate">Onair Date</form:label>
+                                                <form:input path="insDate"  cssClass="form-control"/> <br/>
+                                                    <%--<label>Onair Date</label>--%>
+                                                    <%--<input type="password" class="form-control" placeholder="">--%>
+                                            </div>
 
-
-                            <div class="col-4">
-                                <div class="table-responsive">
-                                    <table id="all-sites-table" class="table">
-
-                                        <thead>
-                                        <tr>
-                                            <th>Node</th>
-                                            <th>Site</th>
-                                            <th>Detailed</th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="col-8">
-
-
-
-                                <div class="table-responsive">
-
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <form:button>Update</form:button>
+                                        </section>
+                                        </form:form>
                                     </div>
 
-                                    <h4 class="card-title">  </h4>
-                                    <h4 class="card-title">   </h4>
-                                    <table id="2G-cell-table" class="table">
-
-                                        <thead>
-                                        <tr>
-                                            <th>Node</th>
-                                            <th>Cell</th>
-                                            <th>TG</th>
-                                            <th>E1</th>
-                                            <th>CGI</th>
-                                            <th>TRU</th>
-                                            <th>RBS</th>
-                                            <th>Direction</th>
-                                            <th>Onair Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-
-                                    </table>
-
-                                </div>
-
-                                <div class="table-responsive">
-
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-
-                                    <table id="3G-cell-table" class="table">
-
-                                        <thead>
-                                        <tr>
-                                            <th>Node</th>
-                                            <th>Cell</th>
-                                            <th>CGI</th>
-                                            <th>RBS</th>
-                                            <th>DUW</th>
-                                            <th>IP</th>
-                                            <th>Direction</th>
-                                            <th>Onair Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-
-
-                                <div class="table-responsive">
-
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-
-                                    <table id="4G-cell-table" class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Node</th>
-                                            <th>Cell</th>
-                                            <th>ECGI</th>
-                                            <th>RBS</th>
-                                            <th>IP</th>
-                                            <th>Direction</th>
-                                            <th>Onair Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                                href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                                class="mdi mdi-heart text-danger"></i></span>
+                    </div>
+                </footer>
+                <!-- partial -->
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:../../partials/_footer.html -->
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-                </div>
-            </footer>
-            <!-- partial -->
+            <!-- main-panel ends -->
         </div>
-        <!-- main-panel ends -->
-
+        <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
-
-<!-- plugins:js -->
-<script src="/assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="/assets/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="/assets/js/off-canvas.js"></script>
-<script src="/assets/js/hoverable-collapse.js"></script>
-<script src="/assets/js/template.js"></script>
-<script src="/assets/js/settings.js"></script>
-<script src="/assets/js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="/assets/js/data-table.js"></script>
-<!-- End custom js for this page-->
-
-
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script><%--buttons for dataTables--%>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><%--popup--%>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script><%--popup--%>
-
-
-
-<%--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
-<%--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script><%--buttons for dataTables--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script><%--popup--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script><%--popup--%>
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script><%--popup--%>
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script><%--popup--%>
-
-
-
-
-<script>
-
-    var allSitesTable;
-    var twoGTable;
-    var threeGTable;
-    var fourGTable;
-    var selectedSite='';
-    var selected2gCell='';
-    var selected3gCell='';
-    var selected4gCell='';
-
-
-
-    $(document).ready(function(){
-        drawAllSitesTable();
-        draw2GCellTable();
-        draw3GCellTable();
-        draw4GCellTable();
-    });
-
-    $(document).ready(function(){
-
-        draw2GCellTable();
-        draw3GCellTable();
-
-
-    });
-
-    $(document).ready(function(){
-
-        draw3GCellTable();
-        draw4GCellTable();
-
-
-    });
-
-    $(document).ready(function(){
-
-
-        draw4GCellTable();
-
-
-    });
-
-
-    function drawAllSitesTable() {
-
-        allSitesTable = $("#all-sites-table").DataTable({
-            "processing": true,
-            'language': {
-                'loadingRecords': '&nbsp;',
-                'processing': 'Data loading...'
-            },
-            "serverSide": true,
-            "aLengthMenu": [[50, 100, 250 , 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 20,
-            "ajax": "../load/getAllSites",
-            "dom": 'lfrtip',
-            "columnDefs": [
-                {
-                    "targets": [-1],
-                    "visible": true,
-                    "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
-                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
-                        "<button class='detailed-4Gbutton'>4G</button>"
-                }
-
-            ]
-        });
-
-
-
-
-
-        allSitesTable.on('draw', function () {
-            $(".detailed-2Gbutton").click(function () {
-                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                $("#2G-cell-table").DataTable().ajax.reload();
-
-            });
-
-
-            $(".updateButton").click(function () {
-                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/load/updateGeneralSiteInfo/" + selectedSiteName;
-            });
-        });
-
-
-
-        allSitesTable.on('draw', function () {
-            $(".detailed-3Gbutton").click(function () {
-                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
-            });
-
-        });
-
-        allSitesTable.on('draw', function () {
-            $(".detailed-4Gbutton").click(function () {
-                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                $("#4G-cell-table").DataTable().ajax.reload();
-                //   $("#4G-cell-table").DataTable().destroy();
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
-            });
-
-        });
-
-        $("#searchID").unbind().keyup(function(e) {
-            var value = $(this).val();
-            if (value.length>1) {
-                table.search(value).draw();
-            } else {
-                //optional, reset the search if the phrase
-                //is less then 3 characters long
-                allSitesTable.search('').draw();
-            }
-        });
-    }
-
-
-
-
-    function draw2GCellTable() {
-
-        twoGTable = $("#2G-cell-table").DataTable({
-
-            "serverSide": true,
-            "searching": false,
-            "retrieve": true,
-            //  "paging": false,
-            "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 25,
-            "ajax": {
-                url: "../load/get2GCells",
-                data: function ( d ) {
-                    d.siteName = selectedSiteName;
-                }
-            } ,
-            "dom": 'frtip',
-            "columnDefs": [
-                {
-                    "targets": [-1],
-                    "visible": true,
-                    "defaultContent": "<button class='twogupdateButton'>Update</button>"
-                }
-
-            ]
-
-        });
-
-        twoGTable.on('draw', function () {
-
-            $(".twogupdateButton").click(function () {
-                selected2gCell = twoGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update2GCellInfo/" + selected2gCell;
-
-            });
-        });
-
-
-
-    }
-
-
-
-    function draw3GCellTable() {
-
-        threeGTable = $("#3G-cell-table").DataTable({
-
-            "serverSide": true,
-            "retrieve": true,
-            "searching": false,
-            //"paging": false,
-            "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 25,
-            "ajax": {
-                url: "../load/get3GCells",
-                data: function (d) {
-                    d.siteName = selectedSiteName;
-                }
-            },
-            "dom": 'frtip',
-            "columnDefs": [
-                {
-                    "targets": [-1],
-                    "visible": true,
-                    "defaultContent": "<button class='threegupdateButton'>Update</button> "
-                }
-
-            ]
-
-
-        });
-
-
-        threeGTable.on('draw', function () {
-
-            $(".threegupdateButton").click(function () {
-                selected3gCell = threeGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update3GCellInfo/" + selected3gCell;
-
-            });
-        });
-
-    }
-
-
-
-    function draw4GCellTable() {
-
-        fourGTable = $("#4G-cell-table").DataTable({
-            "serverSide": true,
-            "retrieve": true,
-            "searching": false,
-            //"paging": false,
-            "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
-            "iDisplayLength": 25,
-            "ajax": {
-                url: "../load/get4GCells",
-                type: 'get',
-                data: function ( d ) {
-                    d.siteName = selectedSiteName;
-                }
-            } ,
-            "dom": 'frtip',
-            "columnDefs": [
-                {
-                    "targets": [-1],
-                    "visible": true,
-                    "defaultContent": "<button class='fourgupdateButton'>Update</button> "
-                }
-
-            ]
-        });
-
-        fourGTable.on('draw', function () {
-
-            $(".fourgupdateButton").click(function () {
-                selected4gCell = fourGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update4GCellInfo/" + selected4gCell;
-
-            });
-        });
-
-    }
-
-
-
-
-</script>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/assets/vendors/jquery-steps/jquery.steps.min.js"></script>
+    <script src="/assets/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/template.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="/assets/js/wizard.js"></script>
+    <!-- End custom js for this page-->
 </body>
-<!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:47:22 GMT -->
+
+
+<!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/forms/wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:46:38 GMT -->
 </html>
