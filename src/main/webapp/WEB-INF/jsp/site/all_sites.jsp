@@ -432,10 +432,10 @@
                     <div class="collapse" id="tables">
                         <ul class="nav flex-column sub-menu">
 
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/allSites">All Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/droppedSites">Dropped Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/haltedSites">Halted Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/dropHistory">Drop History</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/allSites">All Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/droppedSites">Dropped Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/haltedSites">Halted Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/dropHistory">Drop History</a></li>
                         </ul>
                     </div>
                 </li>
@@ -629,12 +629,9 @@
 
                                 <div class="table-responsive">
 
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="alert alert-info" role="alert">
+                                        <div class="preview"> <i class="icon-feed"></i> 2G Cells</div>
                                     </div>
-
-                                    <h4 class="card-title">  </h4>
-                                    <h4 class="card-title">   </h4>
                                     <table id="2G-cell-table" class="table">
 
                                         <thead>
@@ -651,17 +648,15 @@
                                             <th>Action</th>
                                         </tr>
                                         </thead>
-
                                     </table>
 
                                 </div>
 
                                 <div class="table-responsive">
 
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="alert alert-info" role="alert">
+                                        <div class="preview"> <i class="icon-feed"></i> 3G Cells</div>
                                     </div>
-
                                     <table id="3G-cell-table" class="table">
 
                                         <thead>
@@ -683,8 +678,8 @@
 
                                 <div class="table-responsive">
 
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="alert alert-info" role="alert">
+                                        <div class="preview"> <i class="icon-feed"></i> 4G Cells</div>
                                     </div>
 
                                     <table id="4G-cell-table" class="table">
@@ -701,9 +696,7 @@
                                         </tr>
                                         </thead>
                                     </table>
-                                    <div class="progress progress-md">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -924,7 +917,7 @@
 
             $(".twogupdateButton").click(function () {
                 selected2gCell = twoGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update2GCellInfo/" + selected2gCell;
+                window.location.href = "/NetworkMonitoringCenter/load/update2GCellInfo/" + selected2gCell;
 
             });
         });
@@ -969,7 +962,7 @@
 
             $(".threegupdateButton").click(function () {
                 selected3gCell = threeGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update3GCellInfo/" + selected3gCell;
+                window.location.href = "/NetworkMonitoringCenter/load/update3GCellInfo/" + selected3gCell;
 
             });
         });
@@ -1009,7 +1002,7 @@
 
             $(".fourgupdateButton").click(function () {
                 selected4gCell = fourGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/update4GCellInfo/" + selected4gCell;
+                window.location.href = "/NetworkMonitoringCenter/load/update4GCellInfo/" + selected4gCell;
 
             });
         });
