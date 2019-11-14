@@ -434,10 +434,10 @@
                     <div class="collapse" id="tables">
                         <ul class="nav flex-column sub-menu">
 
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/allSites">All Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/droppedSites">Dropped Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/haltedSites">Halted Sites</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/dropHistory">Drop History</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/allSites">All Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/droppedSites">Dropped Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/haltedSites">Halted Sites</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/NetworkMonitoringCenter/load/dropHistory">Drop History</a></li>
 
 
                         </ul>
