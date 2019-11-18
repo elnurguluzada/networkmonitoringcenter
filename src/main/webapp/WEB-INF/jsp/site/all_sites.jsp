@@ -676,12 +676,11 @@
                                 </div>
 
 
-                                <div class="table-responsive">
 
+                                <div class="table-responsive">
                                     <div class="alert alert-info" role="alert">
                                         <div class="preview"> <i class="icon-feed"></i> 4G Cells</div>
                                     </div>
-
                                     <table id="4G-cell-table" class="table">
                                         <thead>
                                         <tr>
@@ -917,7 +916,8 @@
 
             $(".twogupdateButton").click(function () {
                 selected2gCell = twoGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter/load/update2GCellInfo/" + selected2gCell;
+                window.open("/load/update2GCellInfo/"+ selected2gCell ,"", "width=800,height=600");
+             //   window.location.href = "/load/update2GCellInfo/" + selected2gCell;
 
             });
         });
@@ -962,7 +962,8 @@
 
             $(".threegupdateButton").click(function () {
                 selected3gCell = threeGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter/load/update3GCellInfo/" + selected3gCell;
+                window.open("/load/update3GCellInfo/"+ selected3gCell ,"", "width=800,height=600");
+                //window.location.href = "/load/update3GCellInfo/" + selected3gCell;
 
             });
         });
@@ -1002,7 +1003,11 @@
 
             $(".fourgupdateButton").click(function () {
                 selected4gCell = fourGTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/NetworkMonitoringCenter/load/update4GCellInfo/" + selected4gCell;
+
+                window.open("/load/update4GCellInfo/"+ selected4gCell ,"", "width=800,height=600");
+
+
+              //  window.location.href = "/load/update4GCellInfo/" + selected4gCell;
 
             });
         });
