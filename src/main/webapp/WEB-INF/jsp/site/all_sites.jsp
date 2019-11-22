@@ -768,6 +768,7 @@
     var selected2gCell='';
     var selected3gCell='';
     var selected4gCell='';
+    var clicks = 0;
 
 
 
@@ -820,9 +821,9 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='detailed-2Gbutton'>2G</button> &nbsp " +
-                        "<a><button class='detailed-3Gbutton'>3G</button></a> &nbsp " +
-                        "<button class='detailed-4Gbutton'>4G</button>"
+                    "defaultContent": "<button id='detailed-2Gbutton' class='btn btn-primary btn-rounded btn-fw' >2G</button> &nbsp " +
+                        "<a><button id='detailed-3Gbutton' class='btn btn-primary btn-rounded btn-fw'>3G</button></a> &nbsp " +
+                        "<button id='detailed-4Gbutton' class='btn btn-primary btn-rounded btn-fw'>4G</button>"
                 }
 
             ]
@@ -830,42 +831,40 @@
 
 
 
+        //todo implement method to draw/destroy datatable in the same button
+        allSitesTable.on('click', '#detailed-2Gbutton', function () {
 
 
-        allSitesTable.on('draw', function () {
-            $(".detailed-2Gbutton").click(function () {
+            if(clicks == 0){
+                alert(clicks);
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#2G-cell-table").DataTable().ajax.reload();
+                clicks ++;
+            } else if(clicks == 1) {
+                alert(clicks);
+                $("#2G-cell-table").DataTable().fnDestroy();
+                clicks = 0;
+            }
 
-            });
 
 
-            $(".updateButton").click(function () {
-                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
-                window.location.href = "/load/updateGeneralSiteInfo/" + selectedSiteName;
-            });
+
         });
 
+        allSitesTable.on('click', '#detailed-3Gbutton', function () {
 
-
-        allSitesTable.on('draw', function () {
-            $(".detailed-3Gbutton").click(function () {
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
-            });
+
+
 
         });
 
-        allSitesTable.on('draw', function () {
-            $(".detailed-4Gbutton").click(function () {
+        allSitesTable.on('click', '#detailed-4Gbutton', function () {
+
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#4G-cell-table").DataTable().ajax.reload();
-                //   $("#4G-cell-table").DataTable().destroy();
-                // $("#3G-cell-table").DataTable().ajax.reload();
-                // $("#4G-cell-table").DataTable().ajax.reload();
-            });
+
 
         });
 
@@ -905,21 +904,18 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='twogupdateButton'>Update</button>"
+                    "defaultContent": "<button id ='twogupdateButton'  class='btn btn-primary btn-rounded btn-fw'>Update</button>"
                 }
 
             ]
 
         });
 
-        twoGTable.on('draw', function () {
+        twoGTable.on('click', '#twogupdateButton', function () {
 
-            $(".twogupdateButton").click(function () {
                 selected2gCell = twoGTable.row($(this).parents('tr')).data()[1];
-                window.open("/load/update2GCellInfo/"+ selected2gCell ,"", "width=800,height=600");
-             //   window.location.href = "/load/update2GCellInfo/" + selected2gCell;
+                window.open("/NetworkMonitoringCenter/load/update2GCellInfo/"+ selected2gCell ,"", "width=800,height=600");
 
-            });
         });
 
 
@@ -949,7 +945,7 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='threegupdateButton'>Update</button> "
+                    "defaultContent": "<button id='threegupdateButton' class='btn btn-primary btn-rounded btn-fw'>Update</button> "
                 }
 
             ]
@@ -958,14 +954,11 @@
         });
 
 
-        threeGTable.on('draw', function () {
+        threeGTable.on('click', '#threegupdateButton', function () {
 
-            $(".threegupdateButton").click(function () {
                 selected3gCell = threeGTable.row($(this).parents('tr')).data()[1];
-                window.open("/load/update3GCellInfo/"+ selected3gCell ,"", "width=800,height=600");
-                //window.location.href = "/load/update3GCellInfo/" + selected3gCell;
+                window.open("/NetworkMonitoringCenter/load/update3GCellInfo/"+ selected3gCell ,"", "width=800,height=600");
 
-            });
         });
 
     }
@@ -993,23 +986,21 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button class='fourgupdateButton'>Update</button> "
+                    "defaultContent": "<button id='fourgupdateButton'  class='btn btn-primary btn-rounded btn-fw'>Update</button> "
                 }
 
             ]
         });
 
-        fourGTable.on('draw', function () {
+        fourGTable.on('click', '#fourgupdateButton', function () {
 
-            $(".fourgupdateButton").click(function () {
+
                 selected4gCell = fourGTable.row($(this).parents('tr')).data()[1];
 
-                window.open("/load/update4GCellInfo/"+ selected4gCell ,"", "width=800,height=600");
+                window.open("/NetworkMonitoringCenter/load/update4GCellInfo/"+ selected4gCell ,"", "width=800,height=600");
 
 
-              //  window.location.href = "/load/update4GCellInfo/" + selected4gCell;
 
-            });
         });
 
     }

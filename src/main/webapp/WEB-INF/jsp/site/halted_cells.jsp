@@ -725,42 +725,28 @@
                 {
                     extend: 'collection',
                     text: 'Export',
+                    className:'btn btn-primary',
                     buttons: [
                         {
                             extend: 'copyHtml5',
-                            orientation: 'portrait',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
+                            className: 'btn btn-primary btn-rounded btn-fw'
                         },
                         {
                             extend: 'excelHtml5',
-                            orientation: 'portrait',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
+                            className: 'btn btn-primary btn-rounded btn-fw'
                         },
                         {
                             extend: 'csvHtml5',
-                            orientation: 'portrait',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
+                            className: 'btn btn-primary btn-rounded btn-fw'
                         },
                         {
                             extend: 'pdfHtml5',
-                            orientation: 'portrait',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
+                            className: 'btn btn-primary btn-rounded btn-fw'
 
                         },
                         {
                             extend: 'print',
-                            orientation: 'portrait',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
+                            className: 'btn btn-primary btn-rounded btn-fw'
                         }
                     ]
                 }],
