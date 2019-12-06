@@ -51,6 +51,10 @@ public class SiteController {
     }
 
 
+    @GetMapping("/error404")
+    public String error404(){
+        return "/common/error-404";
+    }
 
 
 
@@ -384,6 +388,8 @@ public class SiteController {
 
 
         List<DroppedHaltedSite> filteredHaltedSites = siteService.getFilteredHaltedSites(indexOfColumn, orderType, searchParam , start , start+length);
+
+
 
 
         if(start+length > numberOfFilteredHaltedSites){

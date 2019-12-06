@@ -55,7 +55,7 @@
                 </li>
             </ul>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="/load/index"><img src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>
+                <a class="navbar-brand brand-logo" href="/NetworkMonitoringCenter/load/index"><img src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>
                 <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>
             </div>
             <ul class="navbar-nav navbar-nav-right">
@@ -320,7 +320,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/NetworkMonitoringCenter-0.0.1-SNAPSHOT/load/index">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/index">
                         <i class="mdi mdi-view-quilt menu-icon"></i>
                         <span class="menu-title">Home Page</span>
                     </a>
@@ -403,7 +403,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                    <a class="nav-link" data-toggle="collapse" href="/NetworkMonitoringCenter/load/error404" aria-expanded="false" aria-controls="charts">
                         <i class="mdi mdi-chart-pie menu-icon"></i>
                         <span class="menu-title">Statistics</span>
                         <i class="menu-arrow"></i>
@@ -424,7 +424,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                    <a class="nav-link" data-toggle="collapse" href="/NetworkMonitoringCenter/load/error404" aria-expanded="false" aria-controls="tables">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Sites</span>
                         <i class="menu-arrow"></i>
@@ -446,7 +446,7 @@
                 <%--</a>--%>
                 <%--</li>--%>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/notifications.html">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/error404">
                         <i class="mdi mdi-bell menu-icon"></i>
                         <span class="menu-title">Notifications</span>
                     </a>
@@ -467,7 +467,7 @@
                 <%--</div>--%>
                 <%--</li>--%>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">
+                    <a class="nav-link" data-toggle="collapse" href="/NetworkMonitoringCenter/load/error404" aria-expanded="false" aria-controls="maps">
                         <i class="mdi mdi-map menu-icon"></i>
                         <span class="menu-title">Map</span>
                         <i class="menu-arrow"></i>
@@ -550,7 +550,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/email.html">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/error404">
                         <i class="mdi mdi-email menu-icon"></i>
                         <span class="menu-title">E-mail</span>
                     </a>
@@ -559,7 +559,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/calendar.html">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/error404">
                         <i class="mdi mdi-calendar-range menu-icon"></i>
                         <span class="menu-title">Calendar</span>
                     </a>
@@ -568,7 +568,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/todo.html">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/error404">
                         <i class="mdi mdi-playlist-check menu-icon"></i>
                         <span class="menu-title">Todo List</span>
                     </a>
@@ -584,7 +584,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/documentation/documentation.html">
+                    <a class="nav-link" href="/NetworkMonitoringCenter/load/error404">
                         <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                         <span class="menu-title">Documentation</span>
                     </a>
@@ -706,8 +706,8 @@
             <!-- partial:../../partials/_footer.html -->
             <footer class="footer">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Network Monitoring Center</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Created by Elnur Guluzade</span>
                 </div>
             </footer>
             <!-- partial -->
@@ -816,7 +816,51 @@
             "aLengthMenu": [[50, 100, 250 , 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 20,
             "ajax": "../load/getAllSites",
-            "dom": 'lfrtip',
+            "dom": 'lBfrtip',
+            "buttons": [
+                {
+                    extend: 'collection',
+                    text: 'Export',
+                    className:'btn btn-primary',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            className: 'btn btn-primary btn-rounded btn-fw',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            className: 'btn btn-primary btn-rounded btn-fw',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            className: 'btn btn-primary btn-rounded btn-fw',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            className: 'btn btn-primary btn-rounded btn-fw',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+
+                        },
+                        {
+                            extend: 'print',
+                            className: 'btn btn-primary btn-rounded btn-fw',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+                        }
+                    ]
+                }],
             "columnDefs": [
                 {
                     "targets": [-1],
@@ -830,24 +874,10 @@
         });
 
 
-
-        //todo implement method to draw/destroy datatable in the same button
         allSitesTable.on('click', '#detailed-2Gbutton', function () {
 
-
-            if(clicks == 0){
-                alert(clicks);
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#2G-cell-table").DataTable().ajax.reload();
-                clicks ++;
-            } else if(clicks == 1) {
-                alert(clicks);
-                $("#2G-cell-table").DataTable().fnDestroy();
-                clicks = 0;
-            }
-
-
-
 
         });
 
@@ -862,11 +892,12 @@
 
         allSitesTable.on('click', '#detailed-4Gbutton', function () {
 
+
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+
                 $("#4G-cell-table").DataTable().ajax.reload();
-
-
         });
+
 
         $("#searchID").unbind().keyup(function(e) {
             var value = $(this).val();
@@ -878,6 +909,7 @@
                 allSitesTable.search('').draw();
             }
         });
+
     }
 
 
