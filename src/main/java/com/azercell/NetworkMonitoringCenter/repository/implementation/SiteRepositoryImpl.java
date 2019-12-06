@@ -307,8 +307,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         String sql = "UPDATE santral.cells_drop2 c " +
                 "SET c.reason = ? , c.note = ? " +
                 "where  c.reason is null and " +
-                "c.cell = ? and " +
-                "c.status = 0 ";
+                "c.cell = ? " ;
 
         StringTokenizer stringTokenizer = new StringTokenizer(cellNames , ",");
 
@@ -464,7 +463,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
         String sql = "select count(distinct c.site) from santral.cells c " +
-                "where c.site like ?";
+                "where CONCAT( c.node, c.site) LIKE ?";
 
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
@@ -479,7 +478,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         //TODO add order by
 
         String sql = "select distinct c.node , c.site  from santral.cells c " +
-                "where c.site like ? " +
+                "where CONCAT( c.node, c.site) LIKE ?" +
                 "limit ? , ? ";
 
 
