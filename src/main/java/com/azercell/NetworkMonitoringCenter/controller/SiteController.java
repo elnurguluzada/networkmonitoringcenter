@@ -238,7 +238,7 @@ public class SiteController {
         dataTable.setRecordsTotal(numberofAll4GCellsOfIdenticalSite);
         dataTable.setRecordsFiltered(numberofAll4GCellsOfIdenticalSite);
 
-        List<Site> twoGCellsList = siteService.getAll4GCellsOfIdenticalSite(siteNAme , start , start+length);
+        List<Site> fourGCellsList = siteService.getAll4GCellsOfIdenticalSite(siteNAme , start , start+length);
 
 
         if(start+length > numberofAll4GCellsOfIdenticalSite){
@@ -249,14 +249,14 @@ public class SiteController {
 
         for(int i =0; i < length; i++) {
 
-            Site  twoGCells = twoGCellsList.get(i);
-            data[i][0] = twoGCells.getNode();
-            data[i][1] = twoGCells.getCell();
-            data[i][2] = twoGCells.getCgi();
-            data[i][3] = twoGCells.getRbs();
-            data[i][4] = twoGCells.getIp();
-            data[i][5] = twoGCells.getDirection();
-            data[i][6] = twoGCells.getInsDate();
+            Site  fourGCells = fourGCellsList.get(i);
+            data[i][0] = fourGCells.getNode();
+            data[i][1] = fourGCells.getCell();
+            data[i][2] = fourGCells.getCgi();
+            data[i][3] = fourGCells.getRbs();
+            data[i][4] = fourGCells.getIp();
+            data[i][5] = fourGCells.getDirection();
+            data[i][6] = fourGCells.getInsDate();
         }
 
 
@@ -265,6 +265,64 @@ public class SiteController {
 
         return dataTable;
     }
+
+
+
+
+
+    @ResponseBody
+    @GetMapping("/get5GCells")
+    public DataTable show5GCells(
+            @RequestParam(name = "draw") int draw,
+            @RequestParam(name = "start") int start,
+            @RequestParam(name = "length") int length,
+            @RequestParam(name = "order[0][column]")int indexOfColumn,
+            @RequestParam(name = "order[0][dir]") String orderType,
+            @RequestParam(name = "search[value]") String searchParam){
+
+        DataTable dataTable = new DataTable();
+        dataTable.setDraw(draw);
+
+
+
+        int numberOfAll5GCellsOfIdenticalSite = siteService.getNumberOfAll5GCellsOfIdenticalSite(searchParam);
+        dataTable.setRecordsFiltered(numberOfAll5GCellsOfIdenticalSite);
+        dataTable.setRecordsTotal(numberOfAll5GCellsOfIdenticalSite);
+
+
+        List<Site> fiveGCellsList = siteService.getAll5GCellsOfIdenticalSite(searchParam , start , start+length);
+
+
+        if(start+length > numberOfAll5GCellsOfIdenticalSite){
+            length = numberOfAll5GCellsOfIdenticalSite - start;
+        }
+
+
+        String[][] data = new String[length][7];
+
+
+        for(int i = 0 ; i < length ; i++){
+
+            Site fiveGCells = fiveGCellsList.get(i);
+
+            data[i][0] = fiveGCells.getNode();
+            data[i][1] = fiveGCells.getCell();
+            data[i][2] = fiveGCells.getCgi();
+            data[i][3] = fiveGCells.getRbs();
+            data[i][4] = fiveGCells.getIp();
+            data[i][5] = fiveGCells.getDirection();
+            data[i][6] = fiveGCells.getInsDate();
+        }
+        dataTable.setData(data);
+
+
+        return dataTable;
+    };
+
+
+
+
+
 
 
 

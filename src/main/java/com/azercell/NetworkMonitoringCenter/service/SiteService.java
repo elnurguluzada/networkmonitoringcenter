@@ -25,6 +25,10 @@ public interface SiteService {
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName , int begin , int end);
 
 
+    public int getNumberOfAll5GCellsOfIdenticalSite(String siteName);
+    public List<Site> getAll5GCellsOfIdenticalSite(String siteName, int begin , int end);
+
+
 
 
     public int getNumberOfAllDroppedSites();
