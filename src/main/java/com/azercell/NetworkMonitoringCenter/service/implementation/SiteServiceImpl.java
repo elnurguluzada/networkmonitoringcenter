@@ -79,8 +79,18 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.getAll4GCellsOfIdenticalSite( siteName,   begin,  end);
     }
 
+    @Override
+    public int getNumberOfAll5GCellsOfIdenticalSite(String siteName) {
+        return siteRepository.getNumberOfAll5GCellsOfIdenticalSite(siteName);
+    }
 
-//-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
+    @Override
+    public List<Site> getAll5GCellsOfIdenticalSite(String siteName, int begin, int end) {
+        return siteRepository.getAll5GCellsOfIdenticalSite(siteName,begin,end);
+    }
+
+
+    //-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
 
 
 

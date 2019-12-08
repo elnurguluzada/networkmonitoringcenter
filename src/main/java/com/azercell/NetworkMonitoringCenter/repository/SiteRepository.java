@@ -46,6 +46,13 @@ public interface SiteRepository {
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName  , int begin , int end);
 
 
+    public int getNumberOfAll5GCellsOfIdenticalSite(String siteName);
+    public List<Site> getAll5GCellsOfIdenticalSite(String siteName, int begin , int end);
+
+
+
+
+
     public Site getSiteByName(String siteName);
     public Optional<Site> updateSiteInfo(Site site);
 
@@ -58,6 +65,7 @@ public interface SiteRepository {
 
     public Site get4GCellBySiteName(String siteName);
     public Optional<Site> update4GCellInfo(Site site);
+
 
 
 }

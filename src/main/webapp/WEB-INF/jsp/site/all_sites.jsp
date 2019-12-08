@@ -697,6 +697,32 @@
                                     </table>
 
                                 </div>
+
+
+
+
+                                <div class="table-responsive">
+                                    <div class="alert alert-info" role="alert">
+                                        <div class="preview"> <i class="icon-feed"></i> 5G Cells</div>
+                                    </div>
+                                    <table id="5G-cell-table" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Node</th>
+                                            <th>Cell</th>
+                                            <th>ECGI</th>
+                                            <th>RBS</th>
+                                            <th>IP</th>
+                                            <th>Direction</th>
+                                            <th>Onair Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -764,10 +790,12 @@
     var twoGTable;
     var threeGTable;
     var fourGTable;
+    var fiveGTable;
     var selectedSite='';
     var selected2gCell='';
     var selected3gCell='';
     var selected4gCell='';
+    var selected5gCell='';
     var clicks = 0;
 
 
@@ -777,6 +805,7 @@
         draw2GCellTable();
         draw3GCellTable();
         draw4GCellTable();
+        draw5GCellTable();
     });
 
     $(document).ready(function(){
@@ -799,10 +828,18 @@
 
 
         draw4GCellTable();
+        draw5GCellTable();
 
 
     });
 
+    $(document).ready(function(){
+
+
+        draw5GCellTable();
+
+
+    });
 
     function drawAllSitesTable() {
 
@@ -867,7 +904,8 @@
                     "visible": true,
                     "defaultContent": "<button id='detailed-2Gbutton' class='btn btn-primary btn-rounded btn-fw' >2G</button> &nbsp " +
                         "<a><button id='detailed-3Gbutton' class='btn btn-primary btn-rounded btn-fw'>3G</button></a> &nbsp " +
-                        "<button id='detailed-4Gbutton' class='btn btn-primary btn-rounded btn-fw'>4G</button>"
+                        "<button id='detailed-4Gbutton' class='btn btn-primary btn-rounded btn-fw'>4G</button> &nbsp " +
+                        "<button id='detailed-5Gbutton' class='btn btn-primary btn-rounded btn-fw'>5G</button>"
                 }
 
             ]
@@ -897,6 +935,15 @@
 
                 $("#4G-cell-table").DataTable().ajax.reload();
         });
+
+        allSitesTable.on('click', '#detailed-5Gbutton', function () {
+
+
+            selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+
+            $("#5G-cell-table").DataTable().ajax.reload();
+        });
+
 
 
         $("#searchID").unbind().keyup(function(e) {
@@ -1036,6 +1083,49 @@
         });
 
     }
+
+
+
+    function draw5GCellTable() {
+
+        fourGTable = $("#5G-cell-table").DataTable({
+            "serverSide": true,
+            "retrieve": true,
+            "searching": false,
+            //"paging": false,
+            "aLengthMenu": [[50, 100, 250, 1000000], [50, 100, 250, "All"]],
+            "iDisplayLength": 25,
+            "ajax": {
+                url: "../load/get5GCells",
+                type: 'get',
+                data: function ( d ) {
+                    d.siteName = selectedSiteName;
+                }
+            } ,
+            "dom": 'frtip',
+            "columnDefs": [
+                {
+                    "targets": [-1],
+                    "visible": true,
+                    "defaultContent": "<button id='fourgupdateButton'  class='btn btn-primary btn-rounded btn-fw'>Update</button> "
+                }
+
+            ]
+        });
+
+        fourGTable.on('click', '#fourgupdateButton', function () {
+
+
+            selected5gCell = fiveGTable.row($(this).parents('tr')).data()[1];
+
+            window.open("/NetworkMonitoringCenter/load/update5GCellInfo/"+ selected5gCell ,"", "width=800,height=600");
+
+
+
+        });
+
+    }
+
 
 
 

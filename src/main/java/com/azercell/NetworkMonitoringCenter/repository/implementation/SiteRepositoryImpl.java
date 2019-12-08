@@ -41,7 +41,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-
     private RowMapper<Site> all2GCellsOfIdenticalSiteRowMapper = (resultSet, i) -> {
 
         String node = resultSet.getString("node");
@@ -92,8 +91,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         return new Site(  0,node ,null , cell , null ,cgi , null, null , null ,rbs , ip ,direction , null, null , null, null , 0 , 0, insDate  );
     };
-
-
 
 
 
@@ -155,7 +152,8 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-    //-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
+//-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
+
     @Override
     public int getNumberOfAllDroppedSites() {
 
@@ -221,7 +219,8 @@ public class SiteRepositoryImpl implements SiteRepository {
                 end);
     }
 
-    //-------------------------------------------------Halted Sites----------------------------------------------------------------------------------
+
+//-------------------------------------------------Halted Sites----------------------------------------------------------------------------------
 
     @Override
     public int getNumberOfHaltedSites() {
@@ -292,7 +291,9 @@ public class SiteRepositoryImpl implements SiteRepository {
                 end);
     }
 
-    //-------------------------------------------- Update Dropped Sites ----------------------------------------------------------------------------------------------------
+
+
+//-------------------------------------------- Update Dropped Sites ----------------------------------------------------------------------------------------------------
 
 
 
@@ -323,7 +324,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-    //------------------------------------------------- Drop History -----------------------------------------------------------------------------------------------
+//------------------------------------------------- Drop History -----------------------------------------------------------------------------------------------
 
 
     @Override
@@ -421,8 +422,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-    //------------------------------------------------- All Sites -----------------------------------------------------------------------------------------------
-
+//------------------------------------------------- All Sites -----------------------------------------------------------------------------------------------
 
 
     @Override
@@ -432,8 +432,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         return jdbcTemplate.query(sql , (resultSet, i) -> (resultSet.getInt(1))).get(0);
     }
-
-
 
     @Override
     public int getNumberOfFilteredAllSites(int indexOfColumn, String orderType, String searchParam) {
@@ -470,8 +468,6 @@ public class SiteRepositoryImpl implements SiteRepository {
                 "%"+searchParam+"%").get(0);
     }
 
-
-
     @Override
     public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue, int begin, int end) {
 
@@ -500,8 +496,6 @@ public class SiteRepositoryImpl implements SiteRepository {
                 "%"+siteName+"%").get(0);
     }
 
-
-
     @Override
     public List<Site> getAll2GCellsOfIdenticalSite(String siteName, int begin, int end) {
 
@@ -527,7 +521,6 @@ public class SiteRepositoryImpl implements SiteRepository {
                 "%"+siteName+"%").get(0);
     }
 
-
     @Override
     public List<Site> getAll3GCellsOfIdenticalSite(String siteName, int begin, int end) {
 
@@ -544,6 +537,8 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
+
+
     //4G cells
     @Override
     public int getNumberOfAll4GCellsOfIdenticalSite(String siteName) {
@@ -552,8 +547,6 @@ public class SiteRepositoryImpl implements SiteRepository {
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
                 "%"+siteName+"%").get(0);
     }
-
-
 
     @Override
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName,  int begin, int end) {
@@ -569,6 +562,36 @@ public class SiteRepositoryImpl implements SiteRepository {
                 begin ,
                 end);
     }
+
+
+
+
+    //5G cells
+    @Override
+    public int getNumberOfAll5GCellsOfIdenticalSite(String siteName) {
+
+        String sql = "select count(distinct c.cell) from santral.cells c where c.site like ? and c.cell_type = '5G' ";
+
+        return jdbcTemplate.query(sql , (resultSet  , i) -> (resultSet.getInt(1)),
+                "%"+siteName+"%").get(0);
+    }
+
+    @Override
+    public List<Site> getAll5GCellsOfIdenticalSite(String siteName, int begin, int end) {
+
+        String sql = "select c.node , c.cell , c.cgi , c.rbs ,  ip , c.direction , c.ins_date from santral.cells c " +
+                "where site like ?  and  c.cell_type = '5G' " +
+                "limit ? , ? " ;
+
+        return jdbcTemplate.query(sql, all4GCellsOfIdenticalSiteRowMapper ,
+                "%"+siteName+"%",
+                begin,
+                end);
+    }
+
+
+    //------------------------------------------------- Update  Site info-----------------------------------------------------------------------------------------------
+
 
     @Override
     public Site getSiteByName(String siteName) {
@@ -605,6 +628,9 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
+
+
+//------------------------------------------------- Update  2G info-----------------------------------------------------------------------------------------------
 
     @Override
     public Site get2GCellByCellName(String cell) {
@@ -656,8 +682,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-
-
+//------------------------------------------------- Update 3G info-----------------------------------------------------------------------------------------------
 
     @Override
     public Site get3GCellBySiteName(String cell) {
@@ -713,6 +738,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
+//------------------------------------------------- Update 4G info-----------------------------------------------------------------------------------------------
 
     @Override
     public Site get4GCellBySiteName(String cell) {
