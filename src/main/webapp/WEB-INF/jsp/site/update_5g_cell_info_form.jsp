@@ -27,7 +27,6 @@
 
 
 
-
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
@@ -218,7 +217,6 @@
 
 
 
-
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
@@ -226,7 +224,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <form:form id="example-vertical-wizard" action="/NetworkMonitoringCenter/load/update3GCellInfo"
+                                    <form:form id="example-vertical-wizard" action="/NetworkMonitoringCenter/load/update5GCellInfo"
                                                method="post" modelAttribute="site">
                                     <div>
                                             <%--Update General Information--%>
@@ -250,60 +248,56 @@
                                                 <form:input path="longitude" cssClass="form-control"/> <br/>
                                             </div>
 
-                                            <div class="form-group">
-                                                <form:label path="node">Node</form:label>
-                                                <form:input path="node"  cssClass="form-control"/> <br/>
-                                                    <%--<label>Node</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cell">Cell</form:label>
-                                                <form:input path="cell"  cssClass="form-control"/> <br/>
-                                                    <%--<label>Cell</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="cgi">CGI</form:label>
-                                                <form:input path="cgi"  cssClass="form-control"/> <br/>
-                                                    <%--<label>CGI</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="rbs">RBS</form:label>
-                                                <form:input path="rbs"  cssClass="form-control"/> <br/>
-                                                    <%--<label>RBS</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="note">DUW</form:label>
-                                                <form:input path="note"  cssClass="form-control"/> <br/>
-                                                    <%--<label>DUW</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="ip">IP</form:label>
-                                                <form:input path="ip"  cssClass="form-control"/> <br/>
-                                                    <%--<label>IP</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="direction">Direction</form:label>
-                                                <form:input path="direction"  cssClass="form-control"/> <br/>
-<%--                                                <label>Direction</label>--%>
-<%--                                                <input type="password" class="form-control" placeholder="">--%>
-                                            </div>
-                                            <div class="form-group">
-                                                <form:label path="insDate">Onair Date</form:label>
-                                                <form:input path="insDate"  cssClass="form-control"/> <br/>
-                                                    <%--<label>Onair Date</label>--%>
-                                                    <%--<input type="password" class="form-control" placeholder="">--%>
-                                            </div>
 
-                                            <form:button class='btn btn-primary btn-rounded btn-fw'>Update</form:button>
+
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <form:label path="node">Node</form:label>
+                                                    <form:input path="node" cssClass="form-control"/> <br/>
+                                                        <%--<label>Node</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="cell">Cell</form:label>
+                                                    <form:input path="cell" cssClass="form-control"/> <br/>
+                                                        <%--<label>Cell</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="cgi">CGI</form:label>
+                                                    <form:input path="cgi" cssClass="form-control"/> <br/>
+                                                        <%--<label>CGI</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="rbs">RBS</form:label>
+                                                    <form:input path="rbs" cssClass="form-control"/> <br/>
+                                                        <%--<label>RBS</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="ip">IP</form:label>
+                                                    <form:input path="ip" cssClass="form-control"/> <br/>
+                                                        <%--<label>IP</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="direction">Direction</form:label>
+                                                    <form:input path="direction" cssClass="form-control"/> <br/>
+                                                        <%--                                                <label>Direction</label>--%>
+                                                        <%--                                                <input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form:label path="insDate">Onair Date</form:label>
+                                                    <form:input path="insDate" cssClass="form-control"/> <br/>
+                                                        <%--<label>Onair Date</label>--%>
+                                                        <%--<input type="password" class="form-control" placeholder="">--%>
+                                                </div>
+                                                <form:button class='btn btn-primary btn-rounded btn-fw'>Update</form:button>
 
                                         </form:form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

@@ -829,16 +829,10 @@
 
         draw4GCellTable();
         draw5GCellTable();
-
-
     });
 
     $(document).ready(function(){
-
-
         draw5GCellTable();
-
-
     });
 
     function drawAllSitesTable() {
@@ -930,7 +924,6 @@
 
         allSitesTable.on('click', '#detailed-4Gbutton', function () {
 
-
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
 
                 $("#4G-cell-table").DataTable().ajax.reload();
@@ -939,9 +932,10 @@
         allSitesTable.on('click', '#detailed-5Gbutton', function () {
 
 
-            selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+               selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
 
-            $("#5G-cell-table").DataTable().ajax.reload();
+
+              $("#5G-cell-table").DataTable().ajax.reload();
         });
 
 
@@ -1088,7 +1082,7 @@
 
     function draw5GCellTable() {
 
-        fourGTable = $("#5G-cell-table").DataTable({
+        fiveGTable = $("#5G-cell-table").DataTable({
             "serverSide": true,
             "retrieve": true,
             "searching": false,
@@ -1107,16 +1101,17 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button id='fourgupdateButton'  class='btn btn-primary btn-rounded btn-fw'>Update</button> "
+                    "defaultContent": "<button id='fivegupdateButton'  class='btn btn-primary btn-rounded btn-fw'>Update</button> "
                 }
 
             ]
         });
 
-        fourGTable.on('click', '#fourgupdateButton', function () {
+        fiveGTable.on('click', '#fivegupdateButton', function () {
 
 
             selected5gCell = fiveGTable.row($(this).parents('tr')).data()[1];
+
 
             window.open("/NetworkMonitoringCenter/load/update5GCellInfo/"+ selected5gCell ,"", "width=800,height=600");
 
