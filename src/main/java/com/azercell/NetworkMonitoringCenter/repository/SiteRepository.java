@@ -67,5 +67,9 @@ public interface SiteRepository {
     public Optional<Site> update4GCellInfo(Site site);
 
 
+    public Site get5GCellBySiteName(String siteName);
+    public Optional<Site> update5GCellInfo(Site site);
+
+
 
 }

@@ -61,4 +61,7 @@ public interface SiteService {
     public Site get4GCellBySiteName(String siteName);
     public Optional<Site> update4GCellInfo(Site site);
 
+    public Site get5GCellBySiteName(String siteName);
+    public Optional<Site> update5GCellInfo(Site site);
+
 }

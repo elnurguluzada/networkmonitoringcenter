@@ -551,11 +551,10 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public List<Site> getAll4GCellsOfIdenticalSite(String siteName,  int begin, int end) {
 
-
-
         String sql = "select c.node , c.cell , c.cgi , c.rbs ,  ip , c.direction , c.ins_date from santral.cells c " +
-                "where site like ?  and  c.cell_type = 'LTE' " +
+                "where c.site like ?  and  c.cell_type = 'LTE' " +
                 "limit ? , ? ";
+
 
         return jdbcTemplate.query(sql , all4GCellsOfIdenticalSiteRowMapper ,
                 "%"+siteName+"%",
@@ -570,7 +569,11 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getNumberOfAll5GCellsOfIdenticalSite(String siteName) {
 
+
+        System.out.println("site name = " + siteName);
+
         String sql = "select count(distinct c.cell) from santral.cells c where c.site like ? and c.cell_type = '5G' ";
+
 
         return jdbcTemplate.query(sql , (resultSet  , i) -> (resultSet.getInt(1)),
                 "%"+siteName+"%").get(0);
@@ -579,8 +582,11 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public List<Site> getAll5GCellsOfIdenticalSite(String siteName, int begin, int end) {
 
-        String sql = "select c.node , c.cell , c.cgi , c.rbs ,  ip , c.direction , c.ins_date from santral.cells c " +
-                "where site like ?  and  c.cell_type = '5G' " +
+        System.out.println("site name = " + siteName);
+
+
+        String sql = "select c.node , c.cell , c.cgi , c.rbs ,  c.ip , c.direction , c.ins_date from santral.cells c " +
+                "where c.site like ?  and  c.cell_type = '5G' " +
                 "limit ? , ? " ;
 
         return jdbcTemplate.query(sql, all4GCellsOfIdenticalSiteRowMapper ,
@@ -590,7 +596,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
-    //------------------------------------------------- Update  Site info-----------------------------------------------------------------------------------------------
+//------------------------------------------------- Update  Site info-----------------------------------------------------------------------------------------------
 
 
     @Override
@@ -786,6 +792,58 @@ public class SiteRepositoryImpl implements SiteRepository {
                 site.getInsDate(),
                 site.getCell());
     }
+
+
+//------------------------------------------------- Update 4G info-----------------------------------------------------------------------------------------------
+
+    @Override
+    public Site get5GCellBySiteName(String cell) {
+
+        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells where  cell like ? and node = 'vMME' ";
+
+        Site site = jdbcTemplate.query(sql , new FourGCellMapper(), new Object[]{cell}).get(0);
+
+
+        return site;
+    }
+
+    @Override
+    public Optional<Site> update5GCellInfo(Site site) {
+
+
+        System.out.println(site);
+
+        if(update5GCellİnfoInCells2(site) == 1) {
+            return Optional.of(get5GCellBySiteName(site.getCell()));
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
+    private int update5GCellİnfoInCells2(Site site){
+
+
+
+        String sql = "update santral.cells2 " +
+                "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ? and node = 'vMME'";
+
+
+        return jdbcTemplate.update(sql , site.getSite_name(),
+                site.getLocation() ,
+                site.getLatitude(),
+                site.getLongitude() ,
+                site.getNode() ,
+                site.getCell(),
+                site.getCgi() ,
+                site.getRbs(),
+                site.getIp() ,
+                site.getDirection(),
+                site.getInsDate(),
+                site.getCell());
+    }
+
+
 
 
 

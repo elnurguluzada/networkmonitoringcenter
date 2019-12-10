@@ -212,8 +212,8 @@
                                     <form:form  id="example-vertical-wizard" action ="/NetworkMonitoringCenter/load/update2GCellInfo" method="post" modelAttribute="site">
                                     <div>
                                             <%--Update General Information--%>
-                                        <h3>General Informations</h3>
-                                        <section>
+                                        <h3>Update Site Informations</h3>
+
                                             <div class="form-group">
                                                 <form:label  path="site_name">Site</form:label>
                                                 <form:input  path="site_name" cssClass="form-control"/> <br/>
@@ -231,9 +231,7 @@
                                                 <form:label path="longitude">Longitude</form:label>
                                                 <form:input path="longitude" cssClass="form-control"/> <br/>
                                             </div>
-                                        </section>
-                                                <h3>2G Data</h3>
-                                                <section>
+
                                                 <div>
                                                     <div class="form-group">
                                                         <form:label path="node">Node</form:label>
@@ -290,7 +288,7 @@
                                                             <%--<input type="password" class="form-control" placeholder="">--%>
                                                     </div>
                                                     <form:button class='btn btn-primary btn-rounded btn-fw'>Update</form:button>
-                                                </section>
+
                                         </form:form>
                                 </div>
                             </div>

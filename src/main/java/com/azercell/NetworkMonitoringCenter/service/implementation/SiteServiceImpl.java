@@ -210,4 +210,18 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.update4GCellInfo(site);
     }
 
+
+
+    @Override
+    public Site get5GCellBySiteName(String cell) {
+        return siteRepository.get5GCellBySiteName(cell);
+    }
+
+
+
+    @Override
+    public Optional<Site> update5GCellInfo(Site site) {
+        return siteRepository.update5GCellInfo(site);
+    }
+
 }

@@ -278,19 +278,21 @@ public class SiteController {
             @RequestParam(name = "length") int length,
             @RequestParam(name = "order[0][column]")int indexOfColumn,
             @RequestParam(name = "order[0][dir]") String orderType,
-            @RequestParam(name = "search[value]") String searchParam){
+            @RequestParam(name = "search[value]") String searchParam,
+            @RequestParam(name = "siteName") String siteNAme){
 
         DataTable dataTable = new DataTable();
         dataTable.setDraw(draw);
 
 
 
-        int numberOfAll5GCellsOfIdenticalSite = siteService.getNumberOfAll5GCellsOfIdenticalSite(searchParam);
+
+        int numberOfAll5GCellsOfIdenticalSite = siteService.getNumberOfAll5GCellsOfIdenticalSite(siteNAme);
         dataTable.setRecordsFiltered(numberOfAll5GCellsOfIdenticalSite);
         dataTable.setRecordsTotal(numberOfAll5GCellsOfIdenticalSite);
 
 
-        List<Site> fiveGCellsList = siteService.getAll5GCellsOfIdenticalSite(searchParam , start , start+length);
+        List<Site> fiveGCellsList = siteService.getAll5GCellsOfIdenticalSite(siteNAme , start , start+length);
 
 
         if(start+length > numberOfAll5GCellsOfIdenticalSite){
@@ -801,5 +803,43 @@ public class SiteController {
 
         return modelAndView;
     }
+
+
+    //---------------------------------- Update 5G Cell Infromations -------------------------------------------------------
+
+
+
+    @GetMapping("/update5GCellInfo/{siteName}")
+    public String showUpdate5GCellInformation(@PathVariable("siteName") String siteName, Model model){
+
+        System.out.println(siteName);
+        model.addAttribute("site" , siteService.get5GCellBySiteName(siteName));
+
+        return "/site/update_5g_cell_info_form";
+    }
+
+
+
+    @PostMapping("/update5GCellInfo")
+    public ModelAndView update5GCellInfo(
+            @Valid @ModelAttribute(name = "site") Site site,
+            BindingResult bindingResult
+    ){
+
+        System.out.println(site);
+
+        ModelAndView modelAndView = new ModelAndView("/site/update_5g_cell_info_form");
+
+
+        if(!bindingResult.hasErrors()){
+            boolean success = siteService.update5GCellInfo(site).isPresent();
+            modelAndView.addObject("success" , success);
+        }
+
+
+
+        return modelAndView;
+    }
+
 
 }
