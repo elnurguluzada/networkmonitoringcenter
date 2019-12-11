@@ -152,7 +152,8 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-//-------------------------------------------------Dropped Sites----------------------------------------------------------------------------------
+//------------------------------------------------- Current Dropped Sites----------------------------------------------------------------------------------
+
 
     @Override
     public int getNumberOfAllDroppedSites() {
@@ -166,9 +167,15 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getNumberOfFilteredDroppedSites(String searchParam) {
 
+       searchParam =  searchParam.toUpperCase();
         System.out.println("method : getNumberOfFilteredDroppedHalltedSites() ");
+
+
+
+
+
         String sql = "SELECT count(*) FROM cells_drop2 a " +
-                "WHERE a.reason is null and status = 0 and CONCAT(a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status) LIKE ? ";
+                "WHERE a.reason is null and  CONCAT(a.node, a.cell_type, a.cell,a.status) LIKE ? ";
 
         return jdbcTemplate.query(sql ,
                 (resultSet , i) -> (resultSet.getInt(1)),
@@ -180,6 +187,9 @@ public class SiteRepositoryImpl implements SiteRepository {
     public List<DroppedHaltedSite> getFilteredDroppedHaltedSites(int indexOfColumn, String orderType , String searchParam, int begin, int end) {
 
 
+        searchParam = searchParam.toUpperCase();
+
+        System.out.println(searchParam);
         System.out.println("method : getFilteredDroppedHaltedSites()");
 
         System.out.println("methode = getFilteredHaltedSites()" );
@@ -205,7 +215,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         String sql = " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
                 " from cells_drop2 a , " +
                 "(select @row_number:=0) as t " +
-                " where a.reason is null and a.status = 0 and CONCAT(a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status) LIKE ?  " +
+                " where a.reason is null and  CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ?  " +
                 " ORDER BY ? ? " +
                 " limit ? , ? ";
 
@@ -239,6 +249,8 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         System.out.println("methode = getNumberOfFilteredHaltedSites()" );
 
+        searchParam = searchParam.toUpperCase();
+
         String sql = "SELECT count(*) " +
                 "FROM santral.cells_drop cd " +
                 "WHERE cd.status = 2 and cd.ceasing_date_time is null and CONCAT(cd.id , cd.node, cd.cell_type , cd.cell , cd.occur_date_time , cd.note) LIKE ? ";
@@ -255,6 +267,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public List<DroppedHaltedSite> getFilteredHaltedSites(int indexOfColumn, String orderType , String searchParam, int begin, int end) {
 
+        searchParam = searchParam.toUpperCase();
         System.out.println("methode = getFilteredHaltedSites()" );
         System.out.println("searchParam = " + searchParam);
 
@@ -338,7 +351,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
     @Override
     public int getNumberOfFilteredDropHistory(int indexOfColumn, String orderType ,String searchParam) {
-
+        searchParam = searchParam.toUpperCase();
         System.out.println("searchParam = " + searchParam);
 
         String columnName = "cd.id";
@@ -362,7 +375,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         }
 
         String sql = " SELECT count(*) FROM santral.cells_drop cd " +
-                "WHERE  cd.cell  LIKE ? " +
+                "WHERE CONCAT( cd.cell_type, cd.node , cd.cell , cd.status ) LIKE ?" +
                 "ORDER BY ? ?";
 
 
@@ -377,6 +390,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     public List<DroppedHaltedSite> getFiltederDropHistory(int indexOfColumn, String orderType ,String searchParam, int begin, int end) {
 
 
+        searchParam = searchParam.toUpperCase();
         System.out.println("searchParam = " + searchParam);
 
         String columnName = "cd.cell";
@@ -406,7 +420,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         String sql = " SELECT  cd.node , cd.cell_type , cd.cell , cd.location , cd.reason , cd.occur_date_time , cd.ceasing_date_time , cd.note " +
                 "FROM santral.cells_drop cd " +
-                "WHERE  cd.cell  LIKE ? " +
+                "WHERE  CONCAT( cd.cell_type, cd.node , cd.cell , cd.status) LIKE ? " +
                 "ORDER BY ? ? " +
                 "LIMIT ? , ? ";
 
@@ -461,7 +475,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
         String sql = "select count(distinct c.site) from santral.cells c " +
-                "where CONCAT( c.node, c.site) LIKE ?";
+                "where CONCAT( c.node, c.site , c.cell_type) LIKE ?";
 
 
         return jdbcTemplate.query(sql , (resultSet , i) -> (resultSet.getInt(1)),
@@ -474,7 +488,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         //TODO add order by
 
         String sql = "select distinct c.node , c.site  from santral.cells c " +
-                "where CONCAT( c.node, c.site) LIKE ?" +
+                "where CONCAT( c.node, c.site , c.cell_type) LIKE ?" +
                 "limit ? , ? ";
 
 
