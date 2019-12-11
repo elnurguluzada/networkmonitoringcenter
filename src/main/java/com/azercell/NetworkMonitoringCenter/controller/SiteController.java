@@ -352,6 +352,8 @@ public class SiteController {
         System.out.println("draw = " + draw);
         System.out.println("start = " + start);
         System.out.println("length = " + length);
+        System.out.println("search value = " + searchParam);
+
 
 
         DataTable dataTable = new DataTable();
@@ -382,8 +384,6 @@ public class SiteController {
 
         for(int i =0; i < length; i++){
 
-
-            System.out.println("inside for loop ");
             DroppedHaltedSite droppedHaltedSite = filteredDroppedHaltedSites.get(i);
             data[i][0] = String.valueOf(droppedHaltedSite.getId());
             data[i][1] =droppedHaltedSite.getCell_type();
@@ -392,8 +392,11 @@ public class SiteController {
             data[i][4] =droppedHaltedSite.getOccur_date_time();
             data[i][5] =droppedHaltedSite.getCeasing_date_time();
             data[i][6] = String.valueOf(droppedHaltedSite.getStatus());
-
-
+//            if(droppedHaltedSite.getStatus() == 0){
+//                data[i][6] = "DROPPED";
+//            } else if(droppedHaltedSite.getStatus() == 2){
+//                data[i][6] = "HALTED";
+//            }
         }
 
         dataTable.setData(data);
