@@ -168,19 +168,75 @@ public class SiteRepositoryImpl implements SiteRepository {
     public int getNumberOfFilteredDroppedSites(String searchParam) {
 
        searchParam =  searchParam.toUpperCase();
-        System.out.println("method : getNumberOfFilteredDroppedHalltedSites() ");
+       String sql = "";
+       int numberOfFilteredDroppedSites;
+
+
+        if(searchParam.matches("DROP")){
+
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    0).get(0);
+
+        } else if(searchParam.matches("DROPP")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    0).get(0);
+
+        } else if(searchParam.matches("DROPPE")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    0).get(0);
+        }else if(searchParam.matches("DROPPE")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    0).get(0);
+        }else if(searchParam.matches("DROPPED")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    0).get(0);
+        } else if(searchParam.matches("HALT")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    2).get(0);
+        }else if(searchParam.matches("HALTE")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    2).get(0);
+        }else if(searchParam.matches("HALTED")){
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and a.status = ? ";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    2).get(0);
+        } else {
+            sql = "SELECT count(*) FROM cells_drop2 a " +
+                    "WHERE a.reason is null and CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ?";
+            numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
+                    (resultSet , i) -> (resultSet.getInt(1)),
+                    "%"+searchParam+"%").get(0);
+
+        }
 
 
 
-
-
-        String sql = "SELECT count(*) FROM cells_drop2 a " +
-                "WHERE a.reason is null and  CONCAT(a.node, a.cell_type, a.cell,a.status) LIKE ? ";
-
-        return jdbcTemplate.query(sql ,
-                (resultSet , i) -> (resultSet.getInt(1)),
-                "%"+searchParam+"%").get(0);
+        return numberOfFilteredDroppedSites;
     }
+
 
 
     @Override
@@ -188,11 +244,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
         searchParam = searchParam.toUpperCase();
-
-        System.out.println(searchParam);
-        System.out.println("method : getFilteredDroppedHaltedSites()");
-
-        System.out.println("methode = getFilteredHaltedSites()" );
 
         System.out.println("searchParam = " + searchParam);
 
@@ -212,21 +263,144 @@ public class SiteRepositoryImpl implements SiteRepository {
             columnName = "a.ceasing_date_time";
         }
 
-        String sql = " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                " from cells_drop2 a , " +
-                "(select @row_number:=0) as t " +
-                " where a.reason is null and  CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ?  " +
-                " ORDER BY ? ? " +
-                " limit ? , ? ";
+        String sql="";
+
+        List<DroppedHaltedSite> droppedHaltedSites;
+
+        if(searchParam.matches("DROP")){
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    0,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+        } else if(searchParam.matches("DROPP")){
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    0,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+        } else if(searchParam.matches("DROPPE")){
 
 
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    0,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
 
-        return  jdbcTemplate.query(sql , droppedSiteRowMapper,
-                "%"+searchParam+"%",
-                columnName ,
-                orderType ,
-                begin ,
-                end);
+
+        }else if(searchParam.matches("DROPPED")){
+
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    0,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+
+        }else if(searchParam.matches("HALT")){
+
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    2,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+
+        }else if(searchParam.matches("HALTE")){
+
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    2,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+
+        }else if(searchParam.matches("HALTED")){
+
+
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and   a.status = ?  " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    2,
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+
+        } else {
+            sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
+                    " from cells_drop2 a , " +
+                    "(select @row_number:=0) as t " +
+                    " where a.reason is null and CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ? " +
+                    " ORDER BY ? ? " +
+                    " limit ? , ? ";
+            droppedHaltedSites = jdbcTemplate.query(sql , droppedSiteRowMapper,
+                    "%"+searchParam+"%",
+                    columnName ,
+                    orderType ,
+                    begin ,
+                    end);
+
+        }
+
+
+        return  droppedHaltedSites;
     }
 
 
