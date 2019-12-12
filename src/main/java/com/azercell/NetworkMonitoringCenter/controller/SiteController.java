@@ -391,12 +391,12 @@ public class SiteController {
             data[i][3] =droppedHaltedSite.getCell();
             data[i][4] =droppedHaltedSite.getOccur_date_time();
             data[i][5] =droppedHaltedSite.getCeasing_date_time();
-            data[i][6] = String.valueOf(droppedHaltedSite.getStatus());
-//            if(droppedHaltedSite.getStatus() == 0){
-//                data[i][6] = "DROPPED";
-//            } else if(droppedHaltedSite.getStatus() == 2){
-//                data[i][6] = "HALTED";
-//            }
+          //  data[i][6] = String.valueOf(droppedHaltedSite.getStatus());
+            if(droppedHaltedSite.getStatus() == 0){
+                data[i][6] = "DROPPED";
+            } else if(droppedHaltedSite.getStatus() == 2){
+                data[i][6] = "HALTED";
+            }
         }
 
         dataTable.setData(data);
