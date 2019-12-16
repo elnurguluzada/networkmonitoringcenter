@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -843,6 +844,86 @@ public class SiteController {
 
         return modelAndView;
     }
+
+
+//---------------------------------- Delete Cell -------------------------------------------------------
+
+
+
+
+
+//todo sent site name to responsebody controller for popup
+    @GetMapping("/allCellsToDelete/{siteName}")
+    public String getAllCellsToDelete(@PathVariable("siteName") String siteName , HttpSession httpSession){
+
+
+        ModelAndView modelAndView = new ModelAndView("/site/deleting_data");
+
+        httpSession.setAttribute("siteName" , siteName);
+
+
+
+        return "/site/deleting_data";
+    }
+
+
+
+    @ResponseBody
+    @GetMapping("/getAllCellsToDelete")
+    public DataTable showAllCells(
+        @RequestParam(name = "draw" ) int draw,
+        @RequestParam(name = "start") int start,
+        @RequestParam(name = "length") int length,
+        @RequestParam(name = "order[0][column]")int indexOfColumn,
+        @RequestParam(name = "order[0][dir]") String orderType,
+        @RequestParam(name = "search[value]") String searchParam,
+        @RequestParam(name = "siteName") String siteName,
+      HttpSession httpSession
+    ){
+
+
+//        String siteName = String.valueOf(httpSession.getAttribute("siteName"));
+        System.out.println(" --- = " + siteName);
+
+        DataTable dataTable = new DataTable();
+        dataTable.setDraw(draw);
+
+        int numberOfAllCellsOfIdenticalSite = siteService.getnumberOfAllCellsOfIdenticalSite(siteName);
+        dataTable.setRecordsFiltered(numberOfAllCellsOfIdenticalSite);
+        dataTable.setRecordsTotal(numberOfAllCellsOfIdenticalSite);
+
+
+
+        List<Site> siteList = siteService.getCellsToDelete(siteName , start , start+length);
+
+        if (start+length > numberOfAllCellsOfIdenticalSite){
+            length = numberOfAllCellsOfIdenticalSite - start;
+        }
+
+
+        String data[][] = new String[length][4];
+        for (int i = 0; i < length; i++){
+
+            Site site = siteList.get(i);
+            data[i][0] = site.getNode();
+            data[i][1] = site.getSite_name();
+            data[i][2] = site.getCell_type();
+            data[i][3] = site.getCell();
+
+        }
+
+        dataTable.setData(data);
+
+        return  dataTable;
+    }
+
+
+
+
+
+
+
+
 
 
 }

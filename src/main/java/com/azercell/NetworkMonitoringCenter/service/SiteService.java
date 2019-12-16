@@ -64,4 +64,9 @@ public interface SiteService {
     public Site get5GCellBySiteName(String siteName);
     public Optional<Site> update5GCellInfo(Site site);
 
+    public int getnumberOfAllCellsOfIdenticalSite(String siteName);
+    public List<Site> getCellsToDelete(String siteName, int begin , int end);
+    public void deleteCell(String cellName);
+
+
 }

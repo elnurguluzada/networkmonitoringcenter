@@ -92,6 +92,18 @@ public class SiteRepositoryImpl implements SiteRepository {
         return new Site(  0,node ,null , cell , null ,cgi , null, null , null ,rbs , ip ,direction , null, null , null, null , 0 , 0, insDate  );
     };
 
+    private RowMapper<Site> allCellsOfIdenticalSiteToDeleteRowMapper = (resultSet, i) -> {
+
+
+        String node = resultSet.getString("node");
+        String site = resultSet.getString("site");
+        String cell_type = resultSet.getString("cell_type");
+        String cell = resultSet.getString("cell");
+
+
+
+        return new Site(  0,node ,site , cell , cell_type ,null , null, null , null ,null , null ,null , null, null , null, null , 0 , 0, null  );
+    };
 
 
     private RowMapper<DroppedHaltedSite> droppedSiteRowMapper = (resultSet, i) -> {
@@ -174,57 +186,57 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         if(searchParam.matches("DROP")){
 
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     0).get(0);
 
         } else if(searchParam.matches("DROPP")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     0).get(0);
 
         } else if(searchParam.matches("DROPPE")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     0).get(0);
         }else if(searchParam.matches("DROPPE")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     0).get(0);
         }else if(searchParam.matches("DROPPED")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     0).get(0);
         } else if(searchParam.matches("HALT")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     2).get(0);
         }else if(searchParam.matches("HALTE")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     2).get(0);
         }else if(searchParam.matches("HALTED")){
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and a.status = ? ";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
                     2).get(0);
         } else {
-            sql = "SELECT count(*) FROM cells_drop2 a " +
+            sql = "SELECT count(*) FROM cells_drop a " +
                     "WHERE a.reason is null and CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ?";
             numberOfFilteredDroppedSites = jdbcTemplate.query(sql ,
                     (resultSet , i) -> (resultSet.getInt(1)),
@@ -270,7 +282,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         if(searchParam.matches("DROP")){
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -285,7 +297,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         } else if(searchParam.matches("DROPP")){
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -302,7 +314,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -319,7 +331,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -336,7 +348,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -353,7 +365,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -370,7 +382,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and   a.status = ?  " +
                     " ORDER BY ? ? " +
@@ -385,7 +397,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         } else {
             sql =  " select(@row_number:=@row_number + 1) as rownum, a.id, a.node, a.cell_type, a.cell, a.occur_date_time,  a.ceasing_date_time , a.status " +
-                    " from cells_drop2 a , " +
+                    " from cells_drop a , " +
                     "(select @row_number:=0) as t " +
                     " where a.reason is null and CONCAT(a.node, a.cell_type, a.cell, a.status) LIKE ? " +
                     " ORDER BY ? ? " +
@@ -492,7 +504,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         System.out.println("method : updateDroppedSites()");
 
 
-        String sql = "UPDATE santral.cells_drop2 c " +
+        String sql = "UPDATE santral.cells_drop c " +
                 "SET c.reason = ? , c.note = ? " +
                 "where  c.reason is null and " +
                 "c.cell = ? " ;
@@ -789,7 +801,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
     @Override
     public Site getSiteByName(String siteName) {
-        String sql = "select site , location ,latitude , longitude from santral.cells2 where site like ?  ";
+        String sql = "select site , location ,latitude , longitude from santral.cells where site like ?  ";
 
 
         Site site = jdbcTemplate.query(sql , new SiteMapper(), new Object[]{siteName}).get(0);
@@ -813,7 +825,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
     private int updateSiteInCells2(Site site){
 
-        String sql = "update santral.cells2 " +
+        String sql = "update santral.cells " +
                 "set  location = ? , latitude = ? , longitude = ? where site = ?";
 
 
@@ -829,7 +841,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public Site get2GCellByCellName(String cell) {
 
-        String sql = "select site , location ,latitude , longitude , node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells2 where cell like ?  ";
+        String sql = "select site , location ,latitude , longitude , node  ,cell , tg , rblt , cgi , tru, rbs , direction, ins_date from santral.cells where cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new TwoGCellMapper(), new Object[]{cell}).get(0);
 
@@ -853,7 +865,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     private int update2GCellİnfoInCells2(Site site){
 
 
-        String sql = "update santral.cells2 " +
+        String sql = "update santral.cells " +
                 "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , tg = ? , rblt = ? , cgi = ? , tru = ? , rbs = ? , direction = ? , ins_date = ? where cell = ?";
 
 
@@ -881,7 +893,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public Site get3GCellBySiteName(String cell) {
 
-        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs , note , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs , note , ip , direction, ins_date from santral.cells where  cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new ThreeGCellMapper(), new Object[]{cell}).get(0);
 
@@ -907,7 +919,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-        String sql = "update santral.cells2 " +
+        String sql = "update santral.cells " +
                 "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , note = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
 
 
@@ -937,7 +949,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public Site get4GCellBySiteName(String cell) {
 
-        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells2 where  cell like ?  ";
+        String sql = "select site , location ,latitude , longitude ,  node  ,cell ,  cgi ,  rbs  , ip , direction, ins_date from santral.cells where  cell like ?  ";
 
         Site site = jdbcTemplate.query(sql , new FourGCellMapper(), new Object[]{cell}).get(0);
 
@@ -963,7 +975,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-        String sql = "update santral.cells2 " +
+        String sql = "update santral.cells " +
                 "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ?";
 
 
@@ -1013,7 +1025,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-        String sql = "update santral.cells2 " +
+        String sql = "update santral.cells " +
                 "set site = ? , location = ? , latitude = ? , longitude = ? , node = ? , cell = ? , cgi = ? , rbs = ? , ip = ? , direction = ? , ins_date = ? where cell = ? and node = 'vMME'";
 
 
@@ -1029,6 +1041,36 @@ public class SiteRepositoryImpl implements SiteRepository {
                 site.getDirection(),
                 site.getInsDate(),
                 site.getCell());
+    }
+
+
+//---------------------------------- Delete Cell -------------------------------------------------------
+
+
+    @Override
+    public int getnumberOfAllCellsOfIdenticalSite(String siteName) {
+
+        String sql = "select count(cell) from santral.cells2" +
+                "where site = ? ";
+
+        return jdbcTemplate.query(sql , (resultSet , i) ->(resultSet.getInt(1)), "%"+siteName+"%").get(0);
+    }
+
+    @Override
+    public List<Site> getCellsToDelete(String siteName , int begin , int end) {
+
+        String sql = "select node , site , cell_type , cell from santral.cells2 where site = ? " +
+                "limit ? , ? ";
+
+        return jdbcTemplate.query(sql , allCellsOfIdenticalSiteToDeleteRowMapper ,
+                "%"+siteName+"%",
+                begin,
+                end);
+    }
+
+    @Override
+    public void deleteCell(String cellName) {
+
     }
 
 
@@ -1128,6 +1170,9 @@ public class SiteRepositoryImpl implements SiteRepository {
             return site;
         }
     }
+
+
+
 
 
 }

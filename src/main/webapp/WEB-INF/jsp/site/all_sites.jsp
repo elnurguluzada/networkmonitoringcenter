@@ -896,24 +896,23 @@
                 {
                     "targets": [-1],
                     "visible": true,
-                    "defaultContent": "<button id='detailed-2Gbutton' class='btn btn-primary btn-rounded btn-fw' >2G</button> &nbsp " +
-                        "<a><button id='detailed-3Gbutton' class='btn btn-primary btn-rounded btn-fw'>3G</button></a> &nbsp " +
-                        "<button id='detailed-4Gbutton' class='btn btn-primary btn-rounded btn-fw'>4G</button> &nbsp " +
-                        "<button id='detailed-5Gbutton' class='btn btn-primary btn-rounded btn-fw'>5G</button>"
+                    "defaultContent": "<button id='detailed-button' class='btn btn-primary btn-rounded btn-fw' >Detailed</button> &nbsp " +
+                        "<a><button id='delete-button' class='btn btn-primary btn-rounded btn-fw'>Delete</button></a> "
+
                 }
 
             ]
         });
 
 
-        allSitesTable.on('click', '#detailed-2Gbutton', function () {
+        allSitesTable.on('click', '#detailed-button', function () {
 
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#2G-cell-table").DataTable().ajax.reload();
 
         });
 
-        allSitesTable.on('click', '#detailed-3Gbutton', function () {
+        allSitesTable.on('click', '#detailed-button', function () {
 
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
                 $("#3G-cell-table").DataTable().ajax.reload();
@@ -922,14 +921,14 @@
 
         });
 
-        allSitesTable.on('click', '#detailed-4Gbutton', function () {
+        allSitesTable.on('click', '#detailed-button', function () {
 
                 selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
 
                 $("#4G-cell-table").DataTable().ajax.reload();
         });
 
-        allSitesTable.on('click', '#detailed-5Gbutton', function () {
+        allSitesTable.on('click', '#detailed-button', function () {
 
 
                selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
@@ -938,6 +937,18 @@
               $("#5G-cell-table").DataTable().ajax.reload();
         });
 
+
+
+        allSitesTable.on('click', '#delete-button', function () {
+
+            selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
+
+            window.open("/load/allCellsToDelete/"+ selectedSiteName ,"", "width=800,height=600");
+
+
+
+
+        });
 
 
         $("#searchID").unbind().keyup(function(e) {

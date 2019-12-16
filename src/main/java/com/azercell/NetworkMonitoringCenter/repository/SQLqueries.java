@@ -6,7 +6,7 @@ public class SQLqueries {
 
     public String GET_SITE_INFORMATION_BY_NAME = "selec  ";
 
-    public static String GET_COUNT_OF_GET_UNREPORTED_FILTERED_DROPPED_CELLS = " SELECT count(*) FROM cells_drop2 WHERE reason IS NULL";
+    public static String GET_COUNT_OF_GET_UNREPORTED_FILTERED_DROPPED_CELLS = " SELECT count(*) FROM cells_drop WHERE reason IS NULL";
 
     public static String GET_NUMBER_OF_FILTERED_UNREPORTED_DROPPED_SITES = " SELECT count(*) FROM santral.cells_drop a WHERE a.reason is null  AND a.id LIKE ? AND  a.cell_type LIKE ? AND a.node = ? AND a.cell LIKE ? ";
 
