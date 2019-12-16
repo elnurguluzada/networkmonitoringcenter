@@ -452,7 +452,7 @@
 
     $(document).ready(function () {
 
-        drawDeleteDataTable();
+         drawCellsTableToDelete();
 
 
 
@@ -464,20 +464,18 @@
 
 
 
-        $("#updateButton").on('click' ,function () {
-
-            var cellNames = $.map(droppedSiteTable.rows('.selected').data(), function (item) {
-                return item[3]
-            });
-
-            var note = $("#noteID").val();
-            var reason = $("#exampleSelectGender").val();
+        // $("#deleteButton").on('click' ,function () {
+        //
+        //     var cellNames = $.map(deleteCellTable.rows('.selected').data(), function (item) {
+        //         return item[3]
+        //     });
 
 
-            //  window.location.href = "/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
-            window.location.href = "/NetworkMonitoringCenter/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
-            alert(cellNames , note , reason);
-        });
+            //
+            // //  window.location.href = "/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
+            // window.location.href = "/load/deleteCells?cellNames=" + cellNames ;
+            // alert(cellNames);
+       // });
 
 
 
@@ -488,14 +486,14 @@
 
 
 
-    var  droppedSiteTable;
+    var  deleteCellTable;
 
 
-    function drawDroppedSitesTable() {
+    function drawCellsTableToDelete() {
 
 
 
-        droppedSiteTable = $("#delete-data-table").DataTable({
+        deleteCellTable = $("#delete-data-table").DataTable({
             "processing": true,
             'language': {
                 'loadingRecords': '&nbsp;',
@@ -510,12 +508,23 @@
             },
             "aLengthMenu": [[10, 50, 100 , 1000000], [10, 50, 100, "All"]],
             "iDisplayLength": 10,
-            "ajax": "../load/getDroppedSites",
+            "ajax": {
+                url: "../load/getAllCellsToDelete",
+                type: 'get',
+                data: function ( d ) {
+                    d.siteName = selectedSite;
+                }
+            } ,
+          //  "ajax": "../load/getAllCellsToDelete",
             "dom": 'lBfrtip',
             "buttons": [
                 {extend:'selectAll', className:'btn btn-primary'},
-                {extend:'selectNone', className:'btn btn-primary'}]
+                {extend:'selectNone', className:'btn btn-primary'}],
+
         });
+
+
+
 
 
         $("#searchID").unbind().keyup(function(e) {

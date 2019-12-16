@@ -224,4 +224,19 @@ public class SiteServiceImpl implements SiteService {
         return siteRepository.update5GCellInfo(site);
     }
 
+
+    @Override
+    public int getnumberOfAllCellsOfIdenticalSite(String siteName) {
+        return siteRepository.getnumberOfAllCellsOfIdenticalSite(siteName);
+    }
+
+    @Override
+    public List<Site> getCellsToDelete(String siteName, int begin, int end) {
+        return siteRepository.getCellsToDelete(siteName,begin,end);
+    }
+
+    @Override
+    public void deleteCell(String cellName) {
+
+    }
 }
