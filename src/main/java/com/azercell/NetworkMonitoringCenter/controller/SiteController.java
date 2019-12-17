@@ -850,17 +850,14 @@ public class SiteController {
 
 
 
-
-
-//todo sent site name to responsebody controller for popup
     @GetMapping("/allCellsToDelete/{siteName}")
-    public String getAllCellsToDelete(@PathVariable("siteName") String siteName , HttpSession httpSession){
+    public String getAllCellsToDelete(@PathVariable("siteName") String siteName , Model model){
 
 
-        ModelAndView modelAndView = new ModelAndView("/site/deleting_data");
+      //  ModelAndView modelAndView = new ModelAndView("/site/deleting_data");
 
-        httpSession.setAttribute("siteName" , siteName);
-
+        model.addAttribute("siteName" , siteName);
+        System.out.println("site name = " + model.asMap().get("siteName"));
 
 
         return "/site/deleting_data";
@@ -877,12 +874,12 @@ public class SiteController {
         @RequestParam(name = "order[0][column]")int indexOfColumn,
         @RequestParam(name = "order[0][dir]") String orderType,
         @RequestParam(name = "search[value]") String searchParam,
-        @RequestParam(name = "siteName") String siteName,
-      HttpSession httpSession
+        @RequestParam(name = "siteName") String siteName
+     //   HttpSession httpSession
     ){
 
 
-//        String siteName = String.valueOf(httpSession.getAttribute("siteName"));
+       // String siteName = String.valueOf(httpSession.getAttribute("siteName"));
         System.out.println(" --- = " + siteName);
 
         DataTable dataTable = new DataTable();
@@ -891,7 +888,6 @@ public class SiteController {
         int numberOfAllCellsOfIdenticalSite = siteService.getnumberOfAllCellsOfIdenticalSite(siteName);
         dataTable.setRecordsFiltered(numberOfAllCellsOfIdenticalSite);
         dataTable.setRecordsTotal(numberOfAllCellsOfIdenticalSite);
-
 
 
         List<Site> siteList = siteService.getCellsToDelete(siteName , start , start+length);

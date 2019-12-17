@@ -946,6 +946,7 @@
             window.open("/load/allCellsToDelete/"+ selectedSiteName ,"", "width=800,height=600");
 
 
+        //    $("#delete-button").DataTable().ajax.reload();
 
 
         });
