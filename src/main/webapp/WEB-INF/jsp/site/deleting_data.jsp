@@ -18,7 +18,61 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="https://azeuronews.com/wp-content/uploads/2019/06/azercell.jpg" />
+    <link rel="shortcut icon" href="https://azeuronews.com/wp-content/uploads/2019/06/azercell.jpg"/>
+
+
+    <!-- plugins:js -->
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/template.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="/assets/js/data-table.js"></script>
+    <!-- End custom js for this page-->
+
+
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <%--buttons for dataTables--%>
+    <%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+    <script src="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"></script>
+    <%--popup--%>
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <%--popup--%>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables_themeroller.css"></script>
+    <%--popup--%>
+
+
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
+    <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap4.min.css"></script>
+
+
+    <%--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <%--buttons for dataTables--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <%--popup--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <%--popup--%>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <%--popup--%>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <%--popup--%>
 
 
     <style>
@@ -41,118 +95,123 @@
 </head>
 
 <body>
-<div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
-            <ul class="navbar-nav mr-lg-2 d-none d-lg-flex">
-                <li class="nav-item nav-toggler-item">
-                    <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                        <span class="mdi mdi-menu"></span>
-                    </button>
-                </li>
-                <li class="nav-item nav-search d-none d-lg-flex">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
-                        </div>
-                        <input id="searchID" type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search" action="/get">
-                    </div>
-                </li>
-            </ul>
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="/NetworkMonitoringCenter/load/index"><img src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>
-                <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>
 
-            </div>
-            <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                        <i class="mdi mdi-bell-outline mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                        <a class="dropdown-item">
-                            <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
-                            </p>
-                            <span class="badge badge-pill badge-warning float-right">View all</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="mdi mdi-information mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0">
-                                    Just now
-                                </p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="mdi mdi-settings mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">Settings</h6>
-                                <p class="font-weight-light small-text mb-0">
-                                    Private message
-                                </p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="mdi mdi-account-box mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">New user registration</h6>
-                                <p class="font-weight-light small-text mb-0">
-                                    2 days ago
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="/assets/images/faces/elnur_prof.jpg" alt="profile"/>
-                        <span class="nav-profile-name">Elnur Guluzade</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">
-                            <i class="mdi mdi-logout text-primary"></i>
-                            Logout
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item nav-settings d-none d-lg-flex">
-                    <a class="nav-link" href="#">
-                        <i class="mdi mdi-dots-horizontal"></i>
-                    </a>
-                </li>
-                <li class="nav-item nav-toggler-item-right d-lg-none">
-                    <button class="navbar-toggler align-self-center" type="button" data-toggle="offcanvas">
-                        <span class="mdi mdi-menu"></span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- partial:../../partials/_navbar.html -->
+<%--    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">--%>
+<%--        <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">--%>
+<%--            <ul class="navbar-nav mr-lg-2 d-none d-lg-flex">--%>
+<%--                <li class="nav-item nav-toggler-item">--%>
+<%--                    <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">--%>
+<%--                        <span class="mdi mdi-menu"></span>--%>
+<%--                    </button>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item nav-search d-none d-lg-flex">--%>
+<%--                    <div class="input-group">--%>
+<%--                        <div class="input-group-prepend">--%>
+<%--                <span class="input-group-text" id="search">--%>
+<%--                  <i class="mdi mdi-magnify"></i>--%>
+<%--                </span>--%>
+<%--                        </div>--%>
+<%--                        <input id="searchID" type="text" class="form-control" placeholder="search" aria-label="search"--%>
+<%--                               aria-describedby="search" action="/get">--%>
+<%--                    </div>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">--%>
+<%--                <a class="navbar-brand brand-logo" href="/NetworkMonitoringCenter/load/index"><img--%>
+<%--                        src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>--%>
+<%--                <a class="navbar-brand brand-logo-mini" href="index-2.html"><img--%>
+<%--                        src="https://www.azercell.com/media/html/images/logo.png" alt="logo"/></a>--%>
+
+<%--            </div>--%>
+<%--            <ul class="navbar-nav navbar-nav-right">--%>
+<%--                <li class="nav-item dropdown">--%>
+<%--                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"--%>
+<%--                       data-toggle="dropdown">--%>
+<%--                        <i class="mdi mdi-bell-outline mx-0"></i>--%>
+<%--                        <span class="count"></span>--%>
+<%--                    </a>--%>
+<%--                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"--%>
+<%--                         aria-labelledby="notificationDropdown">--%>
+<%--                        <a class="dropdown-item">--%>
+<%--                            <p class="mb-0 font-weight-normal float-left">You have 4 new notifications--%>
+<%--                            </p>--%>
+<%--                            <span class="badge badge-pill badge-warning float-right">View all</span>--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-divider"></div>--%>
+<%--                        <a class="dropdown-item preview-item">--%>
+<%--                            <div class="preview-thumbnail">--%>
+<%--                                <div class="preview-icon bg-success">--%>
+<%--                                    <i class="mdi mdi-information mx-0"></i>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="preview-item-content">--%>
+<%--                                <h6 class="preview-subject font-weight-medium">Application Error</h6>--%>
+<%--                                <p class="font-weight-light small-text mb-0">--%>
+<%--                                    Just now--%>
+<%--                                </p>--%>
+<%--                            </div>--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-divider"></div>--%>
+<%--                        <a class="dropdown-item preview-item">--%>
+<%--                            <div class="preview-thumbnail">--%>
+<%--                                <div class="preview-icon bg-warning">--%>
+<%--                                    <i class="mdi mdi-settings mx-0"></i>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="preview-item-content">--%>
+<%--                                <h6 class="preview-subject font-weight-medium">Settings</h6>--%>
+<%--                                <p class="font-weight-light small-text mb-0">--%>
+<%--                                    Private message--%>
+<%--                                </p>--%>
+<%--                            </div>--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-divider"></div>--%>
+<%--                        <a class="dropdown-item preview-item">--%>
+<%--                            <div class="preview-thumbnail">--%>
+<%--                                <div class="preview-icon bg-info">--%>
+<%--                                    <i class="mdi mdi-account-box mx-0"></i>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="preview-item-content">--%>
+<%--                                <h6 class="preview-subject font-weight-medium">New user registration</h6>--%>
+<%--                                <p class="font-weight-light small-text mb-0">--%>
+<%--                                    2 days ago--%>
+<%--                                </p>--%>
+<%--                            </div>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item nav-profile dropdown">--%>
+<%--                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">--%>
+<%--                        <img src="/assets/images/faces/elnur_prof.jpg" alt="profile"/>--%>
+<%--                        <span class="nav-profile-name">Elnur Guluzade</span>--%>
+<%--                    </a>--%>
+<%--                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">--%>
+<%--                        <a class="dropdown-item">--%>
+<%--                            <i class="mdi mdi-settings text-primary"></i>--%>
+<%--                            Settings--%>
+<%--                        </a>--%>
+<%--                        <div class="dropdown-divider"></div>--%>
+<%--                        <a class="dropdown-item">--%>
+<%--                            <i class="mdi mdi-logout text-primary"></i>--%>
+<%--                            Logout--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item nav-settings d-none d-lg-flex">--%>
+<%--                    <a class="nav-link" href="#">--%>
+<%--                        <i class="mdi mdi-dots-horizontal"></i>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item nav-toggler-item-right d-lg-none">--%>
+<%--                    <button class="navbar-toggler align-self-center" type="button" data-toggle="offcanvas">--%>
+<%--                        <span class="mdi mdi-menu"></span>--%>
+<%--                    </button>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </nav>--%>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_settings-panel.html -->
@@ -161,8 +220,14 @@
             <div id="theme-settings" class="settings-panel">
                 <i class="settings-close mdi mdi-close"></i>
                 <p class="settings-heading">SIDEBAR SKINS</p>
-                <div class="sidebar-bg-options" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-                <div class="sidebar-bg-options selected" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-primary border mr-3"></div>Dark</div>
+                <div class="sidebar-bg-options" id="sidebar-light-theme">
+                    <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                    Light
+                </div>
+                <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+                    <div class="img-ss rounded-circle bg-primary border mr-3"></div>
+                    Dark
+                </div>
                 <p class="settings-heading mt-2">HEADER SKINS</p>
                 <div class="color-tiles mx-0 px-4">
                     <div class="tiles success"></div>
@@ -177,19 +242,23 @@
             <i class="settings-close mdi mdi-close"></i>
             <ul class="nav nav-tabs" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
             <div class="tab-content" id="setting-content">
-                <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+                <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+                     aria-labelledby="todo-section">
                     <div class="add-items d-flex px-3 mb-0">
                         <form class="form w-100">
                             <div class="form-group d-flex">
                                 <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -263,11 +332,13 @@
                 <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                        <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+                        <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                            All</small>
                     </div>
                     <ul class="chat-list">
                         <li class="list active">
-                            <div class="profile"><img src="/assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face1.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Thomas Douglas</p>
                                 <p>Available</p>
@@ -275,7 +346,8 @@
                             <small class="text-muted my-auto">19 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face2.jpg" alt="image"><span
+                                    class="offline"></span></div>
                             <div class="info">
                                 <div class="wrapper d-flex">
                                     <p>Catherine</p>
@@ -286,7 +358,8 @@
                             <small class="text-muted my-auto">23 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face3.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Daniel Russell</p>
                                 <p>Available</p>
@@ -294,7 +367,8 @@
                             <small class="text-muted my-auto">14 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face4.jpg" alt="image"><span
+                                    class="offline"></span></div>
                             <div class="info">
                                 <p>James Richardson</p>
                                 <p>Away</p>
@@ -302,7 +376,8 @@
                             <small class="text-muted my-auto">2 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face5.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Madeline Kennedy</p>
                                 <p>Available</p>
@@ -310,7 +385,8 @@
                             <small class="text-muted my-auto">5 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                            <div class="profile"><img src="/assets/images/faces/face6.jpg" alt="image"><span
+                                    class="online"></span></div>
                             <div class="info">
                                 <p>Sarah Graves</p>
                                 <p>Available</p>
@@ -378,7 +454,6 @@
             <!-- content-wrapper ends -->
 
 
-
             <!-- partial:../../partials/_footer.html -->
             <footer class="footer">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -391,108 +466,41 @@
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-</div>
+
 <!-- container-scroller -->
-
-<!-- plugins:js -->
-<script src="/assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="/assets/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="/assets/js/off-canvas.js"></script>
-<script src="/assets/js/hoverable-collapse.js"></script>
-<script src="/assets/js/template.js"></script>
-<script src="/assets/js/settings.js"></script>
-<script src="/assets/js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="/assets/js/data-table.js"></script>
-<!-- End custom js for this page-->
-
-
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script><%--buttons for dataTables--%>
-<%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
-<script src="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"></script><%--popup--%>
-
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script><%--popup--%>
-
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables_themeroller.css"></script><%--popup--%>
-
-
-
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
-<script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap4.min.css"></script>
-
-
-
-
-
-<%--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>&lt;%&ndash;popup&ndash;%&gt;--%>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script><%--buttons for dataTables--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script><%--popup--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script><%--popup--%>
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script><%--popup--%>
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script><%--popup--%>
-
-
-
 
 <script>
 
+    var deleteCellTable;
 
+    var selectedSiteName ;
 
     $(document).ready(function () {
+        drawCellsTableToDelete();
 
-         drawCellsTableToDelete();
-
-
-
-        $("#delete-data-table").on('click', 'tr', function () {
-            $(this).removeClass('selected');
-            $(this).toggleClass('selected');
-
-        });
-
-
-
+        // $("#delete-data-table").on('click', 'tr', function () {
+        //     $(this).removeClass('selected');
+        //     $(this).toggleClass('selected');
+        //
+        // });
+        //
         // $("#deleteButton").on('click' ,function () {
         //
         //     var cellNames = $.map(deleteCellTable.rows('.selected').data(), function (item) {
         //         return item[3]
         //     });
-
-
-            //
-            // //  window.location.href = "/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
-            // window.location.href = "/load/deleteCells?cellNames=" + cellNames ;
-            // alert(cellNames);
-       // });
-
-
-
-
-
+        //
+        //
+        //
+        //
+        // //  window.location.href = "/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
+        // window.location.href = "/load/deleteCells?cellNames=" + cellNames ;
+        // alert(cellNames);
+        // });
 
     });
 
-
-
-    var  deleteCellTable;
-
-
     function drawCellsTableToDelete() {
-
-
-
         deleteCellTable = $("#delete-data-table").DataTable({
             "processing": true,
             'language': {
@@ -503,33 +511,27 @@
             "ordering": true,
             "bJQueryUI": true,
             "select": {
-                style:'multi',
-
+                style: 'multi'
             },
-            "aLengthMenu": [[10, 50, 100 , 1000000], [10, 50, 100, "All"]],
+            "aLengthMenu": [[10, 50, 100, 1000000], [10, 50, 100, "All"]],
             "iDisplayLength": 10,
             "ajax": {
-                url: "../load/getAllCellsToDelete",
-                type: 'get',
+                url: "../getAllCellsToDelete",
                 data: function ( d ) {
-                    d.siteName = selectedSite;
+                    d.siteName = "01774_BKU_ABBAS";
                 }
-            } ,
-          //  "ajax": "../load/getAllCellsToDelete",
+            },
+            //"ajax": "../load/getAllCellsToDelete",
             "dom": 'lBfrtip',
             "buttons": [
-                {extend:'selectAll', className:'btn btn-primary'},
-                {extend:'selectNone', className:'btn btn-primary'}],
-
+                {extend: 'selectAll', className: 'btn btn-primary'},
+                {extend: 'selectNone', className: 'btn btn-primary'}
+            ]
         });
 
-
-
-
-
-        $("#searchID").unbind().keyup(function(e) {
+        $("#searchID").unbind().keyup(function (e) {
             var value = $(this).val();
-            if (value.length>1) {
+            if (value.length > 1) {
                 table.search(value).draw();
             } else {
                 //optional, reset the search if the phrase
@@ -539,9 +541,6 @@
         });
 
     }
-
-
-
 </script>
 </body>
 <!-- Mirrored from www.urbanui.com/calmui/template/demo/vertical-default-light/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2019 11:47:22 GMT -->

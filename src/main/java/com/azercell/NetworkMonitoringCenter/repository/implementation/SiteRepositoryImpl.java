@@ -1050,16 +1050,20 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getnumberOfAllCellsOfIdenticalSite(String siteName) {
 
-        String sql = "select count(cell) from santral.cells2" +
-                "where site = ? ";
+        String sql = "select count(cell) from santral.cells2 " +
+                "where site like ? ";
 
-        return jdbcTemplate.query(sql , (resultSet , i) ->(resultSet.getInt(1)), "%"+siteName+"%").get(0);
+
+
+
+        return jdbcTemplate.query(sql , (resultSet , i) ->(resultSet.getInt(1)),
+                "%"+siteName+"%").get(0);
     }
 
     @Override
     public List<Site> getCellsToDelete(String siteName , int begin , int end) {
 
-        String sql = "select node , site , cell_type , cell from santral.cells2 where site = ? " +
+        String sql = "select node , site , cell_type , cell from santral.cells2 where site like ? " +
                 "limit ? , ? ";
 
         return jdbcTemplate.query(sql , allCellsOfIdenticalSiteToDeleteRowMapper ,
