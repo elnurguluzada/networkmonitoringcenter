@@ -943,7 +943,7 @@
 
             selectedSiteName = allSitesTable.row($(this).parents('tr')).data()[1];
 
-            window.open("/load/allCellsToDelete/"+ selectedSiteName ,"", "width=800,height=600");
+            window.open("/NetworkMonitoringCenter/load/allCellsToDelete/"+ selectedSiteName ,"", "width=800,height=600");
 
 
         //    $("#delete-button").DataTable().ajax.reload();

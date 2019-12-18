@@ -15,6 +15,7 @@ import com.azercell.NetworkMonitoringCenter.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/load")
@@ -657,6 +659,9 @@ public class SiteController {
 //        return "/common/file_upload";
 //    }
 
+
+
+
     //---------------------------------- Update General Site Infromations -------------------------------------------------------
 
 
@@ -851,13 +856,9 @@ public class SiteController {
 
 
     @GetMapping("/allCellsToDelete/{siteName}")
-    public String getAllCellsToDelete(@PathVariable("siteName") String siteName , Model model){
+    public String getAllCellsToDelete(@PathVariable("siteName") String siteName , Map<String, String> model){
 
-
-      //  ModelAndView modelAndView = new ModelAndView("/site/deleting_data");
-
-        model.addAttribute("siteName" , siteName);
-        System.out.println("site name = " + model.asMap().get("siteName"));
+        model.put("siteName" , siteName);
 
 
         return "/site/deleting_data";
@@ -917,6 +918,18 @@ public class SiteController {
 
 
 
+    @GetMapping("/deleteSelectedCells")
+    public String deleteSelectedCells(
+            @RequestParam(name = "cellNames") String cellNames,
+            @RequestParam(name = "selectedSiteName") String siteName
+    ){
+
+        System.out.println(cellNames);
+        siteService.deleteCell(cellNames);
+
+
+        return "redirect:/load/allCellsToDelete/" + siteName;
+    }
 
 
 

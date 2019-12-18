@@ -410,7 +410,7 @@
 
                     <div class="card-body">
 
-                        <h4 class="card-title">Update dropped sites</h4>
+                        <h4 class="card-title"> Delete cells</h4>
 
                         <p>
 
@@ -428,7 +428,6 @@
                                             <th>Site</th>
                                             <th>Type</th>
                                             <th>Cell</th>
-                                            <th>Status</th>
                                         </tr>
                                         </thead>
 
@@ -440,11 +439,12 @@
                                             <th>Site</th>
                                             <th>Type</th>
                                             <th>Cell</th>
-                                            <th>Status</th>
                                         </tr>
                                         </tfoot>
 
+
                                     </table>
+                                    <button id="deleteButton" type="submit" class="btn btn-primary mr-2">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -472,37 +472,38 @@
 <script>
 
     var deleteCellTable;
+    var selectedSiteName  =  "${siteName}";
 
-    var selectedSiteName ;
+
 
     $(document).ready(function () {
         drawCellsTableToDelete();
 
-        // $("#delete-data-table").on('click', 'tr', function () {
-        //     $(this).removeClass('selected');
-        //     $(this).toggleClass('selected');
-        //
-        // });
-        //
-        // $("#deleteButton").on('click' ,function () {
-        //
-        //     var cellNames = $.map(deleteCellTable.rows('.selected').data(), function (item) {
-        //         return item[3]
-        //     });
-        //
-        //
-        //
-        //
-        // //  window.location.href = "/load/updateDroppedSites?cellNames=" + cellNames + "&note=" + note + "&reason=" + reason;
-        // window.location.href = "/load/deleteCells?cellNames=" + cellNames ;
-        // alert(cellNames);
-        // });
+
+        $("#delete-data-table").on('click', 'tr', function () {
+            $(this).removeClass('selected');
+            $(this).toggleClass('selected');
+
+        });
+
+
+
+        $("#deleteButton").on('click' ,function () {
+
+            var cellNames = $.map(deleteCellTable.rows('.selected').data(), function (item) {
+                return item[3]
+            });
+
+
+            window.location.href = "/NetworkMonitoringCenter/load/deleteSelectedCells?cellNames=" + cellNames + "&selectedSiteName=" + selectedSiteName ;
+        });
 
     });
 
     function drawCellsTableToDelete() {
         deleteCellTable = $("#delete-data-table").DataTable({
             "processing": true,
+            "searching": false,
             'language': {
                 'loadingRecords': '&nbsp;',
                 'processing': 'Data loading...'
@@ -513,12 +514,12 @@
             "select": {
                 style: 'multi'
             },
-            "aLengthMenu": [[10, 50, 100, 1000000], [10, 50, 100, "All"]],
+            "aLengthMenu": [[10, 15, 20, 1000000], [10, 15, 20, "All"]],
             "iDisplayLength": 10,
             "ajax": {
                 url: "../getAllCellsToDelete",
                 data: function ( d ) {
-                    d.siteName = "01774_BKU_ABBAS";
+                    d.siteName = selectedSiteName;
                 }
             },
             //"ajax": "../load/getAllCellsToDelete",
