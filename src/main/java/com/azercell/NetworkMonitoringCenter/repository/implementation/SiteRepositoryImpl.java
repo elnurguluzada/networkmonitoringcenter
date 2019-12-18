@@ -701,7 +701,8 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         String sql = "select c.node , c.cell , c.tg , c.rblt , c.cgi , c.tru , c.rbs , c.direction , c.ins_date " +
                 "from santral.cells c " +
-                "where site like ?  and  c.cell_type = '2G'" +
+                "where site like ?  and  c.cell_type = '2G' " +
+                "order by c.cell " +
                 "limit ? , ? ";
 
         return jdbcTemplate.query(sql , all2GCellsOfIdenticalSiteRowMapper ,
@@ -728,6 +729,7 @@ public class SiteRepositoryImpl implements SiteRepository {
         String sql = "select c.node , c.cell , c.cgi , c.rbs , c.note,  ip , c.direction , c.ins_date " +
                 "from santral.cells c " +
                 "where site like ?  and  c.cell_type = '3G' " +
+                "order by c.cell " +
                 "limit ? , ? ";
 
         return jdbcTemplate.query(sql , all3GCellsOfIdenticalSiteRowMapper ,
@@ -753,6 +755,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         String sql = "select c.node , c.cell , c.cgi , c.rbs ,  ip , c.direction , c.ins_date from santral.cells c " +
                 "where c.site like ?  and  c.cell_type = 'LTE' " +
+                "order by c.cell " +
                 "limit ? , ? ";
 
 
@@ -787,6 +790,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         String sql = "select c.node , c.cell , c.cgi , c.rbs ,  c.ip , c.direction , c.ins_date from santral.cells c " +
                 "where c.site like ?  and  c.cell_type = '5G' " +
+                "order by c.cell " +
                 "limit ? , ? " ;
 
         return jdbcTemplate.query(sql, all4GCellsOfIdenticalSiteRowMapper ,
@@ -1064,6 +1068,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     public List<Site> getCellsToDelete(String siteName , int begin , int end) {
 
         String sql = "select node , site , cell_type , cell from santral.cells2 where site like ? " +
+                "order by cell_type " +
                 "limit ? , ? ";
 
         return jdbcTemplate.query(sql , allCellsOfIdenticalSiteToDeleteRowMapper ,
@@ -1073,7 +1078,22 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
     @Override
-    public void deleteCell(String cellName) {
+    public void deleteCell(String cellNames) {
+
+        int i = 0;
+
+        String sql = "delete from santral.cells2 where cell  like ? ";
+
+        System.out.println("cellNames = " + cellNames);
+        StringTokenizer stringTokenizer = new StringTokenizer(cellNames , ",");
+
+        while (stringTokenizer.hasMoreElements()){
+
+            jdbcTemplate.update(sql ,  stringTokenizer.nextToken());
+            i++;
+        }
+
+
 
     }
 

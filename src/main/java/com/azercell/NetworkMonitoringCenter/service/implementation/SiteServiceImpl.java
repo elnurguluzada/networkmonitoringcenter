@@ -238,5 +238,6 @@ public class SiteServiceImpl implements SiteService {
     @Override
     public void deleteCell(String cellName) {
 
+        siteRepository.deleteCell(cellName);
     }
 }
