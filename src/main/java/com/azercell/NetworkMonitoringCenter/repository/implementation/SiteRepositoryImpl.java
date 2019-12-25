@@ -669,18 +669,35 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
     @Override
-    public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue, int begin, int end) {
+    public List<Site> getAllSites(int indexOfColumn, String orderType, String searchValue, int begin, int end ) {
 
         //TODO add order by
 
+        String columnToOrder = "";
+
+        if (indexOfColumn == 0){
+            columnToOrder = "c.node";
+        } else if(indexOfColumn == 1){
+            columnToOrder = "c.site";
+        }
+
+        System.out.println("columnToOrder = " + columnToOrder );
+        System.out.println("orderType = " + orderType );
+
         String sql = "select distinct c.node , c.site  from santral.cells c " +
-                "where CONCAT( c.node, c.site , c.cell_type) LIKE ?" +
+                "where CONCAT( c.node, c.site , c.cell_type) LIKE ? " +
+                "order by ? ? " +
                 "limit ? , ? ";
+
+
+
 
 
         return jdbcTemplate.query(sql , allSitesRowMapper ,
                 "%"+searchValue+"%",
-                begin ,
+                columnToOrder,
+                orderType,
+                begin,
                 end);
     }
 
@@ -767,7 +784,6 @@ public class SiteRepositoryImpl implements SiteRepository {
 
 
 
-
     //5G cells
     @Override
     public int getNumberOfAll5GCellsOfIdenticalSite(String siteName) {
@@ -838,8 +854,6 @@ public class SiteRepositoryImpl implements SiteRepository {
     }
 
 
-
-
 //------------------------------------------------- Update  2G info-----------------------------------------------------------------------------------------------
 
     @Override
@@ -886,10 +900,6 @@ public class SiteRepositoryImpl implements SiteRepository {
                 site.getInsDate(), site.getCell());
 
     }
-
-
-
-
 
 
 //------------------------------------------------- Update 3G info-----------------------------------------------------------------------------------------------
@@ -942,11 +952,6 @@ public class SiteRepositoryImpl implements SiteRepository {
                 site.getCell());
 
     }
-
-
-
-
-
 
 //------------------------------------------------- Update 4G info-----------------------------------------------------------------------------------------------
 
@@ -1054,7 +1059,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public int getnumberOfAllCellsOfIdenticalSite(String siteName) {
 
-        String sql = "select count(cell) from santral.cells2 " +
+        String sql = "select count(cell) from santral.cells " +
                 "where site like ? ";
 
 
@@ -1067,7 +1072,7 @@ public class SiteRepositoryImpl implements SiteRepository {
     @Override
     public List<Site> getCellsToDelete(String siteName , int begin , int end) {
 
-        String sql = "select node , site , cell_type , cell from santral.cells2 where site like ? " +
+        String sql = "select node , site , cell_type , cell from santral.cells where site like ? " +
                 "order by cell_type " +
                 "limit ? , ? ";
 
@@ -1082,7 +1087,7 @@ public class SiteRepositoryImpl implements SiteRepository {
 
         int i = 0;
 
-        String sql = "delete from santral.cells2 where cell  like ? ";
+        String sql = "delete from santral.cells where cell  like ? ";
 
         System.out.println("cellNames = " + cellNames);
         StringTokenizer stringTokenizer = new StringTokenizer(cellNames , ",");
@@ -1092,9 +1097,6 @@ public class SiteRepositoryImpl implements SiteRepository {
             jdbcTemplate.update(sql ,  stringTokenizer.nextToken());
             i++;
         }
-
-
-
     }
 
 

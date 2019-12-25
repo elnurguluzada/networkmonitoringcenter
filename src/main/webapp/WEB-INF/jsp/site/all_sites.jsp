@@ -844,6 +844,7 @@
                 'processing': 'Data loading...'
             },
             "serverSide": true,
+            "ordering": true,
             "aLengthMenu": [[50, 100, 250 , 1000000], [50, 100, 250, "All"]],
             "iDisplayLength": 20,
             "ajax": "../load/getAllSites",
