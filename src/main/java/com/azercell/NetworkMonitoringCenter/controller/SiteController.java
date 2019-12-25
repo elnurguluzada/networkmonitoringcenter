@@ -86,6 +86,8 @@ public class SiteController {
         System.out.println("draw = " + draw);
         System.out.println("start = " + start);
         System.out.println("length = " + length);
+        System.out.println("order[0][column] = " + indexOfColumn );
+        System.out.println("order[0][dir] = " + orderType );
 
         DataTable dataTable = new DataTable();
 
